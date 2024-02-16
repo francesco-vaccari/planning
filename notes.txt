@@ -1,0 +1,8 @@
+Assumptions about problem:
+- a robot at a location has access to all workstations without needing to move further
+- a robot can unload the content of a box if it  is in the same location of the workstation, since the robot can access all workstations of that location
+- unloading a box simply empties the box, leaving the content of the box at the given workstation and having still after the robot carrying an emtpy box
+- boxes can be dropped by the robot at any location but not in workstations
+- contents can only be dropped at workstations, and are found initially in the central_warehouse
+- the central_warehouse is both a location and a workstation, has initially all boxes and all contents
+- the robot can empty a box that is carrying, moving the content from the box to a workstation in the location it is in
