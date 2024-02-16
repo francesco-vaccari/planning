@@ -6,9 +6,7 @@
         wor1 wor2_1 wor2_2 wor3 wor4_1 wor4_2 wor4_3 wor5 wor6_1 wor6_2 wor7 - workstation
         box1 box2 - box
         rob1 rob2 - robot
-        tool1 tool2 - tool
-        valve1 valve2 - valve
-        bolt1 bolt2 - bolt
+        tool1 tool2 valve1 valve2 bolt1 bolt2 - content
     )
 
     (:init
@@ -56,22 +54,12 @@
 
     (:goal
         (and
-            ; (con_at_loc_wor tool2 loc2 wor2_1)
-            ; (con_at_loc_wor tool1 loc4 wor4_2)
-            ; (con_at_loc_wor valve1 loc4 wor4_2)
-            ; (con_at_loc_wor valve2 loc4 wor4_3)
-            ; (con_at_loc_wor bolt1 loc7 wor7)
-            ; (con_at_loc_wor bolt2 loc5 wor5)
-            (exists (?c - tool)
-                (and
-                    (con_at_loc_wor ?c loc2 wor2_1)
-                )
-            )
-            ; (exists (?c - tool)
-            ;     (and
-            ;         (con_at_loc_wor ?c loc4 wor4_2)
-            ;     )
-            ; )
+            (con_at_loc_wor tool2 loc2 wor2_1)
+            (con_at_loc_wor tool1 loc4 wor4_2)
+            (con_at_loc_wor valve1 loc4 wor4_2)
+            (con_at_loc_wor valve2 loc4 wor4_3)
+            (con_at_loc_wor bolt1 loc7 wor7)
+            (con_at_loc_wor bolt2 loc5 wor5)
         )
     )
 )

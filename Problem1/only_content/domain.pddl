@@ -1,6 +1,6 @@
 (define (domain problem1)
 
-    (:requirements :strips :typing :existential-preconditions)
+    (:requirements :strips :typing :disjunctive-preconditions :equality :quantified-preconditions :conditional-effects)
 
     (:types
         robot - object
@@ -8,9 +8,6 @@
         location - object
         workstation - object
         content - object
-        tool - content
-        valve - content
-        bolt - content
     )
 
     (:constants
