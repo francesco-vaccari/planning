@@ -1,93 +1,114 @@
 (define (domain problem1)
 
-    (:requirements :strips :typing :existential-preconditions)
+    (:requirements :strips :typing)
 
     (:types
-        robot - object
-        box - object
-        location - object
-        workstation - object
-        content - object
-        tool - content
-        valve - content
-        bolt - content
+        location
+        workstation
+        robot
+        box
+        content
     )
 
     (:constants
         central_warehouse - location
-        central_warehouse_contents - workstation
     )
 
     (:predicates
-        (rob_at_loc ?r - robot ?l - location)
-        (box_at_loc ?b - box ?l - location)
-        (wor_at_loc ?w - workstation ?l - location)
-        (con_at_loc_wor ?c - content ?l - location ?w - workstation)
         (adjacent ?l1 - location ?l2 - location)
-        (carries ?r - robot ?b - box)
-        (contains ?b - box ?c - content)
-        (is_being_carried ?b - box)
-        (is_carrying ?r - robot)
-        (is_full ?b - box)
-        (is_in_box ?c - content)
-    )
+        (robot_at_location ?r - robot ?l - location)
+        (box_at_location ?b - box ?l - location)
+        (content_at_workstation_at_location ?c - content ?w - workstation ?l - location)
+        (workstation_at_location ?w - workstation ?l - location)
+        
+        (content_in_box ?c - content ?b - box)
+        (robot_has_box ?r - robot ?b - box)
+        
+        ; predicates for simpler preconditions and effects, and also redundancy
+        (robot_is_carrying ?r - robot)
+        (box_is_being_carried ?b - box)
+        (box_is_full ?b - box)
 
-    (:action pick_up
-        :parameters (
-            ?r - robot
-            ?b - box
-            ?l - location
-        )
-        :precondition (and
-            (rob_at_loc ?r ?l)
-            (box_at_loc ?b ?l)
-            (not (is_being_carried ?b))
-            (not (is_carrying ?r))
-        )
-        :effect (and
-            (carries ?r ?b)
-            (is_being_carried ?b)
-            (is_carrying ?r)
-            (not (box_at_loc ?b ?l))
-        )
-    )
-
-    (:action put_down
-        :parameters (
-            ?r - robot
-            ?b - box
-            ?l - location
-        )
-        :precondition (and
-            (rob_at_loc ?r ?l)
-            (carries ?r ?b)
-            (is_carrying ?r)
-        )
-        :effect (and
-            (not (carries ?r ?b))
-            (not (is_being_carried ?b))
-            (not (is_carrying ?r))
-            (box_at_loc ?b ?l)
-        )
+        (content_at_cw ?c - content) ; to implement infinite content availability
     )
 
     (:action move
         :parameters (
             ?r - robot
-            ?l1 - location
-            ?l2 - location
+            ?from - location
+            ?to - location
         )
         :precondition (and
-            (rob_at_loc ?r ?l1)
-            (adjacent ?l1 ?l2)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?to)
         )
         :effect (and
-            (rob_at_loc ?r ?l2)
-            (not (rob_at_loc ?r ?l1))
+            (not (robot_at_location ?r ?from))
+            (robot_at_location ?r ?to)
         )
     )
 
-    (:action fill_box
+    (:action pick_up_box
+        :parameters (
+            ?r - robot
+            ?b - box
+            ?l - location
+        )
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (box_at_location ?b ?l)
+            (not (robot_is_carrying ?r))
+            (not (box_is_being_carried ?b))
+        )
+        :effect (and
+            (not (box_at_location ?b ?l))
+            (robot_has_box ?r ?b)
+            (box_is_being_carried ?b)
+            (robot_is_carrying ?r)
+        )
+    )
+
+    (:action put_down_box
+        :parameters (
+            ?r - robot
+            ?b - box
+            ?l - location
+        )
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (robot_has_box ?r ?b)
+            (box_is_being_carried ?b)
+            (robot_is_carrying ?r)
+        )
+        :effect (and
+            (not (robot_has_box ?r ?b))
+            (box_at_location ?b ?l)
+            (not (robot_is_carrying ?r))
+            (not (box_is_being_carried ?b))
+        )
+    )
+
+    (:action pick_up_content_at_cw
+        :parameters (
+            ?r - robot
+            ?b - box
+            ?c - content
+        )
+        :precondition (and
+            (robot_at_location ?r central_warehouse)
+            (robot_has_box ?r ?b)
+            (robot_is_carrying ?r)
+            (not (box_is_full ?b))
+            (content_at_cw ?c)
+        )
+        :effect (and
+            (content_in_box ?c ?b)
+            (box_is_full ?b)
+            ; content still remains at cw to implement infinite content availability
+        )
+    )
+
+    (:action pick_up_content
         :parameters (
             ?r - robot
             ?b - box
@@ -96,24 +117,21 @@
             ?w - workstation
         )
         :precondition (and
-            (rob_at_loc ?r ?l)
-            (wor_at_loc ?w ?l)
-            (con_at_loc_wor ?c ?l ?w)
-            (carries ?r ?b)
-            (is_carrying ?r)
-            (is_being_carried ?b)
-            (not (is_full ?b))
-            (not (is_in_box ?c))
+            (robot_at_location ?r ?l)
+            (robot_has_box ?r ?b)
+            (robot_is_carrying ?r)
+            (not (box_is_full ?b))
+            (workstation_at_location ?w ?l)
+            (content_at_workstation_at_location ?c ?w ?l)
         )
         :effect (and
-            (contains ?b ?c)
-            (is_full ?b)
-            (is_in_box ?c)
-            (not (con_at_loc_wor ?c ?l ?w))
+            (content_in_box ?c ?b)
+            (box_is_full ?b)
+            (not (content_at_workstation_at_location ?c ?w ?l))
         )
     )
 
-    (:action empty_box
+    (:action put_down_content
         :parameters (
             ?r - robot
             ?b - box
@@ -122,19 +140,17 @@
             ?w - workstation
         )
         :precondition (and
-            (rob_at_loc ?r ?l)
-            (wor_at_loc ?w ?l)
-            (carries ?r ?b)
-            (is_carrying ?r)
-            (is_being_carried ?b)
-            (contains ?b ?c)
-            (is_in_box ?c)
+            (robot_at_location ?r ?l)
+            (robot_has_box ?r ?b)
+            (robot_is_carrying ?r)
+            (box_is_full ?b)
+            (workstation_at_location ?w ?l)
+            (content_in_box ?c ?b)
         )
         :effect (and
-            (not (is_full ?b))
-            (not (contains ?b ?c))
-            (not (is_in_box ?c))
-            (con_at_loc_wor ?c ?l ?w)
+            (content_at_workstation_at_location ?c ?w ?l)
+            (not (content_in_box ?c ?b))
+            (not (box_is_full ?b))
         )
     )
 )

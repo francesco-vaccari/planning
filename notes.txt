@@ -6,3 +6,9 @@ Assumptions about problem:
 - contents can only be dropped at workstations, and are found initially in the central_warehouse
 - the central_warehouse is both a location and a workstation, has initially all boxes and all contents
 - the robot can empty a box that is carrying, moving the content from the box to a workstation in the location it is in
+
+
+
+I think it is better if i can implement the contents in a way that when a robot picks stuff up from the central_warehouse the stuff is not removed, and is like duplicated. This way the components are inifinite but i have to be careful because i still need them to disappear from ground if they are picked from any other workstation. To solve this problem, i might solve this problem by creating a special action that allows the robot to fill_up_at_cw and maybe also remove the central_warehouse_workstation so that the formulation is simpler by allowing the contents to be at a location when that location is only the central_warehouse.
+
+Regarding problem1, I can also add a pud_down_content_at_cw action that basically acts as bin for the contents that the robot has that are not needed anymore. This is not really needed since the goal do not require this action and it would never be actually performed. Still might be a good idea to add it.
