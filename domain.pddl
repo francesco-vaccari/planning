@@ -108,6 +108,25 @@
         )
     )
 
+    (:action put_down_content_at_cw
+        :parameters(
+            ?r - robot
+            ?b - box
+            ?c - content
+        )
+        :precondition (and
+            (robot_at_location ?r central_warehouse)
+            (robot_has_box ?r ?b)
+            (robot_is_carrying ?r)
+            (box_is_full ?b)
+            (content_in_box ?c ?b)
+        )
+        :effect (and
+            (not (content_in_box ?c ?b))
+            (not (box_is_full ?b))
+        )
+    )
+
     (:action pick_up_content
         :parameters (
             ?r - robot

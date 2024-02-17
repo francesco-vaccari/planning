@@ -6,7 +6,7 @@
         rob1 - robot
         box1 - box
         wor1 wor2_1 wor2_2 - workstation
-        tool valve bolt - content
+        tool valve bolt parts - content
     )
 
     (:init
@@ -21,6 +21,7 @@
         (content_at_cw tool)
         (content_at_cw valve)
         (content_at_cw bolt)
+        (content_at_cw parts)
 
         (workstation_at_location wor1 loc1)
         (workstation_at_location wor2_1 loc2)
