@@ -15,3 +15,12 @@ Regarding problem1, I can also add a pud_down_content_at_cw action that basicall
 Boxes instead are in a limited number and for each of them there is an instance initialized at central_warehouse. Boxes can only be dropped in locations, and not in workstations, which means that the action of unloading a box can be performed by a robot by simply being in the same locatino of the workstation and emptying the box. Robots can choose to also drop boxes at locations, but they nevet do because it is not optimal.
 
 The way I modeled the contents of boxes, it is easy to add new kinds of componenents, like 'parts' in the problem defined. Also it is possible to add other robots that can pick up other boxes. Altough this produces a much longer plan searching time if we use astar to find the optimal plan. Observation about plans found, since we don't need boxes to be returned to the central_warehouse, the longest delivery is always performed last.
+
+
+PROBLEM2
+Assumptions about problem2:
+- there are different kind of robots, the basic one which walks and can move obly between adjacent locations, and drones that can fly between arbitrary locations, maybe also some kind of jumping robot that can move by 2 locations at a time (walker, drone, jumper)
+- 
+
+
+For the different kind of robots, I am planning to give the drone the highest cost for moving, the jumping robot should have less than double the cost of the walking robot so that it makes sense. I think this creates an interesting solution in cetrain environments, especially because the jumper cannot reach all the states, but only those with an even distance to the central_warehouse.
