@@ -21,7 +21,7 @@
         (content_at_workstation_at_location ?c - content ?w - workstation ?l - location)
         (workstation_at_location ?w - workstation ?l - location)
         
-        (content_in_box ?c - content ?b - box)
+        (box_has_content ?b - box ?c - content)
         (robot_has_box ?r - robot ?b - box)
         
         ; predicates for simpler preconditions and effects, and also redundancy
@@ -102,7 +102,7 @@
             (content_at_cw ?c)
         )
         :effect (and
-            (content_in_box ?c ?b)
+            (box_has_content ?b ?c)
             (box_is_full ?b)
             ; content still remains at cw to implement infinite content availability
         )
@@ -119,10 +119,10 @@
             (robot_has_box ?r ?b)
             (robot_is_carrying ?r)
             (box_is_full ?b)
-            (content_in_box ?c ?b)
+            (box_has_content ?b ?c)
         )
         :effect (and
-            (not (content_in_box ?c ?b))
+            (not (box_has_content ?b ?c))
             (not (box_is_full ?b))
         )
     )
@@ -144,7 +144,7 @@
             (content_at_workstation_at_location ?c ?w ?l)
         )
         :effect (and
-            (content_in_box ?c ?b)
+            (box_has_content ?b ?c)
             (box_is_full ?b)
             (not (content_at_workstation_at_location ?c ?w ?l))
         )
@@ -164,11 +164,11 @@
             (robot_is_carrying ?r)
             (box_is_full ?b)
             (workstation_at_location ?w ?l)
-            (content_in_box ?c ?b)
+            (box_has_content ?b ?c)
         )
         :effect (and
             (content_at_workstation_at_location ?c ?w ?l)
-            (not (content_in_box ?c ?b))
+            (not (box_has_content ?b ?c))
             (not (box_is_full ?b))
         )
     )

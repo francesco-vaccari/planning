@@ -1,0 +1,5 @@
+(robot_attach_carrier jumper carrier1 central_warehouse)
+(robot_load_carrier jumper carrier1 box1 central_warehouse one zero)
+(move_jumping jumper central_warehouse loc1 loc2)
+(robot_unload_carrier jumper carrier1 box1 loc2 zero one)
+; cost = 4 (unit cost)
