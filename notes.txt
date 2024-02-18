@@ -20,7 +20,13 @@ The way I modeled the contents of boxes, it is easy to add new kinds of componen
 PROBLEM2
 Assumptions about problem2:
 - there are different kind of robots, the basic one which walks and can move obly between adjacent locations, and drones that can fly between arbitrary locations, maybe also some kind of jumping robot that can move by 2 locations at a time (walker, drone, jumper)
-- 
+- carriers can be dropped at locations and not at workstations
+- to load content to boxes the box has to be loaded in a carrier and the carrier must be attached, to load a box to a carrier the carrier must be attached and must have capacity available
+- the carriers have a maximum capacity, up to 10 boxes
+- a robot can have only one carrier attached at a time
+- like before, contents are available with infinite restock at the central_warehouse
 
 
 For the different kind of robots, I am planning to give the drone the highest cost for moving, the jumping robot should have less than double the cost of the walking robot so that it makes sense. I think this creates an interesting solution in cetrain environments, especially because the jumper cannot reach all the states, but only those with an even distance to the central_warehouse.
+
+Because of the problem of the fluents/numeric-fluents not being implemented I had to change the way the max capacity for carriers is handled, the solution this way is far from clean and pretty meh but it works. 
