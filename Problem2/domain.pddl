@@ -140,7 +140,7 @@
         )
     )
 
-    (:action robot_load_carrier
+    (:action robot_load_box
         :parameters (
             ?r - robot
             ?c - carrier
@@ -168,7 +168,7 @@
         )
     )
 
-    (:action robot_unload_carrier
+    (:action robot_unload_box
         :parameters (
             ?r - robot
             ?c - carrier
