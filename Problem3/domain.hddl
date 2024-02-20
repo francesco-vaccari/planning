@@ -57,7 +57,7 @@
     )
 
     (:task move :parameters (?r - robot ?l - location))
-    
+
 
     (:method method_move_walking_0
         :parameters (
@@ -185,7 +185,7 @@
             (adjacent ?half1 ?half2)
             (adjacent ?half2 ?half3)
             (adjacent ?half3 ?to)
-            (not (robot_at_location ?r ?half2)
+            (not (robot_at_location ?r ?half2))
             (not (robot_at_location ?r ?to))
         )
         :subtasks (and
