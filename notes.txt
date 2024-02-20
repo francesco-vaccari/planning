@@ -26,10 +26,12 @@ Assumptions about problem2:
 - a robot can have only one carrier attached at a time
 - like before, contents are available with infinite restock at the central_warehouse
 
-
 For the different kind of robots, I am planning to give the drone the highest cost for moving, the jumping robot should have less than double the cost of the walking robot so that it makes sense. I think this creates an interesting solution in cetrain environments, especially because the jumper cannot reach all the states, but only those with an even distance to the central_warehouse.
 
 Because of the problem of the fluents/numeric-fluents not being implemented I had to change the way the max capacity for carriers is handled, the solution this way is far from clean and pretty meh but it works.
 
 Interesting about the solution, only the drone makes actions, since it is the fastest way to move and since it spends the action to attach the carrier, any other robot starting from the central_warehouse would take the same amount of time to reach any new destination because it needs to attach the carrier before. Also, the drone attaches the carrier with capacity two in order to make only one trip to deliver the contents to the two workstations in location 2.
 
+
+PROBLEM3
+Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.

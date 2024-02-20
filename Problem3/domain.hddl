@@ -1,0 +1,461 @@
+(define (domain problem3)
+
+    (:requirements :strips :typing)
+
+    (:types
+        location
+        workstation
+        robot
+        carrier
+        box
+        num
+        content
+    )
+
+    (:constants
+        central_warehouse - location
+        zero - num
+        one - num
+        two - num
+        three - num
+        four - num
+        five - num
+        six - num
+        seven - num
+        eight - num
+        nine - num
+        ten - num
+    )
+
+    (:predicates
+        (adjacent ?l1 - location ?l2 - location)
+        
+        (walks ?r - robot)
+        (flies ?r - robot)
+        (jumps ?r - robot)
+
+        (carrier_capacity ?c - carrier ?n - num)
+        (increase_capacity ?n - num ?m - num)
+        (decrease_capacity ?n - num ?m - num)
+
+        (workstation_at_location ?w - workstation ?l - location)
+        (robot_at_location ?r - robot ?l - location)
+        (carrier_at_location ?c - carrier ?l - location)
+        (box_at_location ?b - box ?l - location)
+        (content_at_location_at_workstation ?c - content ?l - location ?w - workstation)
+        (content_at_cw ?c - content)
+
+
+        (robot_has_carrier ?r - robot ?c - carrier)
+        (carrier_has_box ?c - carrier ?b - box)
+        (box_has_content ?b - box ?c - content)
+
+        (robot_is_attached ?r - robot)
+        (carrier_is_attached ?c - carrier)
+        (box_is_loaded ?b - box)
+        (box_is_full ?b - box)
+    )
+
+    (:task move :parameters (?r - robot ?l - location))
+    
+
+    (:method method_move_walking_0
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (robot_at_location ?r ?from)
+            (robot_at_location ?r ?to)
+        )
+        :subtasks ()
+        :constraints (and
+            (= ?from ?to)
+        )
+    )
+
+    (:method method_move_walking_1
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (walks ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?to)
+        )
+        :subtasks (and
+            (task0 (move_walking ?r ?from ?to))
+        )
+        :constraints (and
+            (not (= ?from ?to))
+        )
+    )
+
+    (:method method_move_walking_2
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?through - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (walks ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?through)
+        )
+        :subtasks (and
+            (task0 (move_walking ?r ?from ?through))
+            (task1 (move ?r ?to))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?from ?through))
+            (not (= ?from ?to))
+            (not (= ?through ?to))
+        )
+    )
+
+    (:method method_move_flying_1
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (flies ?r)
+            (robot_at_location ?r ?from)
+            (not (robot_at_location ?r ?to))
+        )
+        :subtasks (and
+            (task0 (move_flying ?r ?from ?to))
+        )
+        :constraints (and
+            (not (= ?from ?to))
+        )
+    )
+
+    (:method method_move_jumping_1
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?half - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (jumps ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?half)
+            (adjacent ?half ?to)
+            (not (robot_at_location ?r ?to))
+        )
+        :subtasks (and
+            (task0 (move_jumping ?r ?from ?half ?to))
+        )
+        :constraints (and
+            (not (= ?from ?half))
+            (not (= ?from ?to))
+            (not (= ?half ?to))
+        )
+    )
+
+    (:method method_move_jumping_2
+        :parameters (
+            ?r - robot
+            ?from - location
+            ?half1 - location
+            ?half2 - location
+            ?half3 - location
+            ?to - location
+        )
+        :task (move ?r ?to)
+        :precondition (and
+            (jumps ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?half1)
+            (adjacent ?half1 ?half2)
+            (adjacent ?half2 ?half3)
+            (adjacent ?half3 ?to)
+            (not (robot_at_location ?r ?half2)
+            (not (robot_at_location ?r ?to))
+        )
+        :subtasks (and
+            (task0 (move_jumping ?r ?from ?half1 ?half2))
+            (task1 (move ?r ?to))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?from ?half1))
+            (not (= ?from ?half2))
+            (not (= ?from ?half3))
+            (not (= ?from ?to))
+            (not (= ?half1 ?half2))
+            (not (= ?half1 ?half3))
+            (not (= ?half1 ?to))
+            (not (= ?half2 ?half3))
+            (not (= ?half2 ?to))
+            (not (= ?half3 ?to))
+        )
+    )
+
+
+
+    (:action move_walking
+        :parameters(
+            ?r - robot
+            ?from - location
+            ?to - location
+        )
+        :precondition(and
+            (walks ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?to)
+        )
+        :effect(and
+            (not(robot_at_location ?r ?from))
+            (robot_at_location ?r ?to)
+        )
+    )
+
+    (:action move_flying
+        :parameters(
+            ?r - robot
+            ?from - location
+            ?to - location
+        )
+        :precondition(and
+            (flies ?r)
+            (robot_at_location ?r ?from)
+        )
+        :effect(and
+            (not(robot_at_location ?r ?from))
+            (robot_at_location ?r ?to)
+        )
+    )
+
+    (:action move_jumping
+        :parameters(
+            ?r - robot
+            ?from - location
+            ?half - location
+            ?to - location
+        )
+        :precondition(and
+            (jumps ?r)
+            (robot_at_location ?r ?from)
+            (adjacent ?from ?half)
+            (adjacent ?half ?to)
+            (not (robot_at_location ?r ?to))
+        )
+        :effect(and
+            (not(robot_at_location ?r ?from))
+            (robot_at_location ?r ?to)
+        )
+    )
+
+    (:action robot_attach_carrier
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?l - location
+        )
+        :precondition(and
+            (robot_at_location ?r ?l)
+            (carrier_at_location ?c ?l)
+            (not(robot_has_carrier ?r ?c))
+            (not(robot_is_attached ?r))
+            (not(carrier_is_attached ?c))
+        )
+        :effect(and
+            (robot_has_carrier ?r ?c)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+            (not (carrier_at_location ?c ?l))
+        )
+    )
+
+    (:action robot_detach_carrier
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?l - location
+        )
+        :precondition(and
+            (robot_at_location ?r ?l)
+            (robot_has_carrier ?r ?c)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+        )
+        :effect(and
+            (not(robot_has_carrier ?r ?c))
+            (not(robot_is_attached ?r))
+            (not(carrier_is_attached ?c))
+            (carrier_at_location ?c ?l)
+        )
+    )
+
+    (:action robot_load_box
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?b - box
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :precondition (and 
+            (robot_at_location ?r ?l)
+            (robot_has_carrier ?r ?c)
+            (carrier_is_attached ?c)
+            (box_at_location ?b ?l)
+            (not (box_is_loaded ?b))
+            (not (carrier_has_box ?c ?b))
+            (carrier_capacity ?c ?n)
+            (decrease_capacity ?n ?m)
+        )
+        :effect (and 
+            (box_is_loaded ?b)
+            (carrier_has_box ?c ?b)
+            (not (box_at_location ?b ?l))
+            (not (carrier_capacity ?c ?n))
+            (carrier_capacity ?c ?m)
+        )
+    )
+
+    (:action robot_unload_box
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?b - box
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :precondition (and 
+            (robot_at_location ?r ?l)
+            (robot_has_carrier ?r ?c)
+            (carrier_is_attached ?c)
+            (box_is_loaded ?b)
+            (carrier_has_box ?c ?b)
+            (carrier_capacity ?c ?n)
+            (increase_capacity ?n ?m)
+        )
+        :effect (and 
+            (not (box_is_loaded ?b))
+            (not (carrier_has_box ?c ?b))
+            (box_at_location ?b ?l)
+            (not (carrier_capacity ?c ?n))
+            (carrier_capacity ?c ?m)
+        )
+    )
+
+    (:action pick_up_content_at_cw
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+            ?b - box
+        )
+        :precondition (and 
+            (robot_at_location ?r central_warehouse)
+            (content_at_cw ?con)
+            (robot_has_carrier ?r ?car)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (not (box_is_full ?b))
+        )
+        :effect (and 
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+        )
+    )
+
+    (:action put_down_content_at_cw
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+            ?b - box
+        )
+        :precondition (and 
+            (robot_at_location ?r central_warehouse)
+            (content_at_cw ?con)
+            (robot_has_carrier ?r ?car)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+        )
+        :effect (and 
+            (not (box_has_content ?b ?con))
+            (not (box_is_full ?b))
+        )
+    )
+
+    (:action pick_up_content
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+            ?con - content
+            ?l - location
+            ?w - workstation
+        )
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (workstation_at_location ?w ?l)
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (not (box_is_full ?b))
+            (content_at_location_at_workstation ?con ?l ?w)
+        )
+        :effect (and
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+            (not (content_at_location_at_workstation ?con ?l ?w))
+        )
+    )
+
+    (:action put_down_content
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+            ?con - content
+            ?l - location
+            ?w - workstation
+        )
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (workstation_at_location ?w ?l)
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+        )
+        :effect (and
+            (not (box_has_content ?b ?con))
+            (not (box_is_full ?b))
+            (content_at_location_at_workstation ?con ?l ?w)
+        )
+    )
+)
