@@ -34,18 +34,24 @@ Interesting about the solution, only the drone makes actions, since it is the fa
 
 
 PROBLEM3
-Tasks:
+In general, the tasks allow only to specify the robot that does the action objects directly related to what we want the robot to do.
+Tasks
 
 - Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.
 
 - To get a carrier (get_carrier ?r ?car), if a robot has one attached already, it will detach it in the location it is in before moving to the location of the new carrier. Also, before moving to attach a carrier in another location, it checks whether the carrier wanted is already attached. If the carrier wanted is already attached to another robot, then it forces the other robot to detach the carrier before acting on the task.
     - if carrier already attached then nothing
     - if robot attached to other carrier else then detach other carrier
-    - if carrier attached to other robot then detach carrier from that robot
     - if carrier in same location of robot then attach it
     - if carrier in another location then move robot to that location and attach carrier
+    - if carrier attached to other robot then detach carrier from that robot and call the task
 
-- 
+- To implement the (get_box ?r ?b) first I need to check if I have the box already, with an unspecified carrier, and if I don't have it then I need need to get a carrier with capacity and then move to the box and get it. Like for the carrier, if someone else has a box already then I need that robot to unload it in location and then move to pick it up.
+    - if robot has box already then done
+    - if robot has carrier and capacity more than zero and same location then load box
+    - if robot has carrier and capacity more than zero but not same location then move and get_box
+    - if robot has carrier and capacity zero than get carrier with capacity more than zero and get_box
+    - if other robot has box then drop the box and get_box
 
 
 

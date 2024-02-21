@@ -58,6 +58,7 @@
 
     (:task move :parameters (?r - robot ?l - location))
     (:task get_carrier :parameters (?r - robot ?c - carrier))
+    (:task get_box :parameters (?r - robot ?b - box))
 
 
     (:method method_move_walking_0
@@ -321,6 +322,167 @@
             (not (= ?r1 ?r2))
         )
     )
+
+    (:method method_get_box_0
+        :parameters (
+            ?r - robot
+            ?b - box
+            ?c - carrier
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (robot_has_carrier ?r ?c)
+            (carrier_has_box ?c ?b)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+            (box_is_loaded ?b)
+        )
+        :subtasks ()
+    )
+
+    (:method method_get_box_1
+        :parameters (
+            ?r - robot
+            ?b - box
+            ?c - carrier
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (robot_has_carrier ?r ?c)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+            (not (carrier_capacity ?c zero))
+            (decrease_capacity ?n ?m)
+            (not (box_is_loaded ?b))
+            (robot_at_location ?r ?l)
+            (box_at_location ?b ?l)
+        )
+        :subtasks (and
+            (task0 (robot_load_box ?r ?c ?b ?l ?n ?m))
+        )
+        :constraints (and
+            (not (= ?n ?m))
+        )
+    )
+
+    (:method method_get_box_2
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (not (robot_is_attached ?r))
+            (not (carrier_is_attached ?c))
+            (not (carrier_capacity ?c zero))
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?c))
+            (task1 (get_box ?r ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    )
+
+    (:method method_get_box_3
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?b - box
+            ?l1 - location
+            ?l2 - location
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (robot_has_carrier ?r ?c)
+            (not (carrier_has_box ?c ?b))
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+            (not (carrier_capacity ?c zero))
+            (not (box_is_loaded ?b))
+            (robot_at_location ?r ?l1)
+            (box_at_location ?b ?l2)
+        )
+        :subtasks (and
+            (task0 (move ?r ?l2))
+            (task1 (get_box ?r ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?l1 ?l2))
+        )
+    )
+
+    (:method method_get_box_4
+        :parameters (
+            ?r - robot
+            ?c1 - carrier
+            ?c2 - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (robot_has_carrier ?r ?c1)
+            (not (carrier_has_box ?c1 ?b))
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c1)
+            (carrier_capacity ?c1 zero)
+            (not (carrier_capacity ?c2 zero))
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?c2))
+            (task1 (get_box ?r ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?c1 ?c2))
+        )
+    )
+
+    (:method method_get_box_5
+        :parameters (
+            ?r1 - robot
+            ?r2 - robot
+            ?b - box
+            ?c - carrier
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :task (get_box ?r1 ?b)
+        :precondition (and
+            (robot_at_location ?r2 ?l)
+            (robot_has_carrier ?r2 ?c)
+            (robot_is_attached ?r2)
+            (carrier_is_attached ?c)
+            (carrier_has_box ?c ?b)
+            (box_is_loaded ?b)
+            (carrier_capacity ?c ?n)
+            (increase_capacity ?n ?m)
+        )
+        :subtasks (and
+            (task0 (robot_unload_box ?r2 ?c ?b ?l ?n ?m))
+            (task1 (get_box ?r1 ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?r1 ?r2))
+            (not (= ?n ?m))
+        )
+    )
+
+      
 
     
 
