@@ -57,7 +57,7 @@
     )
 
     (:task move :parameters (?r - robot ?l - location))
-    (:task get_carrier :parameters (?r - robot ?c - carrier)
+    (:task get_carrier :parameters (?r - robot ?c - carrier))
 
 
     (:method method_move_walking_0
