@@ -34,4 +34,30 @@ Interesting about the solution, only the drone makes actions, since it is the fa
 
 
 PROBLEM3
-Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.
+Tasks:
+
+- Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.
+
+- To get a carrier (get_carrier ?r ?car), if a robot has one attached already, it will detach it in the location it is in before moving to the location of the new carrier. Also, before moving to attach a carrier in another location, it checks whether the carrier wanted is already attached. If the carrier wanted is already attached to another robot, then it forces the other robot to detach the carrier before acting on the task.
+    - if carrier already attached then nothing
+    - if robot attached to other carrier else then detach other carrier
+    - if carrier attached to other robot then detach carrier from that robot
+    - if carrier in same location of robot then attach it
+    - if carrier in another location then move robot to that location and attach carrier
+
+- 
+
+
+
+
+- I do not allow bots to pick up content, only at the central warehouse, not at any other workstations
+- if I need to put down content (i dont' see why but ok) the robots will always drop the content at cw
+- but I assume carriers empty or full and boxes empty of full can be found at any location
+
+To deliver some content, I need a robot to attach a carrier, load a box, go to central_warehouse, pick_up_content_at_cw, go to the location and put down to the workstation. Ideally, if the robot already has a carrier attached with a box with the correct content and is already at location then there should be prior actions performed to the putdown.
+
+- obtain carrier (can already have, or move to location with carrier and attach it)
+- obtain empty box (can already have empty loaded, or need to empty it at cw?, or move to location with empty box and load it and here i need   to check if there is capacity in the carrier)
+- obtain content (should load it at cw and need to move there, or can already be in a box loaded in the carrier)
+- move to location for delivery
+- put down conent at workstation, cannot check whether the content is already there since i can have multiple

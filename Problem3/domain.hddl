@@ -57,6 +57,7 @@
     )
 
     (:task move :parameters (?r - robot ?l - location))
+    (:task get_carrier :parameters (?r - robot ?c - carrier)
 
 
     (:method method_move_walking_0
@@ -208,6 +209,120 @@
             (not (= ?half3 ?to))
         )
     )
+
+    (:method method_get_carrier_0
+        :parameters(
+            ?r - robot
+            ?c - carrier
+        )
+        :task (get_carrier ?r ?c)
+        :precondition (and
+            (robot_has_carrier ?r ?c)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c)
+        )
+        :subtasks ()
+    )
+
+    (:method method_get_carrier_1
+        :parameters (
+            ?r - robot
+            ?c1 - carrier
+            ?c2 - carrier
+            ?l - location
+        )
+        :task (get_carrier ?r ?c1)
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (robot_has_carrier ?r ?c2)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?c2)
+            (not (robot_has_carrier ?r ?c1))
+        )
+        :subtasks (and
+            (task0 (robot_detach_carrier ?r ?c2 ?l))
+            (task1 (get_carrier ?r ?c1))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?c1 ?c2))
+        )
+    )
+
+    (:method method_get_carrier_2
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?l - location
+        )
+        :task (get_carrier ?r ?c)
+        :precondition (and
+            (robot_at_location ?r ?l)
+            (carrier_at_location ?c ?l)
+            (not (robot_is_attached ?r))
+            (not (carrier_is_attached ?c))
+        )
+        :subtasks (and
+            (task0 (robot_attach_carrier ?r ?c ?l))
+        )
+    )
+
+    (:method method_get_carrier_3
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?l1 - location
+            ?l2 - location
+        )
+        :task (get_carrier ?r ?c)
+        :precondition (and
+            (robot_at_location ?r ?l1)
+            (carrier_at_location ?c ?l2)
+            (not (robot_is_attached ?r))
+            (not (carrier_is_attached ?c))
+        )
+        :subtasks (and
+            (task0 (move ?r ?l2))
+            (task1 (get_carrier ?r ?c))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?l1 ?l2))
+        )
+    )
+
+    (:method method_get_carrier_4
+        :parameters (
+            ?r1 - robot
+            ?r2 - robot
+            ?l - location
+            ?c - carrier
+        )
+        :task (get_carrier ?r1 ?c)
+        :precondition (and
+            (robot_at_location ?r2 ?l)
+            (robot_has_carrier ?r2 ?c)
+            (robot_is_attached ?r2)
+            (carrier_is_attached ?c)
+            (not (robot_has_carrier ?r1 ?c))
+        )
+        :subtasks (and
+            (task0 (robot_detach_carrier ?r2 ?c ?l))
+            (task1 (get_carrier ?r1 ?c))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?r1 ?r2))
+        )
+    )
+
+    
 
 
 

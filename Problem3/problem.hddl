@@ -13,8 +13,9 @@
     (:htn
 		:parameters ()
 		:subtasks (and
-            (task0 (move jumper loc4))
+            
 		)
+        :ordering ()
     )
 
     (:init
