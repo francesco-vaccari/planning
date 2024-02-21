@@ -52,7 +52,7 @@ Tasks
     - if robot has carrier and capacity more than zero but not same location then move and get_box
     - if robot has carrier and capacity zero than get carrier with capacity more than zero and get_box
     - if other robot has box then drop the box and get_box
-
+    - or get its carrier to get the box
 
 
 

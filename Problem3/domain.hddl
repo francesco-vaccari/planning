@@ -482,12 +482,36 @@
         )
     )
 
-      
+    (:method method_get_box_6
+        :parameters (
+            ?r1 - robot
+            ?r2 - robot
+            ?b - box
+            ?c - carrier
+            ?l - location
+        )
+        :task (get_box ?r1 ?b)
+        :precondition (and
+            (robot_at_location ?r2 ?l)
+            (robot_has_carrier ?r2 ?c)
+            (robot_is_attached ?r2)
+            (carrier_is_attached ?c)
+            (carrier_has_box ?c ?b)
+            (box_is_loaded ?b)
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r1 ?c))
+            (task1 (get_box ?r1 ?b)) ; just to be safe
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?r1 ?r2))
+        )
+    )
 
     
-
-
-
     (:action move_walking
         :parameters(
             ?r - robot

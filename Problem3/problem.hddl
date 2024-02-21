@@ -13,11 +13,12 @@
     (:htn
 		:parameters ()
 		:subtasks (and
-            (task0 (get_box walker box1))
-            (task1 (get_box drone box1))
+            (task1 (get_box walker box1))
+            (task2 (get_box jumper box1))
 		)
         :ordering (and
             (task0 < task1)
+            (task1 < task2)
         )
     )
 
