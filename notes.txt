@@ -32,10 +32,13 @@ Because of the problem of the fluents/numeric-fluents not being implemented I ha
 
 Interesting about the solution, only the drone makes actions, since it is the fastest way to move and since it spends the action to attach the carrier, any other robot starting from the central_warehouse would take the same amount of time to reach any new destination because it needs to attach the carrier before. Also, the drone attaches the carrier with capacity two in order to make only one trip to deliver the contents to the two workstations in location 2.
 
+TODO: implement with fluents as an alternative, still the current solution is fine because they are not supported in panda
+
 
 PROBLEM3
 In general, the tasks allow only to specify the robot that does the action objects directly related to what we want the robot to do.
-Tasks
+
+Tasks:
 
 - Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.
 
@@ -50,15 +53,21 @@ Tasks
     - if robot has box already then done
     - if robot has carrier and capacity more than zero and same location then load box
     - if robot has carrier and capacity more than zero but not same location then move and get_box
-    - if robot has carrier and capacity zero than get carrier with capacity more than zero and get_box
+    - robot can attach a carrier and get_box
+    - robot can drop a box and get_box
     - if other robot has box then drop the box and get_box
-    - or get its carrier to get the box
+    - if other robot has carrier with the box then get_carrier and get_box
+
+- It makes sense that carriers and boxes can be stolen between robots, but content is unlimited and so it makes sense to always go pick it up at the central_warehouse. Also, since the goals will be only to deliver stuff to workstations, it is not possible to find content around that is not necessary for another goal. Also if I find boxes full I cannot empty them for the same reason just said. This boils down to two assumtions: 1- robots are not allowed to empty boxes, 2- robots can pick up content only at cw. This greatly simplifies the problem of implementing the get_content task. To implement the get_content(robot content):
+    - if robot has content already then done
+    - if robot has an empty box then it can load the content
+    - if robot has carrier with non-zero capacity then it can load a box and get_content
+    - or it can get another carrier and then get_content
+This should also support the fact that the robot can find boxes or carriers on the ground with already the content in them.
 
 
 
-- I do not allow bots to pick up content, only at the central warehouse, not at any other workstations
-- if I need to put down content (i dont' see why but ok) the robots will always drop the content at cw
-- but I assume carriers empty or full and boxes empty of full can be found at any location
+
 
 To deliver some content, I need a robot to attach a carrier, load a box, go to central_warehouse, pick_up_content_at_cw, go to the location and put down to the workstation. Ideally, if the robot already has a carrier attached with a box with the correct content and is already at location then there should be prior actions performed to the putdown.
 

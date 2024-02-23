@@ -13,8 +13,9 @@
     (:htn
 		:parameters ()
 		:subtasks (and
-            (task1 (get_box walker box1))
-            (task2 (get_box jumper box1))
+            (task0 (move jumper loc2))
+            (task1 (get_content walker tool))
+            (task2 (get_content jumper valve))
 		)
         :ordering (and
             (task0 < task1)
@@ -23,6 +24,15 @@
     )
 
     (:init
+        (robot_has_carrier walker carrier1)
+        (robot_is_attached walker)
+        (carrier_is_attached carrier1)
+        (carrier_has_box carrier1 box1)
+        (box_is_loaded box1)
+        (carrier_capacity carrier1 zero)
+        (box_has_content box1 valve)
+        (box_is_full box1)
+        
         (walks walker)
         (flies drone)
         (jumps jumper)
