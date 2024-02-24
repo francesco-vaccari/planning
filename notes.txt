@@ -65,14 +65,7 @@ Tasks:
     - or it can get another carrier and then get_content
 This should also support the fact that the robot can find boxes or carriers on the ground with already the content in them.
 
-
-
-
-
-To deliver some content, I need a robot to attach a carrier, load a box, go to central_warehouse, pick_up_content_at_cw, go to the location and put down to the workstation. Ideally, if the robot already has a carrier attached with a box with the correct content and is already at location then there should be prior actions performed to the putdown.
-
-- obtain carrier (can already have, or move to location with carrier and attach it)
-- obtain empty box (can already have empty loaded, or need to empty it at cw?, or move to location with empty box and load it and here i need   to check if there is capacity in the carrier)
-- obtain content (should load it at cw and need to move there, or can already be in a box loaded in the carrier)
-- move to location for delivery
-- put down conent at workstation, cannot check whether the content is already there since i can have multiple
+Now it's the easy part in theory, because to deliver content to a workstation I just need to use a robot to get the content and then move to the workstation location and then drop the content. The only strange fact is that the robot is not specified in the task, and so I need it to be specified in the method that implements the task. This is the task:
+    - if I have the content and am at the locatino then drop the content
+    - if I have the content but am not at the location the move to the location and call the task
+    - if I don't have the content then get the content and call the task
