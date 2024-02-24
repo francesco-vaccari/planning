@@ -60,7 +60,7 @@
     (:task get_carrier :parameters (?r - robot ?car - carrier))
     (:task get_box :parameters (?r - robot ?b - box))
     (:task get_content :parameters (?r - robot ?con - content))
-    (:task deliver ?con - content ?w - workstation)
+    (:task deliver :parameters (?con - content ?w - workstation))
 
     (:method method_move_0
         :parameters (
@@ -212,26 +212,409 @@
         )
     ); 2 or more steps away for jumper
     
-    (:method method_get_carrier_
+    (:method method_get_carrier_0
         :parameters (
             ?r - robot
             ?car - carrier
         )
         :task (get_carrier ?r ?car)
         :precondition (and
-            
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+        )
+        :subtasks ()
+    ); already have carrier
+
+    (:method method_get_carrier_1
+        :parameters (
+            ?r - robot
+            ?car1 - carrier
+            ?car2 - carrier
+        )
+        :task (get_carrier ?r ?car1)
+        :precondition (and
+            (robot_has_carrier ?r ?car2)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car2)
         )
         :subtasks (and
-            
+            (task0 (robot_detach_carrier ?r ?car2))
+            (task1 (get_carrier ?r ?car1))
         )
         :ordering (and
-            
+            (task0 < task1)
         )
         :constraints (and
-            
+            (not (= ?car1 ?car2))
+        )
+    ); detach other carriers
+
+    (:method method_get_carrier_2
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?l - location
+        )
+        :task (get_carrier ?r ?car)
+        :precondition (and
+            (not (robot_is_attached ?r))
+            (not (carrier_is_attached ?car))
+            (carrier_at_location ?car ?l)
+        )
+        :subtasks (and
+            (task0 (move ?r ?l))
+            (task1 (robot_attach_carrier ?r ?car ?l))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); move to and attach carrier
+
+    (:method method_get_carrier_3
+        :parameters (
+            ?r1 - robot
+            ?r2 - robot
+            ?car - carrier
+            ?l - location
+        )
+        :task (get_carrier ?r1 ?car)
+        :precondition (and
+            (robot_has_carrier ?r2 ?car)
+            (robot_is_attached ?r2)
+            (carrier_is_attached ?car)
+            (robot_at_location ?r2 ?l)
+        )
+        :subtasks (and
+            (task0 (robot_detach_carrier ?r2 ?car))
+            (task1 (get_carrier ?r1 ?car))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?r1 ?r2))
+        )
+    ); steal carrier
+
+    (:method method_get_box_0
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+        )
+        :subtasks ()
+    ); already have box
+
+    (:method method_get_box_1
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (not (box_is_loaded ?b))
+            (box_at_location ?b ?l)
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (not (carrier_capacity ?car zero))
+            (carrier_capacity ?car ?n)
+            (decrease_capacity ?n ?m)
+        )
+        :subtasks (and
+            (task0 (move ?r ?l))
+            (task1 (robot_load_box ?r ?car ?b ?l ?n ?m))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?n zero))
+            (not (= ?n ?m))
+        )
+    ); move to and load box (box on the ground and space available in carrier)
+
+    (:method method_get_box_2
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (not (box_is_loaded ?b))
+            (not (robot_is_attached ?r))
+            (not (carrier_capacity ?car zero))
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?car))
+            (task1 (get_box ?r ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); get carrier first (no carrier attached)
+
+    (:method method_get_box_3
+        :parameters (
+            ?r - robot
+            ?car1 - carrier
+            ?car2 - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (not (box_is_loaded ?b))
+            (robot_has_carrier ?r ?car1)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car1)
+            (carrier_capacity ?car1 zero)
+            (not (carrier_capacity ?car2 zero))
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?car2))
+            (task1 (get_box ?r ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?car1 ?car2))
+        )
+    ); get new carrier (zero capacity)
+
+    (:method method_get_box_4
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b1 - box
+            ?b2 - box
+            ?l - location
+        )
+        :task (get_box ?r ?b1)
+        :precondition (and
+            (not (box_is_loaded ?b))
+            (robot_at_location ?r ?l)
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_capacity ?car zero)
+            (carrier_has_box ?car ?b2)
+            (box_is_loaded ?b2)
+        )
+        :subtasks (and
+            (task0 (robot_unload_box ?r ?car ?b2 ?l zero one))
+            (task1 (get_box ?r ?b1))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?b1 ?b2))
+        )
+    ); drop a box (zero capacity)
+
+    (:method method_get_box_5
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_box ?r ?b)
+        :precondition (and
+            (not (robot_has_carrier ?r ?car))
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?car))
+            (task1 (get_box ?r ?b)) ; not needed
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); steal carrier with box
+
+    (:method method_get_box_6
+        :parameters (
+            ?r1 - robot
+            ?r2 - robot
+            ?car - carrier
+            ?b - box
+            ?l - location
+            ?n - num
+            ?m - num
+        )
+        :task (get_box ?r1 ?b)
+        :precondition (and
+            (not (robot_has_carrier ?r1 ?car))
+            (robot_at_location ?r2 ?l)
+            (robot_has_carrier ?r2 ?car)
+            (robot_is_attached ?r2)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (carrier_capacity ?car ?n)
+            (increase_capacity ?n ?m)
+        )
+        :subtasks (and
+            (task0 (robot_unload_box ?r2 ?car ?b ?l ?n ?m))
+            (task1 (get_box ?r1 ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+        :constraints (and
+            (not (= ?r1 ?r2))
+            (not (= ?n ?m))
+        )
+    ); steal box
+
+    (:method method_get_content_0
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_content ?r ?con)
+        :precondition (and
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+        )
+        :subtasks ()
+    ); already have content
+
+    (:method method_get_content_1
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_content ?r ?con)
+        :precondition (and
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (carrier_has_box ?car ?b)
+            (box_is_loaded ?b)
+            (not (box_is_full ?b))
+        )
+        :subtasks (and
+            (task0 (move ?r central_warehouse))
+            (task1 (pick_up_content_at_cw ?r ?con ?car ?b))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); go pick up content (with empty box)
+
+    (:method method_get_content_2
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+            ?b - box
+        )
+        :task (get_content ?r ?con)
+        :precondition (and
+            (robot_has_carrier ?r ?car)
+            (robot_is_attached ?r)
+            (carrier_is_attached ?car)
+            (not (carrier_has_box ?car ?b))
+            (not (box_is_full ?b))
+        )
+        :subtasks (and
+            (task0 (get_box ?r ?b))
+            (task1 (get_content ?r ?con))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); get empty box
+
+    (:method method_get_content_3
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?car - carrier
+        )
+        :task (get_content ?r ?con)
+        :precondition (and
+            (not (robot_is_attached ?r))
+            (not (robot_has_carrier ?r ?car))
+        )
+        :subtasks (and
+            (task0 (get_carrier ?r ?car))
+            (task1 (get_content ?r ?con))
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); get carrier first (no carrier attached)
+
+    (:method method_get_content_4
+        :parameters (
+            ?r - robot
+            ?con - content
+            ?b - box
+        )
+        :task (get_content ?r ?con)
+        :precondition (and
+            (box_has_content ?b ?con)
+            (box_is_full ?b)
+        )
+        :subtasks (and
+            (task0 (get_box ?r ?b))
+            (task1 (get_content ?r ?con)); just to be safe
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); get box with already content
+
+    (:method method_deliver
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+            ?con - content
+            ?l - location
+            ?w - workstation
+        )
+        :task (deliver ?con ?w)
+        :precondition (and
+            (workstation_at_location ?w ?l)
+        )
+        :subtasks (and
+            (task0 (get_content ?r ?con))
+            (task1 (move ?r ?l))
+            (task2 (put_down_content ?r ?car ?b ?con ?l ?w))
+        )
+        :ordering (and
+            (task0 < task1)
+            (task1 < task2)
         )
     )
-
 
 
 

@@ -52,7 +52,7 @@ Tasks:
     - if carrier already attached then done
     - if another carrier attached then detach it and call the task
     - if carrier detached then move to location of carrier and attach it
-    - if carrier attached to another robot then detach it, move to that location and attach it
+    - if carrier attached to another robot then detach it and call the task
 
 - get a box (get_box ?r - robot ?b - box)
     To obtain a specific box the robot can:
@@ -70,10 +70,10 @@ Tasks:
 - get content (?r - robot ?con - content). We assume to not find content anywhere expecet in the central_warehouse, this makes sense because any optimal solution will not have content lying on the ground outside of the central_warehouse. For the same reason, we do not allow robots to drop content anywhere because an optimal solution will never require this action.
     To obtain a specific content:
     - if content in box loaded to carrier attached then done
-    - if no carrier attached then get carrier and call the task
-    - if no empty boxes then get an empty box and call the task
     - if empty box then move to central_warehouse and pick up the content
-    - if content in box not loaded to carrier attached then get the box
+    - (if no empty boxes then) get an empty box and call the task
+    - if no carrier attached then get carrier and call the task
+    - if content in box then get the box
 
 - deliver content (?con - content ?w - workstation)
     - get content
