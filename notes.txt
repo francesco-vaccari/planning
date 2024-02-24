@@ -39,33 +39,43 @@ PROBLEM3
 In general, the tasks allow only to specify the robot that does the action objects directly related to what we want the robot to do.
 
 Tasks:
+- move to location (move ?r- robot ?l - location)
+    - if already at the location then done
+    - if walker and 1 step away then move there
+    - if walker and more than 1 step away the move to location and then call move again
+    - if drone then fly to location
+    - if jumper and 1 step away (2 locations) then move there
+    - if jumper and more than 1 step away then move to location and then call move again
 
-- Implemented the task (move ?r ?l) that allows the three different types of robots to move to a certain location. The method for when the robot is already at location is the same for all three, while other methods differ. The walker needs 2 methods to make sure it reaches the destination, the jumper same thing but with way more location needed in the specification, while the drone just needs one method since it can reach any location in one action.
+- get a carrier (get_carrier ?r - robot ?car - carrier)
+    To obtain a specific carrier the robot can:
+    - if carrier already attached then done
+    - if another carrier attached then detach it and call the task
+    - if carrier detached then move to location of carrier and attach it
+    - if carrier attached to another robot then detach it, move to that location and attach it
 
-- To get a carrier (get_carrier ?r ?car), if a robot has one attached already, it will detach it in the location it is in before moving to the location of the new carrier. Also, before moving to attach a carrier in another location, it checks whether the carrier wanted is already attached. If the carrier wanted is already attached to another robot, then it forces the other robot to detach the carrier before acting on the task.
-    - if carrier already attached then nothing
-    - if robot attached to other carrier else then detach other carrier
-    - if carrier in same location of robot then attach it
-    - if carrier in another location then move robot to that location and attach carrier
-    - if carrier attached to other robot then detach carrier from that robot and call the task
+- get a box (get_box ?r - robot ?b - box)
+    To obtain a specific box the robot can:
+    - if box already loaded in carrier attached then done
+    - if box not loaded:
+        - if carrier attached and non-zero capacity then move to location and load the box
+        - if no carrier attached then get carrier with non-zero capacity and call the task
+        - if carrier attached and zero capacity then:
+            - get a new carrier with non-zero capacity and call the task
+            - or drop a box and call the task
+    - if box loaded in carrier not attached to robot then:
+        - get the carrier
+        - or drop the box from that carrier and call the task
 
-- To implement the (get_box ?r ?b) first I need to check if I have the box already, with an unspecified carrier, and if I don't have it then I need need to get a carrier with capacity and then move to the box and get it. Like for the carrier, if someone else has a box already then I need that robot to unload it in location and then move to pick it up.
-    - if robot has box already then done
-    - if robot has carrier and capacity more than zero and same location then load box
-    - if robot has carrier and capacity more than zero but not same location then move and get_box
-    - robot can attach a carrier and get_box
-    - robot can drop a box and get_box
-    - if other robot has box then drop the box and get_box
-    - if other robot has carrier with the box then get_carrier and get_box
+- get content (?r - robot ?con - content). We assume to not find content anywhere expecet in the central_warehouse, this makes sense because any optimal solution will not have content lying on the ground outside of the central_warehouse. For the same reason, we do not allow robots to drop content anywhere because an optimal solution will never require this action.
+    To obtain a specific content:
+    - if content in box loaded to carrier attached then done
+    - if no carrier attached then get carrier and call the task
+    - if no empty boxes then get an empty box and call the task
+    - if empty box then move to central_warehouse and pick up the content
+    - if content in box not loaded to carrier attached then get the box
 
-- It makes sense that carriers and boxes can be stolen between robots, but content is unlimited and so it makes sense to always go pick it up at the central_warehouse. Also, since the goals will be only to deliver stuff to workstations, it is not possible to find content around that is not necessary for another goal. Also if I find boxes full I cannot empty them for the same reason just said. This boils down to two assumtions: 1- robots are not allowed to empty boxes, 2- robots can pick up content only at cw. This greatly simplifies the problem of implementing the get_content task. To implement the get_content(robot content):
-    - if robot has content already then done
-    - if robot has an empty box then it can load the content
-    - if robot has carrier with non-zero capacity then it can load a box and get_content
-    - or it can get another carrier and then get_content
-This should also support the fact that the robot can find boxes or carriers on the ground with already the content in them.
-
-Now it's the easy part in theory, because to deliver content to a workstation I just need to use a robot to get the content and then move to the workstation location and then drop the content. The only strange fact is that the robot is not specified in the task, and so I need it to be specified in the method that implements the task. This is the task:
-    - if I have the content and am at the locatino then drop the content
-    - if I have the content but am not at the location the move to the location and call the task
-    - if I don't have the content then get the content and call the task
+- deliver content (?con - content ?w - workstation)
+    - get content
+    - move to location of workstation
+    - put down content at workstation
