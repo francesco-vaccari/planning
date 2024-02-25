@@ -592,7 +592,7 @@
         )
     ); get box with already content
 
-    (:method method_deliver
+    (:method method_deliver_0
         :parameters (
             ?r - robot
             ?car - carrier
@@ -614,8 +614,30 @@
             (task0 < task1)
             (task1 < task2)
         )
-    )
+    ); deliver content
 
+    (:method method_deliver_1
+        :parameters (
+            ?r - robot
+            ?car - carrier
+            ?b - box
+            ?con - content
+            ?con2 - content
+            ?l - location
+            ?w - workstation
+        )
+        :task (deliver ?con ?w)
+        :precondition (and
+            (workstation_at_location ?w ?l)
+        )
+        :subtasks (and
+            (task0 (get_content ?r ?con2))
+            (task1 (deliver ?con ?w)
+        )
+        :ordering (and
+            (task0 < task1)
+        )
+    ); get some other content and then deliver (for optimal solution)
 
 
     (:action move_walking

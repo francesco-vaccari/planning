@@ -47,6 +47,7 @@ Tasks:
     - if jumper and 1 step away (2 locations) then move there
     - if jumper and more than 1 step away then move to location and then call move again
 
+The carrier can be: already attached to robot, on the ground, attached to other robot.
 - get a carrier (get_carrier ?r - robot ?car - carrier)
     To obtain a specific carrier the robot can:
     - if carrier already attached then done
@@ -54,6 +55,7 @@ Tasks:
     - if carrier detached then move to location of carrier and attach it
     - if carrier attached to another robot then detach it and call the task
 
+The box can : already loaded in carrier attached, on ground, loaded in a carrier (ground/attached managed by get carrier task).
 - get a box (get_box ?r - robot ?b - box)
     To obtain a specific box the robot can:
     - if box already loaded in carrier attached then done
@@ -67,6 +69,7 @@ Tasks:
         - get the carrier
         - or drop the box from that carrier and call the task
 
+Content is assumed to be found on ground only at central_warehouse, it can also be found in boxes (ground/loaded/attached managed by get box task).
 - get content (?r - robot ?con - content). We assume to not find content anywhere expecet in the central_warehouse, this makes sense because any optimal solution will not have content lying on the ground outside of the central_warehouse. For the same reason, we do not allow robots to drop content anywhere because an optimal solution will never require this action.
     To obtain a specific content:
     - if content in box loaded to carrier attached then done
@@ -75,7 +78,11 @@ Tasks:
     - if no carrier attached then get carrier and call the task
     - if content in box then get the box
 
+To implement optimal solutions we give the possibility to the robot to perform a indefinite number of get_content tasks before deliver the requested content.
 - deliver content (?con - content ?w - workstation)
     - get content
     - move to location of workstation
     - put down content at workstation
+
+
+The solution that it finds is not optimal when considering the number of actions performed. In fact, if we force the robot to move only in a direction, it will find a solution with less actions but that uses more methods.
