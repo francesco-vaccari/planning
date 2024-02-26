@@ -91,3 +91,6 @@ The solution that it finds is not optimal when considering the number of actions
 
 PROBLEM4
 Incredible discovery, the optic found in planutils does support numeric fluents but it does not support negative preconditions. I don't even know how I found out. But anyway, I remade the problem 2 with the numeric fluents and now I will try to go on with problem 4 using the fluents, hoping that it works. I had to modify slightly some actions and some checks are gone so optimal solutions will take longer to be found. Also I needed to add some more predicates to allow preconditions to not have to check for negative predicates.
+
+Since with optic it works, I will continue with the fluents for Problem4, hoping that it will work also with Problem5.
+
