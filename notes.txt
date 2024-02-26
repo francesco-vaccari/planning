@@ -86,3 +86,7 @@ To implement optimal solutions we give the possibility to the robot to perform a
 
 
 The solution that it finds is not optimal when considering the number of actions performed. In fact, if we force the robot to move only in a direction, it will find a solution with less actions but that uses more methods.
+
+
+
+PROBLEM4
