@@ -115,7 +115,9 @@
         :effect(and
             (robot_has_carrier ?r ?c)
             (robot_is_attached ?r)
+            (not (robot_is_not_attached ?r))
             (carrier_is_attached ?c)
+            (not (carrier_is_not_attached ?c))
             (not (carrier_at_location ?c ?l))
         )
     )
@@ -135,7 +137,9 @@
         :effect(and
             (not(robot_has_carrier ?r ?c))
             (not(robot_is_attached ?r))
+            (robot_is_not_attached ?r)
             (not(carrier_is_attached ?c))
+            (carrier_is_not_attached ?c)
             (carrier_at_location ?c ?l)
         )
     )
@@ -157,6 +161,7 @@
         )
         :effect (and 
             (box_is_loaded ?b)
+            (not (box_is_not_loaded ?b))
             (carrier_has_box ?c ?b)
             (not (box_at_location ?b ?l))
             (decrease (carrier_capacity ?c) 1)
@@ -179,6 +184,7 @@
         )
         :effect (and 
             (not (box_is_loaded ?b))
+            (box_is_not_loaded ?b)
             (not (carrier_has_box ?c ?b))
             (box_at_location ?b ?l)
             (increase (carrier_capacity ?c) 1)
@@ -204,6 +210,7 @@
         :effect (and 
             (box_has_content ?b ?con)
             (box_is_full ?b)
+            (not (box_is_not_full ?b))
         )
     )
 
@@ -227,6 +234,7 @@
         :effect (and 
             (not (box_has_content ?b ?con))
             (not (box_is_full ?b))
+            (box_is_not_full ?b)
         )
     )
 
@@ -253,6 +261,7 @@
         :effect (and
             (box_has_content ?b ?con)
             (box_is_full ?b)
+            (not (box_is_not_full ?b))
             (not (content_at_location_at_workstation ?con ?l ?w))
         )
     )
@@ -280,6 +289,7 @@
         :effect (and
             (not (box_has_content ?b ?con))
             (not (box_is_full ?b))
+            (box_is_not_full ?b)
             (content_at_location_at_workstation ?con ?l ?w)
         )
     )
