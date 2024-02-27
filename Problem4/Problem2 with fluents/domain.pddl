@@ -73,7 +73,6 @@
         :precondition (and
             (flies ?r)
             (robot_at_location ?r ?l1)
-            (adjacent ?l1 ?l2)
         )
         :effect (and
             (not (robot_at_location ?r ?l1))
