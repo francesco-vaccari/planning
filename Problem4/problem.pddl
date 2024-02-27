@@ -2,8 +2,8 @@
     (:domain problem4)
 
     (:objects
-        loc1 loc2 - location
-        wor1_1 wor1_2 wor2_1 wor2_2 - workstation
+        loc1 loc2 loc3 - location
+        wor1_1 wor1_2 wor2_1 wor2_2 wor3_1 wor3_2 - workstation
         walker drone jumper - robot
         carrier1 carrier2 carrier3 - carrier
         box1 box2 box3 - box
@@ -15,11 +15,15 @@
         (adjacent loc1 central_warehouse)
         (adjacent loc1 loc2)
         (adjacent loc2 loc1)
+        (adjacent loc2 loc3)
+        (adjacent loc3 loc2)
         
         (workstation_at_location wor1_1 loc1)
         (workstation_at_location wor1_2 loc1)
         (workstation_at_location wor2_1 loc2)
         (workstation_at_location wor2_2 loc2)
+        (workstation_at_location wor3_1 loc3)
+        (workstation_at_location wor3_2 loc3)
         
 
         (walks walker)
@@ -65,8 +69,9 @@
     )
 
     (:goal (and
-        (content_at_location_at_workstation tool loc1 wor1_1)
-        (content_at_location_at_workstation tool loc2 wor2_2)
-        (content_at_location_at_workstation parts loc2 wor2_2)
+        (content_at_location_at_workstation tool loc3 wor3_1)
+
     ))
+
+    (:metric minimize (total-time))
 )

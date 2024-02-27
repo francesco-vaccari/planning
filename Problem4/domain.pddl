@@ -1,6 +1,6 @@
 (define (domain problem4)
 
-    (:requirements :typing :numeric-fluents)
+    (:requirements :typing :numeric-fluents :durative-actions)
 
     (:types
         location
@@ -46,198 +46,207 @@
     (:functions
         (carrier_capacity ?c - carrier)
     )
-
-    (:action move_walking
+    
+    (:durative-action move_walking
         :parameters (
             ?r - robot
             ?l1 - location
             ?l2 - location
         )
-        :precondition (and
-            (walks ?r)
-            (robot_at_location ?r ?l1)
-            (adjacent ?l1 ?l2)
+        :duration (= ?duration 2)
+        :condition (and
+            (over all (walks ?r))
+            (at start (robot_at_location ?r ?l1))
+            (over all (adjacent ?l1 ?l2))
         )
         :effect (and
-            (not (robot_at_location ?r ?l1))
-            (robot_at_location ?r ?l2)
-        )
+            (at start (not (robot_at_location ?r ?l1)))
+            (at end (robot_at_location ?r ?l2))
+        )   
     )
-
-    (:action move_flying
+        
+    (:durative-action move_flying
         :parameters (
             ?r - robot
             ?l1 - location
             ?l2 - location
         )
-        :precondition (and
-            (flies ?r)
-            (robot_at_location ?r ?l1)
-            (adjacent ?l1 ?l2)
+        :duration (= ?duration 5)
+        :condition (and
+            (over all (flies ?r))
+            (at start (robot_at_location ?r ?l1))
         )
         :effect (and
-            (not (robot_at_location ?r ?l1))
-            (robot_at_location ?r ?l2)
+            (at start (not (robot_at_location ?r ?l1)))
+            (at end (robot_at_location ?r ?l2))
         )
     )
 
-    (:action move_jumping
+    (:durative-action move_jumping
         :parameters (
             ?r - robot
             ?l1 - location
             ?l2 - location
             ?l3 - location
         )
-        :precondition (and
-            (jumps ?r)
-            (robot_at_location ?r ?l1)
-            (adjacent ?l1 ?l2)
-            (adjacent ?l2 ?l3)
+        :duration (= ?duration 3)
+        :condition (and
+            (over all (jumps ?r))
+            (at start (robot_at_location ?r ?l1))
+            (over all (adjacent ?l1 ?l2))
+            (over all (adjacent ?l2 ?l3))
         )
         :effect (and
-            (not (robot_at_location ?r ?l1))
-            (robot_at_location ?r ?l3)
+            (at start (not (robot_at_location ?r ?l1)))
+            (at end (robot_at_location ?r ?l3))
         )
     )
 
-    (:action robot_attach_carrier
+    (:durative-action robot_attach_carrier
         :parameters (
             ?r - robot
             ?c - carrier
             ?l - location
         )
-        :precondition(and
-            (robot_at_location ?r ?l)
-            (carrier_at_location ?c ?l)
-            (robot_is_not_attached ?r)
-            (carrier_is_not_attached ?c)
+        :duration (= ?duration 1)
+        :condition (and
+            (over all (robot_at_location ?r ?l))
+            (over all (carrier_at_location ?c ?l))
+            (at start (robot_is_not_attached ?r))
+            (at start (carrier_is_not_attached ?c))
         )
-        :effect(and
-            (robot_has_carrier ?r ?c)
-            (robot_is_attached ?r)
-            (not (robot_is_not_attached ?r))
-            (carrier_is_attached ?c)
-            (not (carrier_is_not_attached ?c))
-            (not (carrier_at_location ?c ?l))
+        :effect (and
+            (at end (robot_has_carrier ?r ?c))
+            (at end (robot_is_attached ?r))
+            (at end (not (robot_is_not_attached ?r)))
+            (at end (carrier_is_attached ?c))
+            (at end (not (carrier_is_not_attached ?c)))
+            (at end (not (carrier_at_location ?c ?l)))
         )
     )
-
-    (:action robot_detach_carrier
+        
+    (:durative-action robot_detach_carrier
         :parameters (
             ?r - robot
             ?c - carrier
             ?l - location
         )
-        :precondition(and
-            (robot_at_location ?r ?l)
-            (robot_has_carrier ?r ?c)
-            (robot_is_attached ?r)
-            (carrier_is_attached ?c)
+        :duration (= ?duration 1)
+        :condition (and
+            (over all (robot_at_location ?r ?l))
+            (over all (robot_has_carrier ?r ?c))
+            (at start (robot_is_attached ?r))
+            (at start (carrier_is_attached ?c))
         )
-        :effect(and
-            (not(robot_has_carrier ?r ?c))
-            (not(robot_is_attached ?r))
-            (not(carrier_is_attached ?c))
-            (carrier_is_not_attached ?c)
-            (carrier_at_location ?c ?l)
-        )
-    )
-
-    (:action robot_load_box
-        :parameters (
-            ?r - robot
-            ?c - carrier
-            ?b - box
-            ?l - location
-        )
-        :precondition (and 
-            (robot_at_location ?r ?l)
-            (robot_has_carrier ?r ?c)
-            (carrier_is_attached ?c)
-            (box_at_location ?b ?l)
-            (box_is_not_loaded ?b)
-            (> (carrier_capacity ?c) 0)
-        )
-        :effect (and 
-            (box_is_loaded ?b)
-            (not (box_is_not_loaded ?b))
-            (carrier_has_box ?c ?b)
-            (not (box_at_location ?b ?l))
-            (decrease (carrier_capacity ?c) 1)
+        :effect (and
+            (at end (not (robot_has_carrier ?r ?c)))
+            (at end (not (robot_is_attached ?r)))
+            (at end (robot_is_not_attached ?r))
+            (at end (not (carrier_is_attached ?c)))
+            (at end (carrier_is_not_attached ?c))
+            (at end (carrier_at_location ?c ?l))
         )
     )
 
-    (:action robot_unload_box
+    (:durative-action robot_load_box
         :parameters (
             ?r - robot
             ?c - carrier
             ?b - box
             ?l - location
         )
-        :precondition (and 
-            (robot_at_location ?r ?l)
-            (robot_has_carrier ?r ?c)
-            (carrier_is_attached ?c)
-            (box_is_loaded ?b)
-            (carrier_has_box ?c ?b)
+        :duration (= ?duration 0.5)
+        :condition (and 
+            (over all (robot_at_location ?r ?l))
+            (over all (robot_has_carrier ?r ?c))
+            (over all (carrier_is_attached ?c))
+            (over all (box_at_location ?b ?l))
+            (at start (box_is_not_loaded ?b))
+            (at start (> (carrier_capacity ?c) 0))
         )
         :effect (and 
-            (not (box_is_loaded ?b))
-            (box_is_not_loaded ?b)
-            (not (carrier_has_box ?c ?b))
-            (box_at_location ?b ?l)
-            (increase (carrier_capacity ?c) 1)
+            (at end (box_is_loaded ?b))
+            (at end (not (box_is_not_loaded ?b)))
+            (at end (carrier_has_box ?c ?b))
+            (at end (not (box_at_location ?b ?l)))
+            (at end (decrease (carrier_capacity ?c) 1))
         )
     )
 
-    (:action pick_up_content_at_cw
+    (:durative-action robot_unload_box
+        :parameters (
+            ?r - robot
+            ?c - carrier
+            ?b - box
+            ?l - location
+        )
+        :duration (= ?duration 0.5)
+        :condition (and 
+            (over all (robot_at_location ?r ?l))
+            (over all (robot_has_carrier ?r ?c))
+            (over all (carrier_is_attached ?c))
+            (at start (box_is_loaded ?b))
+            (at start (carrier_has_box ?c ?b))
+        )
+        :effect (and 
+            (at end (not (box_is_loaded ?b)))
+            (at end (box_is_not_loaded ?b))
+            (at end (not (carrier_has_box ?c ?b)))
+            (at end (box_at_location ?b ?l))
+            (at end (increase (carrier_capacity ?c) 1))
+        )
+    )
+
+    (:durative-action pick_up_content_at_cw
         :parameters (
             ?r - robot
             ?con - content
             ?car - carrier
             ?b - box
         )
-        :precondition (and 
-            (robot_at_location ?r central_warehouse)
-            (content_at_cw ?con)
-            (robot_has_carrier ?r ?car)
-            (carrier_is_attached ?car)
-            (carrier_has_box ?car ?b)
-            (box_is_loaded ?b)
-            (box_is_not_full ?b)
+        :duration (= ?duration 0.3)
+        :condition (and 
+            (over all (robot_at_location ?r central_warehouse))
+            (over all (content_at_cw ?con))
+            (over all (robot_has_carrier ?r ?car))
+            (over all (carrier_is_attached ?car))
+            (over all (carrier_has_box ?car ?b))
+            (over all (box_is_loaded ?b))
+            (at start (box_is_not_full ?b))
         )
         :effect (and 
-            (box_has_content ?b ?con)
-            (box_is_full ?b)
-            (not (box_is_not_full ?b))
+            (at end (box_has_content ?b ?con))
+            (at end (box_is_full ?b))
+            (at end (not (box_is_not_full ?b)))
         )
     )
 
-    (:action put_down_content_at_cw
+    (:durative-action put_down_content_at_cw
         :parameters (
             ?r - robot
             ?con - content
             ?car - carrier
             ?b - box
         )
-        :precondition (and
-            (robot_at_location ?r central_warehouse)
-            (content_at_cw ?con)
-            (robot_has_carrier ?r ?car)
-            (carrier_is_attached ?car)
-            (carrier_has_box ?car ?b)
-            (box_is_loaded ?b)
-            (box_has_content ?b ?con)
-            (box_is_full ?b)
+        :duration (= ?duration 0.3)
+        :condition (and 
+            (over all (robot_at_location ?r central_warehouse))
+            (over all (content_at_cw ?con))
+            (over all (robot_has_carrier ?r ?car))
+            (over all (carrier_is_attached ?car))
+            (over all (carrier_has_box ?car ?b))
+            (over all (box_is_loaded ?b))
+            (at start (box_has_content ?b ?con))
+            (at start (box_is_full ?b))
         )
         :effect (and 
-            (not (box_has_content ?b ?con))
-            (not (box_is_full ?b))
-            (box_is_not_full ?b)
+            (at end (not (box_has_content ?b ?con)))
+            (at end (not (box_is_full ?b)))
+            (at end (box_is_not_full ?b))
         )
     )
 
-    (:action pick_up_content
+    (:durative-action pick_up_content
         :parameters (
             ?r - robot
             ?car - carrier
@@ -246,26 +255,27 @@
             ?l - location
             ?w - workstation
         )
-        :precondition (and
-            (robot_at_location ?r ?l)
-            (workstation_at_location ?w ?l)
-            (robot_has_carrier ?r ?car)
-            (robot_is_attached ?r)
-            (carrier_is_attached ?car)
-            (carrier_has_box ?car ?b)
-            (box_is_loaded ?b)
-            (box_is_not_full ?b)
-            (content_at_location_at_workstation ?con ?l ?w)
+        :duration (= ?duration 0.3)
+        :condition (and
+            (over all (robot_at_location ?r ?l))
+            (over all (workstation_at_location ?w ?l))
+            (over all (robot_has_carrier ?r ?car))
+            (over all (robot_is_attached ?r))
+            (over all (carrier_is_attached ?car))
+            (over all (carrier_has_box ?car ?b))
+            (over all (box_is_loaded ?b))
+            (at start (box_is_not_full ?b))
+            (at start (content_at_location_at_workstation ?con ?l ?w))
         )
         :effect (and
-            (box_has_content ?b ?con)
-            (box_is_full ?b)
-            (not (box_is_not_full ?b))
-            (not (content_at_location_at_workstation ?con ?l ?w))
+            (at end (box_has_content ?b ?con))
+            (at end (box_is_full ?b))
+            (at end (not (box_is_not_full ?b)))
+            (at end (not (content_at_location_at_workstation ?con ?l ?w)))
         )
     )
 
-    (:action put_down_content
+    (:durative-action put_down_content
         :parameters (
             ?r - robot
             ?car - carrier
@@ -274,22 +284,23 @@
             ?l - location
             ?w - workstation
         )
-        :precondition (and
-            (robot_at_location ?r ?l)
-            (workstation_at_location ?w ?l)
-            (robot_has_carrier ?r ?car)
-            (robot_is_attached ?r)
-            (carrier_is_attached ?car)
-            (carrier_has_box ?car ?b)
-            (box_is_loaded ?b)
-            (box_has_content ?b ?con)
-            (box_is_full ?b)
+        :duration (= ?duration 0.3)
+        :condition (and
+            (over all (robot_at_location ?r ?l))
+            (over all (workstation_at_location ?w ?l))
+            (over all (robot_has_carrier ?r ?car))
+            (over all (robot_is_attached ?r))
+            (over all (carrier_is_attached ?car))
+            (over all (carrier_has_box ?car ?b))
+            (over all (box_is_loaded ?b))
+            (at start (box_has_content ?b ?con))
+            (at start (box_is_full ?b))
         )
         :effect (and
-            (not (box_has_content ?b ?con))
-            (not (box_is_full ?b))
-            (box_is_not_full ?b)
-            (content_at_location_at_workstation ?con ?l ?w)
+            (at end (not (box_has_content ?b ?con)))
+            (at end (not (box_is_full ?b)))
+            (at end (box_is_not_full ?b))
+            (at end (content_at_location_at_workstation ?con ?l ?w))
         )
     )
 )
