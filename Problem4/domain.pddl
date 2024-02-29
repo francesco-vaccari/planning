@@ -203,6 +203,8 @@
             (at end (robot_has_carrier ?r ?c))
 
             (at start (carrier_has_box ?c ?b))
+
+            (at start (mutex_load_box ?r))
         )
         :effect (and
             (at start (not (carrier_has_box ?c ?b)))
@@ -210,6 +212,9 @@
 
             (at end (increase (carrier_capacity ?c) 1))
             (at end (box_is_not_loaded ?b))
+
+            (at start (not (mutex_load_box ?r)))
+            (at end (mutex_load_box ?r))
         )
     )
 

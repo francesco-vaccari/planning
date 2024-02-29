@@ -4,7 +4,8 @@
     (:objects
         loc1 loc2 loc3 loc4 loc5 - location
         wor1_1 wor1_2 wor2_1 wor3_1 wor4_1 wor5_1 - workstation
-        walker jumper drone - robot
+        ; walker jumper drone - robot
+        walker - robot
         carrier1 carrier2 carrier3 - carrier
         box1 box2 box3 - box
         tool valve bolt parts - content
@@ -30,16 +31,16 @@
         (workstation_at_location wor5_1 loc5)
 
         (walks walker)
-        (jumps jumper)
-        (flies drone)
+        ; (jumps jumper)
+        ; (flies drone)
 
         (mutex_load_box walker)
-        (mutex_load_box jumper)
-        (mutex_load_box drone)
+        ; (mutex_load_box jumper)
+        ; (mutex_load_box drone)
 
         (robot_at_location walker central_warehouse)
-        (robot_at_location jumper central_warehouse)
-        (robot_at_location drone central_warehouse)
+        ; (robot_at_location jumper central_warehouse)
+        ; (robot_at_location drone central_warehouse)
 
         (carrier_at_location carrier1 central_warehouse)
         (carrier_at_location carrier2 central_warehouse)
@@ -54,8 +55,8 @@
 
 
         (robot_is_not_attached walker)
-        (robot_is_not_attached jumper)
-        (robot_is_not_attached drone)
+        ; (robot_is_not_attached jumper)
+        ; (robot_is_not_attached drone)
 
         (carrier_is_not_attached carrier1)
         (carrier_is_not_attached carrier2)
@@ -79,9 +80,9 @@
         ; (content_at_location_at_workstation tool loc2 wor2_1)
         ; (content_at_location_at_workstation valve loc2 wor2_1)
         ; (content_at_location_at_workstation bolt loc5 wor5_1)
-        (carrier_has_box carrier3 box1)
-        (carrier_has_box carrier3 box2)
-        (carrier_has_box carrier3 box3)
+        (box_at_location box1 loc1)
+        (box_at_location box2 loc1)
+        (box_at_location box3 loc1)
     ))
 
     (:metric minimize (total-time))
