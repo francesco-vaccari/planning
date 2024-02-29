@@ -37,6 +37,8 @@
         (carrier_is_not_attached ?c - carrier)
         (box_is_not_loaded ?b - box)
         (box_is_not_full ?b - box)
+
+        (mutex_load_box ?r - robot)
     )
 
     (:functions
@@ -168,6 +170,8 @@
 
             (at start (> (carrier_capacity ?c) 0))
             (at start (box_is_not_loaded ?b))
+
+            (at start (mutex_load_box ?r))
         )
         :effect (and
             (at end (carrier_has_box ?c ?b))
@@ -175,6 +179,9 @@
 
             (at start (decrease (carrier_capacity ?c) 1))
             (at start (not (box_is_not_loaded ?b)))
+
+            (at start (not (mutex_load_box ?r)))
+            (at end (mutex_load_box ?r))
         )
     )
 

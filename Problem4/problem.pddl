@@ -33,6 +33,10 @@
         (jumps jumper)
         (flies drone)
 
+        (mutex_load_box walker)
+        (mutex_load_box jumper)
+        (mutex_load_box drone)
+
         (robot_at_location walker central_warehouse)
         (robot_at_location jumper central_warehouse)
         (robot_at_location drone central_warehouse)
@@ -72,9 +76,12 @@
     )
 
     (:goal (and
-        (content_at_location_at_workstation tool loc2 wor2_1)
-        (content_at_location_at_workstation valve loc2 wor2_1)
-        (content_at_location_at_workstation bolt loc5 wor5_1)
+        ; (content_at_location_at_workstation tool loc2 wor2_1)
+        ; (content_at_location_at_workstation valve loc2 wor2_1)
+        ; (content_at_location_at_workstation bolt loc5 wor5_1)
+        (carrier_has_box carrier3 box1)
+        (carrier_has_box carrier3 box2)
+        (carrier_has_box carrier3 box3)
     ))
 
     (:metric minimize (total-time))
