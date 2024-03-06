@@ -101,4 +101,5 @@ I could implement, as specified in the pdf, that a robot can load only a box at 
 
 
 PROBLEM5
-I think I will have to do this on a machine with ubuntu because the docker does not build correctly and I am tired of things not working.
+I think I will have to do this on a machine with ubuntu because the docker does not build correctly and I am tired of things not working. I think I got it working on docker.
+
