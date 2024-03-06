@@ -632,7 +632,7 @@
         )
         :subtasks (and
             (task0 (get_content ?r ?con2))
-            (task1 (deliver ?con ?w)
+            (task1 (deliver ?con ?w))
         )
         :ordering (and
             (task0 < task1)
