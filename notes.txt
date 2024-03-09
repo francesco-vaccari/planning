@@ -103,3 +103,18 @@ I could implement, as specified in the pdf, that a robot can load only a box at 
 PROBLEM5
 I think I will have to do this on a machine with ubuntu because the docker does not build correctly and I am tired of things not working. I think I got it working on docker.
 
+From what I understood I need to modify the files in src for the actions implemented in c++, and then I need to modify the python file in the launch folder.
+
+The default folder contains launch, pddl and src folders. The launch folder containes "command" and the launch py file, the pddl contains the pddl domain file, the src folder contains a ccp file for each of the actions. Then there is the CMakeLists.txt file in the root, the package.xml file also in the root.
+
+I think I just need to rename the folder to src, and move it into a new directory, then run in the directory the commands:
+    colcon build --symlink-install
+    rosdep install --from-paths src --ignore-src -r -y
+    colcon build --symlink-install
+    source install/setup.bash
+Then to run execute in another terminal
+    ros2 launch [package_name] [package_name]_launch.py
+And then run the plansys2 terminal
+    ros2 run plansys2_terminal plansys2_terminal
+
+For some reason I need to rerun the source setup.bash command otherwise it does not find the package. Also, to launch the action server I need to be in the same directory of where I run the build commands.
