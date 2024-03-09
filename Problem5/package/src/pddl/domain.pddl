@@ -1,4 +1,4 @@
-(define (domain problem4)
+(define (domain problem5)
 
     (:requirements :typing :numeric-fluents :durative-actions)
 
@@ -62,7 +62,7 @@
             (at end (robot_at_location ?r ?l2))
         )   
     )
-        
+
     (:durative-action move_flying
         :parameters (
             ?r - robot
@@ -125,7 +125,7 @@
             (at start (not (carrier_at_location ?c ?l)))
         )
     )
-        
+
     (:durative-action robot_detach_carrier
         :parameters (
             ?r - robot

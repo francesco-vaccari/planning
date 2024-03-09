@@ -118,3 +118,6 @@ And then run the plansys2 terminal
     ros2 run plansys2_terminal plansys2_terminal
 
 For some reason I need to rerun the source setup.bash command otherwise it does not find the package. Also, to launch the action server I need to be in the same directory of where I run the build commands.
+
+
+I am getting an error when launching the problem, probably it does not support numeric-fluents.
