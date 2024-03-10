@@ -108,7 +108,6 @@ From what I understood I need to modify the files in src for the actions impleme
 The default folder contains launch, pddl and src folders. The launch folder containes "command" and the launch py file, the pddl contains the pddl domain file, the src folder contains a ccp file for each of the actions. Then there is the CMakeLists.txt file in the root, the package.xml file also in the root.
 
 I think I just need to rename the folder to src, and move it into a new directory, then run in the directory the commands:
-    colcon build --symlink-install
     rosdep install --from-paths src --ignore-src -r -y
     colcon build --symlink-install
     source install/setup.bash
