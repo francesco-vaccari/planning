@@ -130,6 +130,4 @@ Then run in the ros terminal:
     get plan
     run
 
-
-This command (not run in rosterm) finds a solution using also the problem instance not defined in the commands file:
-    ros2 run popf popf pddl/domain.pddl pddl/problem.pddl
+The duration of actions have been scaled down by a factor of, keeping the proportions between action durations the same. Also, by putting the progress update every .1 it should make actions last exactly the original amount as defined in the pddl domain file. I should check this maybe.
