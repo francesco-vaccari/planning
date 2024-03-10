@@ -1,6 +1,6 @@
 (define (domain problem5)
 
-    (:requirements :typing :numeric-fluents :durative-actions)
+    (:requirements :typing :durative-actions)
 
     (:types
         location
@@ -9,10 +9,22 @@
         carrier
         box
         content
+        number
     )
 
     (:constants
         central_warehouse - location
+        zero - number
+        one - number
+        two - number
+        three - number
+        four - number
+        five - number
+        six - number
+        seven - number
+        eight - number
+        nine - number
+        ten - number
     )
 
     (:predicates
@@ -39,10 +51,10 @@
         (box_is_not_full ?b - box)
 
         (mutex_load_box ?r - robot)
-    )
 
-    (:functions
-        (carrier_capacity ?c - carrier)
+        (carrier_capacity ?c - carrier ?n - number)
+        (increase_capacity ?n - number ?m - number)
+        (decrease_capacity ?n - number ?m - number)
     )
     
     (:durative-action move_walking
@@ -155,6 +167,8 @@
             ?c - carrier
             ?b - box
             ?l - location
+            ?n - number
+            ?m - number
         )
         :duration (= ?duration 2)
         :condition (and
@@ -168,7 +182,9 @@
 
             (at start (box_at_location ?b ?l))
 
-            (at start (> (carrier_capacity ?c) 0))
+            ; (at start (> (carrier_capacity ?c) 0))
+            (at start (carrier_capacity ?c ?n))
+            (at start (decrease_capacity ?n ?m))
             (at start (box_is_not_loaded ?b))
 
             (at start (mutex_load_box ?r))
@@ -177,7 +193,9 @@
             (at end (carrier_has_box ?c ?b))
             (at start (not (box_at_location ?b ?l)))
 
-            (at start (decrease (carrier_capacity ?c) 1))
+            ; (at start (decrease (carrier_capacity ?c) 1))
+            (at start (carrier_capacity ?c ?m))
+            (at start (not (carrier_capacity ?c ?n)))
             (at start (not (box_is_not_loaded ?b)))
 
             (at start (not (mutex_load_box ?r)))
@@ -191,6 +209,8 @@
             ?c - carrier
             ?b - box
             ?l - location
+            ?n - number
+            ?m - number
         )
         :duration (= ?duration 2)
         :condition (and
@@ -202,6 +222,8 @@
             (over all (robot_has_carrier ?r ?c))
             (at end (robot_has_carrier ?r ?c))
 
+            (at start (carrier_capacity ?c ?n))
+            (at start (increase_capacity ?n ?m))
             (at start (carrier_has_box ?c ?b))
 
             (at start (mutex_load_box ?r))
@@ -210,7 +232,9 @@
             (at start (not (carrier_has_box ?c ?b)))
             (at end (box_at_location ?b ?l))
 
-            (at end (increase (carrier_capacity ?c) 1))
+            ; (at end (increase (carrier_capacity ?c) 1))
+            (at end (carrier_capacity ?c ?m))
+            (at end (not (carrier_capacity ?c ?n)))
             (at end (box_is_not_loaded ?b))
 
             (at start (not (mutex_load_box ?r)))

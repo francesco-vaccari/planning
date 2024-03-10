@@ -120,4 +120,17 @@ And then run the plansys2 terminal
 For some reason I need to rerun the source setup.bash command otherwise it does not find the package. Also, to launch the action server I need to be in the same directory of where I run the build commands.
 
 
-I am getting an error when launching the problem, probably it does not support numeric-fluents.
+I am getting an error when launching the problem, probably it does not support numeric-fluents. I changed back to the domain definitio without the fluents, with capacities up to 10.
+Also it looks like that when loading the domain file it does not sets the instances of the constant istances like central_warehouse and the numbers. So I will add them in the problem instance commands.
+
+These are the commands with the name of the package being "problem5":
+    ros2 launch problem5 problem5_launch.py
+    ros2 run plansys2_terminal plansys2_terminal
+Then run in the ros terminal:
+    source src/launch/commands
+    get plan
+    run
+
+
+This command (not run in rosterm) finds a solution using also the problem instance not defined in the commands file:
+    ros2 run popf popf src/pddl/domain.pddl src/pddl/problem.pddl
