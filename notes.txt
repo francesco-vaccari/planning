@@ -127,10 +127,10 @@ These are the commands with the name of the package being "problem5":
     ros2 launch problem5 problem5_launch.py
     ros2 run plansys2_terminal plansys2_terminal
 Then run in the ros terminal:
-    source src/launch/commands
+    source launch/commands
     get plan
     run
 
 
 This command (not run in rosterm) finds a solution using also the problem instance not defined in the commands file:
-    ros2 run popf popf src/pddl/domain.pddl src/pddl/problem.pddl
+    ros2 run popf popf pddl/domain.pddl pddl/problem.pddl
