@@ -8,14 +8,14 @@ using namespace std::chrono_literals;
 
 class RobotAttachCarrier : public plansys2::ActionExecutorClient { //modify here
 public:
-    RobotAttachCarrier() : plansys2::ActionExecutorClient("robot_attach_carrier", 1s) { //modify here
+    RobotAttachCarrier() : plansys2::ActionExecutorClient("robot_attach_carrier", 300ms) { //modify here
         progress_ = 0.0;
     }
 
 private:
     void do_work() {
         if (progress_ < 1.0) {
-            progress_ += 0.05; //modify here
+            progress_ += 0.1; //modify here
             send_feedback(progress_, "RobotAttachCarrier running"); //modify here
         }
         else {
@@ -24,7 +24,7 @@ private:
             std::cout << std::endl;
         }
         std::cout << "\r\e[K" << std::flush;
-        std::cout << "RobotAttachCarrier being executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modify here
+        std::cout << "RobotAttachCarrier executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modify here
     }
     float progress_;
 };

@@ -1,0 +1,15 @@
+To reproduce the results, run in this directory:
+    rosdep install --from-paths src --ignore-src -r -y
+    colcon build --symlink-install
+    source install/setup.bash
+
+Then open a new terminal and run:
+    ros2 launch problem5 problem5_launch.py
+
+And then from the first terminal run:
+    ros2 run plansys2_terminal plansys2_terminal
+
+And in the ros2 terminal run:
+    source launch/commands
+    get plan
+    run

@@ -8,14 +8,14 @@ using namespace std::chrono_literals;
 
 class PutDownContentAtCw : public plansys2::ActionExecutorClient { //modify here
 public:
-    PutDownContentAtCw() : plansys2::ActionExecutorClient("put_down_content_at_cw", 1s) { //modify here
+    PutDownContentAtCw() : plansys2::ActionExecutorClient("put_down_content_at_cw", 100ms) { //modify here
         progress_ = 0.0;
     }
 
 private:
     void do_work() {
         if (progress_ < 1.0) {
-            progress_ += 0.05; //modify here
+            progress_ += 0.1; //modify here
             send_feedback(progress_, "PutDownContentAtCw running"); //modify here
         }
         else {
@@ -24,7 +24,7 @@ private:
             std::cout << std::endl;
         }
         std::cout << "\r\e[K" << std::flush;
-        std::cout << "PutDownContentAtCw being executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modify here
+        std::cout << "PutDownContentAtCw executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modify here
     }
     float progress_;
 };
