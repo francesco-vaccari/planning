@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 class MoveJumping : public plansys2::ActionExecutorClient { //modify here
 public:
-    MoveJumping() : plansys2::ActionExecutorClient("movejumping", 1s) { //modify here
+    MoveJumping() : plansys2::ActionExecutorClient("move_jumping", 1s) { //modify here
         progress_ = 0.0;
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<MoveJumping>(); //modify here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "movejumping")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "move_jumping")); //modify here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());

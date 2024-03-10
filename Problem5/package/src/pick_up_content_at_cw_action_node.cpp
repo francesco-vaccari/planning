@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 class PickUpContentAtCw : public plansys2::ActionExecutorClient { //modify here
 public:
-    PickUpContentAtCw() : plansys2::ActionExecutorClient("pickupcontentatcw", 1s) { //modify here
+    PickUpContentAtCw() : plansys2::ActionExecutorClient("pick_up_content_at_cw", 1s) { //modify here
         progress_ = 0.0;
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<PickUpContentAtCw>(); //modify here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "pickupcontentatcw")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "pick_up_content_at_cw")); //modify here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());

@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 class RobotDetachCarrier : public plansys2::ActionExecutorClient { //modify here
 public:
-    RobotDetachCarrier() : plansys2::ActionExecutorClient("robotdetachcarrier", 1s) { //modify here
+    RobotDetachCarrier() : plansys2::ActionExecutorClient("robot_detach_carrier", 1s) { //modify here
         progress_ = 0.0;
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<RobotDetachCarrier>(); //modify here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "robotdetachcarrier")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "robot_detach_carrier")); //modify here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());

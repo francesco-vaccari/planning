@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 class RobotUnloadBox : public plansys2::ActionExecutorClient { //modify here
 public:
-    RobotUnloadBox() : plansys2::ActionExecutorClient("robotunloadbox", 1s) { //modify here
+    RobotUnloadBox() : plansys2::ActionExecutorClient("robot_unload_box", 1s) { //modify here
         progress_ = 0.0;
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<RobotUnloadBox>(); //modify here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "robotunloadbox")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "robot_unload_box")); //modify here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());

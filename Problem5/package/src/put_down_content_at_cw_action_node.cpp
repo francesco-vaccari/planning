@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 class PutDownContentAtCw : public plansys2::ActionExecutorClient { //modify here
 public:
-    PutDownContentAtCw() : plansys2::ActionExecutorClient("putdowncontentatcw", 1s) { //modify here
+    PutDownContentAtCw() : plansys2::ActionExecutorClient("put_down_content_at_cw", 1s) { //modify here
         progress_ = 0.0;
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<PutDownContentAtCw>(); //modify here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "putdowncontentatcw")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "put_down_content_at_cw")); //modify here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());
