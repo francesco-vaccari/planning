@@ -25,6 +25,8 @@ set instance wor4_1 workstation
 set instance wor5_1 workstation
 
 set instance walker robot
+set instance jumper robot
+set instance drone robot
 
 set instance carrier1 carrier
 set instance carrier2 carrier
@@ -63,9 +65,15 @@ set predicate (workstation_at_location wor4_1 loc4)
 set predicate (workstation_at_location wor5_1 loc5)
 
 set predicate (walks walker)
+set predicate (jumps jumper)
+set predicate (flies drone)
 
 set predicate (mutex_load_box walker)
 set predicate (robot_at_location walker central_warehouse)
+set predicate (mutex_load_box jumper)
+set predicate (robot_at_location jumper central_warehouse)
+set predicate (mutex_load_box drone)
+set predicate (robot_at_location drone central_warehouse)
 
 set predicate (carrier_at_location carrier1 central_warehouse)
 set predicate (carrier_at_location carrier2 central_warehouse)
@@ -79,6 +87,8 @@ set predicate (box_at_location box2 central_warehouse)
 set predicate (box_at_location box3 central_warehouse)
 
 set predicate (robot_is_not_attached walker)
+set predicate (robot_is_not_attached jumper)
+set predicate (robot_is_not_attached drone)
 
 set predicate (carrier_is_not_attached carrier1)
 set predicate (carrier_is_not_attached carrier2)
@@ -124,4 +134,4 @@ set predicate (decrease_capacity ten nine)
 
 
 
-set goal (and (box_at_location box1 loc1) (box_at_location box2 loc1) (box_at_location box3 loc1))
+set goal (and (content_at_location_at_workstation tool loc1 wor1_1) (content_at_location_at_workstation valve loc2 wor2_1) (content_at_location_at_workstation tool loc5 wor5_1))

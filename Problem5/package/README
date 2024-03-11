@@ -2,6 +2,7 @@ To reproduce the results, run in this directory:
     rosdep install --from-paths src --ignore-src -r -y
     colcon build --symlink-install
     source install/setup.bash
+Or run source setup_problem5 which contains the above commands.
 
 Then open a new terminal and run:
     ros2 launch problem5 problem5_launch.py
