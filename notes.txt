@@ -1,7 +1,7 @@
 PROBLEM1
 Assumptions about problem1:
 - a robot at a location has access to all workstations without needing to move further
-- a robot can unload the content of a box if it  is in the same location of the workstation, since the robot can access all workstations of that location
+- a robot can unload the content of a box if it is in the same location of the workstation, since the robot can access all workstations of that location
 - unloading a box simply empties the box, leaving the content of the box at the given workstation and having still after the robot carrying an emtpy box
 - boxes can be dropped by the robot at any location but not in workstations
 - contents can only be dropped at workstations, and are found initially in the central_warehouse
@@ -10,9 +10,9 @@ Assumptions about problem1:
 
 I think it is better if i can implement the contents in a way that when a robot picks stuff up from the central_warehouse the stuff is not removed, and is like duplicated. This way the components are inifinite but i have to be careful because i still need them to disappear from ground if they are picked from any other workstation. To solve this problem, i might solve this problem by creating a special action that allows the robot to fill_up_at_cw and maybe also remove the central_warehouse_workstation so that the formulation is simpler by allowing the contents to be at a location when that location is only the central_warehouse.
 
-Regarding problem1, I can also add a pud_down_content_at_cw action that basically acts as bin for the contents that the robot has that are not needed anymore. This is not really needed since the goal do not require this action and it would never be actually performed. Still might be a good idea to add it.
+Regarding problem1, I can also add a put_down_content_at_cw action that basically acts as bin for the contents that the robot has that are not needed anymore. This is not really needed since the goal do not require this action and it would never be actually performed. Still might be a good idea to add it.
 
-Boxes instead are in a limited number and for each of them there is an instance initialized at central_warehouse. Boxes can only be dropped in locations, and not in workstations, which means that the action of unloading a box can be performed by a robot by simply being in the same locatino of the workstation and emptying the box. Robots can choose to also drop boxes at locations, but they nevet do because it is not optimal.
+Boxes instead are in a limited number and for each of them there is an instance initialized at central_warehouse. Boxes can only be dropped in locations, and not in workstations, which means that the action of unloading a box can be performed by a robot by simply being in the same locatino of the workstation and emptying the box. Robots can choose to also drop boxes at locations, but they never do because it is not optimal.
 
 The way I modeled the contents of boxes, it is easy to add new kinds of componenents, like 'parts' in the problem defined. Also it is possible to add other robots that can pick up other boxes. Altough this produces a much longer plan searching time if we use astar to find the optimal plan. Observation about plans found, since we don't need boxes to be returned to the central_warehouse, the longest delivery is always performed last.
 

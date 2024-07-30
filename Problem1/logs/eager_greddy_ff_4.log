@@ -1,0 +1,282 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_4.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 59 rules.
+Computing model... [0.010s CPU, 0.005s wall-clock]
+1386 relevant atoms
+892 auxiliary atoms
+2278 final queue length
+3632 total queue pushes
+Completing instantiation... [0.010s CPU, 0.010s wall-clock]
+Instantiating: [0.020s CPU, 0.017s wall-clock]
+Computing fact groups...
+Finding invariants...
+22 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+114 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.002s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.001s wall-clock]
+Translating task: [0.020s CPU, 0.017s wall-clock]
+1336 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+4 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.007s wall-clock]
+Reordering and filtering variables...
+118 of 118 variables necessary.
+2 of 6 mutex groups necessary.
+1016 of 1016 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.004s wall-clock]
+Translator variables: 118
+Translator derived variables: 0
+Translator facts: 300
+Translator goal facts: 16
+Translator mutex groups: 2
+Translator total mutex groups size: 36
+Translator operators: 1016
+Translator axioms: 0
+Translator task size: 9022
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.007s wall-clock]
+Done! [0.050s CPU, 0.056s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'ff=ff()' --search 'eager_greedy([ff], preferred=[ff])' --internal-plan-file plans/plan_eager_greddy_ff_4 < output.sas
+[t=0.000151416s, 410597152 KB] reading input...
+[t=0.016157s, 410728224 KB] done reading input!
+[t=0.0168778s, 410728224 KB] Simplifying 2872 unary operators... done! [2852 unary operators]
+[t=0.0205812s, 410728224 KB] time to simplify: 0.003706s
+[t=0.0206536s, 410728224 KB] Initializing additive heuristic...
+[t=0.0206591s, 410728224 KB] Initializing FF heuristic...
+[t=0.0206822s, 410728224 KB] Building successor generator...done!
+[t=0.0209637s, 410728224 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0209685s, 410728224 KB] time for successor generation creation: 0.000270959s
+[t=0.0209757s, 410728224 KB] Variables: 118
+[t=0.0209803s, 410728224 KB] FactPairs: 300
+[t=0.0209846s, 410728224 KB] Bytes per state: 20
+[t=0.0209972s, 410728224 KB] Conducting best first search without reopening closed nodes, (real) bound = 2147483647
+[t=0.0210405s, 410728224 KB] New best heuristic value for ff(): 40
+[t=0.0210453s, 410728224 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0210527s, 410728224 KB] Initial heuristic value for ff(): 40
+[t=0.0210565s, 410728224 KB] pruning method: none
+[t=0.0211021s, 410728224 KB] New best heuristic value for ff(): 39
+[t=0.021106s, 410728224 KB] g=1, 2 evaluated, 1 expanded
+[t=0.0211851s, 410728224 KB] New best heuristic value for ff(): 38
+[t=0.0211889s, 410728224 KB] g=1, 6 evaluated, 1 expanded
+[t=0.0232718s, 410728224 KB] New best heuristic value for ff(): 37
+[t=0.0232758s, 410728224 KB] g=3, 110 evaluated, 10 expanded
+[t=0.0263493s, 410728224 KB] New best heuristic value for ff(): 36
+[t=0.0263535s, 410728224 KB] g=7, 257 evaluated, 28 expanded
+[t=0.028688s, 410738464 KB] New best heuristic value for ff(): 35
+[t=0.028699s, 410738464 KB] g=11, 359 evaluated, 42 expanded
+[t=0.0305265s, 410738464 KB] New best heuristic value for ff(): 34
+[t=0.030532s, 410738464 KB] g=13, 447 evaluated, 50 expanded
+[t=0.0340873s, 410738464 KB] New best heuristic value for ff(): 33
+[t=0.0340917s, 410738464 KB] g=17, 617 evaluated, 71 expanded
+[t=0.0363032s, 410738464 KB] New best heuristic value for ff(): 32
+[t=0.0363071s, 410738464 KB] g=21, 722 evaluated, 85 expanded
+[t=0.0384669s, 410738464 KB] New best heuristic value for ff(): 31
+[t=0.0384711s, 410738464 KB] g=23, 828 evaluated, 95 expanded
+[t=0.0426017s, 410738464 KB] New best heuristic value for ff(): 30
+[t=0.0426057s, 410738464 KB] g=27, 1025 evaluated, 118 expanded
+[t=0.044801s, 410738464 KB] New best heuristic value for ff(): 29
+[t=0.0448049s, 410738464 KB] g=31, 1129 evaluated, 132 expanded
+[t=0.0472093s, 410738464 KB] New best heuristic value for ff(): 28
+[t=0.047213s, 410738464 KB] g=33, 1247 evaluated, 143 expanded
+[t=0.0535938s, 410738464 KB] New best heuristic value for ff(): 27
+[t=0.053598s, 410738464 KB] g=38, 1552 evaluated, 181 expanded
+[t=0.0540285s, 410738464 KB] New best heuristic value for ff(): 26
+[t=0.0540322s, 410738464 KB] g=40, 1573 evaluated, 183 expanded
+[t=0.0569394s, 410738464 KB] New best heuristic value for ff(): 25
+[t=0.0569435s, 410738464 KB] g=43, 1713 evaluated, 200 expanded
+[t=0.0573726s, 410738464 KB] New best heuristic value for ff(): 24
+[t=0.0573763s, 410738464 KB] g=44, 1734 evaluated, 202 expanded
+[t=0.0576743s, 410738464 KB] New best heuristic value for ff(): 23
+[t=0.0576782s, 410738464 KB] g=45, 1749 evaluated, 203 expanded
+[t=0.058009s, 410738464 KB] New best heuristic value for ff(): 22
+[t=0.0580128s, 410738464 KB] g=46, 1766 evaluated, 204 expanded
+[t=0.0653948s, 410738464 KB] New best heuristic value for ff(): 21
+[t=0.0653989s, 410738464 KB] g=50, 2114 evaluated, 251 expanded
+[t=0.0656386s, 410738464 KB] New best heuristic value for ff(): 20
+[t=0.0656425s, 410738464 KB] g=51, 2126 evaluated, 252 expanded
+[t=0.0659604s, 410738464 KB] New best heuristic value for ff(): 19
+[t=0.065964s, 410738464 KB] g=52, 2143 evaluated, 253 expanded
+[t=0.0703097s, 410738464 KB] New best heuristic value for ff(): 18
+[t=0.0703135s, 410738464 KB] g=56, 2343 evaluated, 286 expanded
+[t=0.070416s, 410738464 KB] New best heuristic value for ff(): 17
+[t=0.0704198s, 410738464 KB] g=57, 2347 evaluated, 287 expanded
+[t=0.0705793s, 410738464 KB] New best heuristic value for ff(): 16
+[t=0.070583s, 410738464 KB] g=58, 2354 evaluated, 288 expanded
+[t=0.070755s, 410738464 KB] New best heuristic value for ff(): 15
+[t=0.0707587s, 410738464 KB] g=59, 2362 evaluated, 289 expanded
+[t=0.0755997s, 410738464 KB] New best heuristic value for ff(): 14
+[t=0.0756037s, 410738464 KB] g=62, 2593 evaluated, 321 expanded
+[t=0.0762308s, 410738464 KB] New best heuristic value for ff(): 13
+[t=0.0762344s, 410738464 KB] g=66, 2621 evaluated, 326 expanded
+[t=0.0772309s, 410738464 KB] New best heuristic value for ff(): 12
+[t=0.0772345s, 410738464 KB] g=68, 2668 evaluated, 333 expanded
+[t=0.0775634s, 410738464 KB] New best heuristic value for ff(): 11
+[t=0.0775673s, 410738464 KB] g=70, 2682 evaluated, 336 expanded
+[t=0.0779581s, 410738464 KB] New best heuristic value for ff(): 10
+[t=0.0779673s, 410738464 KB] g=72, 2700 evaluated, 339 expanded
+[t=0.0791093s, 410738464 KB] New best heuristic value for ff(): 9
+[t=0.0791131s, 410738464 KB] g=74, 2754 evaluated, 347 expanded
+[t=0.079693s, 410738464 KB] New best heuristic value for ff(): 8
+[t=0.0796969s, 410738464 KB] g=77, 2780 evaluated, 353 expanded
+[t=0.0799722s, 410738464 KB] New best heuristic value for ff(): 7
+[t=0.079976s, 410738464 KB] g=78, 2794 evaluated, 354 expanded
+[t=0.0803633s, 410738464 KB] New best heuristic value for ff(): 6
+[t=0.0803669s, 410738464 KB] g=80, 2813 evaluated, 357 expanded
+[t=0.080677s, 410738464 KB] New best heuristic value for ff(): 5
+[t=0.0806806s, 410738464 KB] g=82, 2828 evaluated, 360 expanded
+[t=0.0811627s, 410738464 KB] New best heuristic value for ff(): 3
+[t=0.0811664s, 410738464 KB] g=84, 2854 evaluated, 363 expanded
+[t=0.0812651s, 410738464 KB] New best heuristic value for ff(): 2
+[t=0.0812688s, 410738464 KB] g=85, 2860 evaluated, 364 expanded
+[t=0.0813621s, 410738464 KB] New best heuristic value for ff(): 1
+[t=0.0813658s, 410738464 KB] g=86, 2867 evaluated, 365 expanded
+[t=0.0814352s, 410738464 KB] New best heuristic value for ff(): 0
+[t=0.081439s, 410738464 KB] g=87, 2873 evaluated, 366 expanded
+[t=0.081443s, 410738464 KB] Solution found!
+[t=0.0814483s, 410738464 KB] Actual search time: 0.0603899s
+pick_up_box rob2 box1 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 bolt (1)
+move rob2 central_warehouse loc3 (1)
+put_down_content rob2 box1 bolt loc3 wor3_1 (1)
+move rob2 loc3 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 nut (1)
+move rob2 central_warehouse loc4 (1)
+move rob2 loc4 loc16 (1)
+put_down_content rob2 box1 nut loc16 wor16_1 (1)
+move rob2 loc16 loc4 (1)
+move rob2 loc4 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 nut (1)
+move rob2 central_warehouse loc4 (1)
+put_down_content rob2 box1 nut loc4 wor4_1 (1)
+move rob2 loc4 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 tool (1)
+move rob2 central_warehouse loc1 (1)
+move rob2 loc1 loc7 (1)
+put_down_content rob2 box1 tool loc7 wor7_1 (1)
+move rob2 loc7 loc1 (1)
+move rob2 loc1 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 tool (1)
+move rob2 central_warehouse loc1 (1)
+put_down_content rob2 box1 tool loc1 wor1_1 (1)
+move rob2 loc1 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 valve (1)
+move rob2 central_warehouse loc2 (1)
+move rob2 loc2 loc8 (1)
+put_down_content rob2 box1 valve loc8 wor8_1 (1)
+move rob2 loc8 loc2 (1)
+move rob2 loc2 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 valve (1)
+move rob2 central_warehouse loc2 (1)
+put_down_content rob2 box1 valve loc2 wor2_1 (1)
+move rob2 loc2 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 bolt (1)
+move rob2 central_warehouse loc2 (1)
+move rob2 loc2 loc9 (1)
+put_down_content rob2 box1 bolt loc9 wor9_1 (1)
+pick_up_box rob1 box2 central_warehouse (1)
+move rob2 loc9 loc2 (1)
+move rob2 loc2 central_warehouse (1)
+pick_up_content_at_cw rob2 box1 nut (1)
+move rob2 central_warehouse loc2 (1)
+move rob2 loc2 loc10 (1)
+put_down_content rob2 box1 nut loc10 wor10_1 (1)
+move rob2 loc10 loc2 (1)
+move rob2 loc2 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 valve (1)
+move rob1 central_warehouse loc4 (1)
+move rob1 loc4 loc14 (1)
+put_down_content rob1 box2 valve loc14 wor14_1 (1)
+pick_up_content_at_cw rob2 box1 bolt (1)
+move rob2 central_warehouse loc4 (1)
+move rob2 loc4 loc15 (1)
+put_down_content rob2 box1 bolt loc15 wor15_1 (1)
+move rob1 loc14 loc4 (1)
+move rob1 loc4 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 gears (1)
+move rob1 central_warehouse loc1 (1)
+put_down_box rob2 box1 loc15 (1)
+move rob1 loc1 loc6 (1)
+put_down_content rob1 box2 gears loc6 wor6_1 (1)
+move rob1 loc6 loc1 (1)
+move rob1 loc1 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 gears (1)
+move rob1 central_warehouse loc3 (1)
+move rob1 loc3 loc12 (1)
+put_down_content rob1 box2 gears loc12 wor12_1 (1)
+move rob1 loc12 loc3 (1)
+move rob1 loc3 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 screw (1)
+move rob1 central_warehouse loc1 (1)
+move rob1 loc1 loc5 (1)
+put_down_content rob1 box2 screw loc5 wor5_1 (1)
+move rob1 loc5 loc1 (1)
+move rob1 loc1 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 screw (1)
+move rob1 central_warehouse loc3 (1)
+move rob1 loc3 loc11 (1)
+put_down_content rob1 box2 screw loc11 wor11_1 (1)
+move rob1 loc11 loc3 (1)
+move rob1 loc3 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 tool (1)
+move rob1 central_warehouse loc3 (1)
+move rob1 loc3 loc13 (1)
+put_down_content rob1 box2 tool loc13 wor13_1 (1)
+[t=0.0814519s, 410738464 KB] Plan length: 87 step(s).
+[t=0.0814519s, 410738464 KB] Plan cost: 87
+[t=0.0814519s, 410738464 KB] Expanded 367 state(s).
+[t=0.0814519s, 410738464 KB] Reopened 0 state(s).
+[t=0.0814519s, 410738464 KB] Evaluated 2873 state(s).
+[t=0.0814519s, 410738464 KB] Evaluations: 3239
+[t=0.0814519s, 410738464 KB] Generated 3614 state(s).
+[t=0.0814519s, 410738464 KB] Dead ends: 0 state(s).
+[t=0.0814519s, 410738464 KB] Number of registered states: 2873
+[t=0.0814519s, 410738464 KB] Int hash set load factor: 2873/4096 = 0.701416
+[t=0.0814519s, 410738464 KB] Int hash set resizes: 12
+[t=0.0814519s, 410738464 KB] Search time: 0.0604548s
+[t=0.0814519s, 410738464 KB] Total time: 0.0814519s
+Solution found.
+Peak memory: 410738464 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.19s

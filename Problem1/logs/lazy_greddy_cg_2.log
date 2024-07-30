@@ -1,0 +1,160 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_2.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.000s wall-clock]
+Generated 59 rules.
+Computing model... [0.000s CPU, 0.001s wall-clock]
+260 relevant atoms
+225 auxiliary atoms
+485 final queue length
+632 total queue pushes
+Completing instantiation... [0.000s CPU, 0.001s wall-clock]
+Instantiating: [0.000s CPU, 0.004s wall-clock]
+Computing fact groups...
+Finding invariants...
+22 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+32 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.001s wall-clock]
+Building STRIPS to SAS dictionary... [0.010s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.002s wall-clock]
+162 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+3 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.001s wall-clock]
+Reordering and filtering variables...
+35 of 35 variables necessary.
+2 of 5 mutex groups necessary.
+130 of 130 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 35
+Translator derived variables: 0
+Translator facts: 84
+Translator goal facts: 4
+Translator mutex groups: 2
+Translator total mutex groups size: 14
+Translator operators: 130
+Translator axioms: 0
+Translator task size: 1205
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.010s CPU, 0.011s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'cg=cg()' --search 'lazy_greedy([cg], preferred=[cg])' --internal-plan-file plans/plan_lazy_greddy_cg_2 < output.sas
+[t=0.000146s, 410597152 KB] reading input...
+[t=0.00230575s, 410597152 KB] done reading input!
+[t=0.00288938s, 410597152 KB] Initializing causal graph heuristic...
+[t=0.00289783s, 410597152 KB] Initializing heuristic cache... building causal graph...done! [t=0.000104625s]
+[t=0.00431296s, 410728224 KB] done!
+[t=0.00466467s, 410728224 KB] Building successor generator...done!
+[t=0.00471579s, 410728224 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.00472058s, 410728224 KB] time for successor generation creation: 3.8917e-05s
+[t=0.00472675s, 410728224 KB] Variables: 35
+[t=0.00473133s, 410728224 KB] FactPairs: 84
+[t=0.00473563s, 410728224 KB] Bytes per state: 8
+[t=0.00475375s, 410728224 KB] Conducting lazy best first search, (real) bound = 2147483647
+[t=0.00477825s, 410728224 KB] New best heuristic value for cg(): 43
+[t=0.00479242s, 410728224 KB] g=0, 1 evaluated, 0 expanded
+[t=0.00479925s, 410728224 KB] Initial heuristic value for cg(): 43
+[t=0.00482521s, 410728224 KB] New best heuristic value for cg(): 19
+[t=0.00482933s, 410728224 KB] g=1, 3 evaluated, 2 expanded
+[t=0.00483775s, 410728224 KB] New best heuristic value for cg(): 16
+[t=0.00484133s, 410728224 KB] g=2, 4 evaluated, 3 expanded
+[t=0.00484754s, 410728224 KB] New best heuristic value for cg(): 13
+[t=0.00485104s, 410728224 KB] g=2, 5 evaluated, 4 expanded
+[t=0.00486246s, 410728224 KB] New best heuristic value for cg(): 11
+[t=0.00486617s, 410728224 KB] g=3, 7 evaluated, 6 expanded
+[t=0.0048945s, 410728224 KB] New best heuristic value for cg(): 10
+[t=0.00489846s, 410728224 KB] g=4, 13 evaluated, 12 expanded
+[t=0.00496725s, 410728224 KB] New best heuristic value for cg(): 9
+[t=0.00497108s, 410728224 KB] g=9, 30 evaluated, 29 expanded
+[t=0.00501633s, 410728224 KB] New best heuristic value for cg(): 7
+[t=0.00502021s, 410728224 KB] g=12, 48 evaluated, 47 expanded
+[t=0.005027s, 410728224 KB] New best heuristic value for cg(): 6
+[t=0.00503054s, 410728224 KB] g=13, 50 evaluated, 49 expanded
+[t=0.00504367s, 410728224 KB] New best heuristic value for cg(): 5
+[t=0.00504725s, 410728224 KB] g=14, 55 evaluated, 54 expanded
+[t=0.00508425s, 410728224 KB] New best heuristic value for cg(): 3
+[t=0.00508804s, 410728224 KB] g=17, 68 evaluated, 67 expanded
+[t=0.00514621s, 410728224 KB] New best heuristic value for cg(): 2
+[t=0.00514979s, 410728224 KB] g=19, 91 evaluated, 90 expanded
+[t=0.00515567s, 410728224 KB] New best heuristic value for cg(): 1
+[t=0.00515908s, 410728224 KB] g=20, 92 evaluated, 91 expanded
+[t=0.00516421s, 410728224 KB] Solution found!
+[t=0.00516825s, 410728224 KB] Actual search time: 0.000410583s
+pick_up_box rob1 box2 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 tool (1)
+move rob1 central_warehouse loc1 (1)
+move rob1 loc1 loc5 (1)
+put_down_content rob1 box2 tool loc5 wor5_1 (1)
+move rob1 loc5 loc1 (1)
+move rob1 loc1 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 tool (1)
+move rob1 central_warehouse loc1 (1)
+put_down_content rob1 box2 tool loc1 wor1_1 (1)
+move rob1 loc1 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 bolt (1)
+move rob1 central_warehouse loc1 (1)
+move rob1 loc1 loc2 (1)
+put_down_content rob1 box2 bolt loc2 wor2_2 (1)
+move rob1 loc2 loc1 (1)
+move rob1 loc1 central_warehouse (1)
+pick_up_content_at_cw rob1 box2 valve (1)
+move rob1 central_warehouse loc1 (1)
+move rob1 loc1 loc5 (1)
+put_down_content rob1 box2 valve loc5 wor5_1 (1)
+[t=0.00517175s, 410728224 KB] Plan length: 21 step(s).
+[t=0.00517175s, 410728224 KB] Plan cost: 21
+[t=0.00517175s, 410728224 KB] Expanded 92 state(s).
+[t=0.00517175s, 410728224 KB] Reopened 0 state(s).
+[t=0.00517175s, 410728224 KB] Evaluated 93 state(s).
+[t=0.00517175s, 410728224 KB] Evaluations: 93
+[t=0.00517175s, 410728224 KB] Generated 362 state(s).
+[t=0.00517175s, 410728224 KB] Dead ends: 0 state(s).
+[t=0.00517175s, 410728224 KB] Number of registered states: 93
+[t=0.00517175s, 410728224 KB] Int hash set load factor: 93/128 = 0.726562
+[t=0.00517175s, 410728224 KB] Int hash set resizes: 7
+[t=0.00517175s, 410728224 KB] Search time: 0.000418209s
+[t=0.00517175s, 410728224 KB] Total time: 0.00517175s
+Solution found.
+Peak memory: 410728224 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.07s

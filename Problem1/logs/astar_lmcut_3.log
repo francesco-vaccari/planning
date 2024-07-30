@@ -1,0 +1,126 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_3.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 59 rules.
+Computing model... [0.010s CPU, 0.003s wall-clock]
+855 relevant atoms
+671 auxiliary atoms
+1526 final queue length
+2131 total queue pushes
+Completing instantiation... [0.000s CPU, 0.005s wall-clock]
+Instantiating: [0.010s CPU, 0.011s wall-clock]
+Computing fact groups...
+Finding invariants...
+22 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+113 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.002s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.001s wall-clock]
+Translating task: [0.010s CPU, 0.008s wall-clock]
+668 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+3 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.004s wall-clock]
+Reordering and filtering variables...
+116 of 116 variables necessary.
+2 of 5 mutex groups necessary.
+508 of 508 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.003s wall-clock]
+Translator variables: 116
+Translator derived variables: 0
+Translator facts: 279
+Translator goal facts: 16
+Translator mutex groups: 2
+Translator total mutex groups size: 36
+Translator operators: 508
+Translator axioms: 0
+Translator task size: 4723
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.003s wall-clock]
+Done! [0.030s CPU, 0.032s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --search 'astar(lmcut())' --internal-plan-file plans/plan_astar_lmcut_3 < output.sas
+[t=0.000157208s, 410606368 KB] reading input...
+[t=0.00865429s, 410737440 KB] done reading input!
+[t=0.0093305s, 410737440 KB] Initializing landmark cut heuristic...
+[t=0.00934796s, 410737440 KB] Building successor generator...done!
+[t=0.00950671s, 410737440 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.00951154s, 410737440 KB] time for successor generation creation: 0.000145542s
+[t=0.00951792s, 410737440 KB] Variables: 116
+[t=0.00952267s, 410737440 KB] FactPairs: 279
+[t=0.00952696s, 410737440 KB] Bytes per state: 16
+[t=0.00954071s, 410737440 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.00971525s, 410737440 KB] New best heuristic value for lmcut(): 34
+[t=0.00972037s, 410737440 KB] g=0, 1 evaluated, 0 expanded
+[t=0.00972579s, 410737440 KB] f = 34, 1 evaluated, 0 expanded
+[t=0.00973196s, 410737440 KB] Initial heuristic value for lmcut(): 34
+[t=0.00974525s, 410737440 KB] pruning method: none
+[t=0.010513s, 410737440 KB] New best heuristic value for lmcut(): 30
+[t=0.0105174s, 410737440 KB] g=1, 6 evaluated, 1 expanded
+[t=0.0113703s, 410737440 KB] New best heuristic value for lmcut(): 29
+[t=0.011376s, 410737440 KB] g=2, 12 evaluated, 2 expanded
+[t=0.0128405s, 410737440 KB] New best heuristic value for lmcut(): 27
+[t=0.0128449s, 410737440 KB] g=3, 22 evaluated, 3 expanded
+[t=0.013452s, 410737440 KB] New best heuristic value for lmcut(): 25
+[t=0.0134563s, 410737440 KB] g=4, 26 evaluated, 4 expanded
+[t=0.0214037s, 410737440 KB] New best heuristic value for lmcut(): 24
+[t=0.0214084s, 410737440 KB] g=5, 83 evaluated, 23 expanded
+[t=0.0219629s, 410737440 KB] New best heuristic value for lmcut(): 22
+[t=0.0219669s, 410737440 KB] g=5, 87 evaluated, 23 expanded
+[t=0.0389233s, 410737440 KB] New best heuristic value for lmcut(): 21
+[t=0.0389283s, 410737440 KB] g=9, 217 evaluated, 85 expanded
+[t=0.0390453s, 410737440 KB] New best heuristic value for lmcut(): 20
+[t=0.039049s, 410737440 KB] g=10, 218 evaluated, 86 expanded
+[t=0.0900104s, 410746656 KB] New best heuristic value for lmcut(): 17
+[t=0.090038s, 410746656 KB] g=9, 591 evaluated, 243 expanded
+[t=1.45297s, 410877728 KB] f = 35, 10915 evaluated, 4113 expanded
+[t=3.02285s, 410886944 KB] New best heuristic value for lmcut(): 16
+[t=3.02287s, 410886944 KB] g=13, 22866 evaluated, 8925 expanded
+[t=5.62254s, 410886944 KB] f = 36, 41953 evaluated, 15189 expanded, 178 reopened
+[t=15.6946s, 411018016 KB] f = 37, 117465 evaluated, 47043 expanded, 414 reopened
+[t=33.4286s, 411158304 KB] f = 38, 249969 evaluated, 97448 expanded, 874 reopened
+Peak memory: 411158304 KB
+caught signal 24 -- exiting
+Time limit has been reached.
+Remove intermediate file output.sas
+search exit code: 23
+
+Driver aborting after search
+INFO     Planner time: 59.11s
