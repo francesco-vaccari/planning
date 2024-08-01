@@ -1,0 +1,199 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_2.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 117 rules.
+Computing model... [0.010s CPU, 0.006s wall-clock]
+1608 relevant atoms
+781 auxiliary atoms
+2389 final queue length
+4799 total queue pushes
+Completing instantiation... [0.020s CPU, 0.018s wall-clock]
+Instantiating: [0.030s CPU, 0.027s wall-clock]
+Computing fact groups...
+Finding invariants...
+33 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+93 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.002s wall-clock]
+Translating task: [0.030s CPU, 0.026s wall-clock]
+1248 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+11 propositions removed
+Detecting unreachable propositions: [0.010s CPU, 0.013s wall-clock]
+Reordering and filtering variables...
+104 of 104 variables necessary.
+9 of 20 mutex groups necessary.
+1300 of 1300 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.007s wall-clock]
+Translator variables: 104
+Translator derived variables: 0
+Translator facts: 246
+Translator goal facts: 8
+Translator mutex groups: 9
+Translator total mutex groups size: 45
+Translator operators: 1300
+Translator axioms: 0
+Translator task size: 14383
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.007s wall-clock]
+Done! [0.080s CPU, 0.087s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'ipdb=ipdb()' --search 'lazy_greedy([ipdb], preferred=[ipdb])' --internal-plan-file plans/plan_lazy_greddy_ipdb_2 < output.sas
+[t=0.000143834s, 410597152 KB] reading input...
+[t=0.0232968s, 410728224 KB] done reading input!
+[t=0.0239692s, 410728224 KB] Initializing canonical PDB heuristic...
+[t=0.0239766s, 410728224 KB] Generating patterns using: hill climbing pattern collection generator
+[t=0.0248535s, 410728224 KB] Done calculating initial pattern collection: 0.000873625s
+[t=0.0248623s, 410728224 KB] Average operator cost: 1
+[t=0.0248709s, 410728224 KB] building causal graph...done! [t=0.00095175s]
+[t=0.0581341s, 410728224 KB] Done calculating initial candidate PDBs
+[t=0.073005s, 410728224 KB] found a better pattern with improvement 807
+[t=0.0967585s, 410728224 KB] found a better pattern with improvement 791
+[t=0.126232s, 410746656 KB] found a better pattern with improvement 786
+[t=0.16031s, 410746656 KB] found a better pattern with improvement 556
+[t=0.199895s, 410746656 KB] found a better pattern with improvement 351
+[t=0.248422s, 410746656 KB] Improvement below threshold. Stop hill climbing.
+[t=0.248429s, 410746656 KB] Hill climbing iterations: 6
+[t=0.248433s, 410746656 KB] Hill climbing generated patterns: 516
+[t=0.248437s, 410746656 KB] Hill climbing rejected patterns: 0
+[t=0.24844s, 410746656 KB] Hill climbing maximum PDB size: 800
+[t=0.248444s, 410746656 KB] Hill climbing time: 0.223583s
+[t=0.248576s, 410746656 KB] hill climbing pattern collection generator number of patterns: 13
+[t=0.248581s, 410746656 KB] hill climbing pattern collection generator total PDB size: 242
+[t=0.248584s, 410746656 KB] hill climbing pattern collection generator computation time: 0.224594s
+[t=0.248592s, 410746656 KB] Running dominance pruning...
+[t=0.248598s, 410746656 KB] Pruned 7 of 9 pattern cliques
+[t=0.248602s, 410746656 KB] Pruned 5 of 13 PDBs
+[t=0.248606s, 410746656 KB] Dominance pruning took 1.1833e-05s
+[t=0.248613s, 410746656 KB] Canonical PDB heuristic number of patterns: 8
+[t=0.248617s, 410746656 KB] Canonical PDB heuristic total PDB size: 212
+[t=0.24862s, 410746656 KB] Canonical PDB heuristic computation time: 0.224644s
+[t=0.248656s, 410746656 KB] Building successor generator...done!
+[t=0.248965s, 410877728 KB] peak memory difference for successor generator creation: 131072 KB
+[t=0.248968s, 410877728 KB] time for successor generation creation: 0.000300417s
+[t=0.248975s, 410877728 KB] Variables: 104
+[t=0.248978s, 410877728 KB] FactPairs: 246
+[t=0.248981s, 410877728 KB] Bytes per state: 16
+[t=0.248998s, 410877728 KB] Conducting lazy best first search, (real) bound = 2147483647
+[t=0.249006s, 410877728 KB] New best heuristic value for : 12
+[t=0.24901s, 410877728 KB] g=0, 1 evaluated, 0 expanded
+[t=0.249016s, 410877728 KB] Initial heuristic value for : 12
+[t=0.249026s, 410877728 KB] New best heuristic value for : 11
+[t=0.249029s, 410877728 KB] g=1, 5 evaluated, 4 expanded
+[t=0.249036s, 410877728 KB] New best heuristic value for : 10
+[t=0.249039s, 410877728 KB] g=2, 6 evaluated, 5 expanded
+[t=0.249684s, 410877728 KB] New best heuristic value for : 9
+[t=0.249688s, 410877728 KB] g=6, 389 evaluated, 388 expanded
+[t=0.25018s, 410877728 KB] New best heuristic value for : 8
+[t=0.250184s, 410877728 KB] g=11, 680 evaluated, 679 expanded
+[t=0.250848s, 410877728 KB] New best heuristic value for : 7
+[t=0.250852s, 410877728 KB] g=16, 1082 evaluated, 1081 expanded
+[t=0.251875s, 410877728 KB] New best heuristic value for : 6
+[t=0.251879s, 410877728 KB] g=21, 1743 evaluated, 1742 expanded
+[t=0.251887s, 410877728 KB] New best heuristic value for : 5
+[t=0.25189s, 410877728 KB] g=22, 1745 evaluated, 1744 expanded
+[t=0.252432s, 410877728 KB] New best heuristic value for : 4
+[t=0.252436s, 410877728 KB] g=26, 2027 evaluated, 2026 expanded
+[t=0.252444s, 410877728 KB] New best heuristic value for : 3
+[t=0.252447s, 410877728 KB] g=27, 2029 evaluated, 2028 expanded
+[t=0.252834s, 410877728 KB] New best heuristic value for : 2
+[t=0.252837s, 410877728 KB] g=30, 2248 evaluated, 2247 expanded
+[t=0.254225s, 410877728 KB] New best heuristic value for : 1
+[t=0.254229s, 410877728 KB] g=34, 2892 evaluated, 2891 expanded
+[t=0.255875s, 410877728 KB] Solution found!
+[t=0.25588s, 410877728 KB] Actual search time: 0.00687888s
+robot_attach_carrier drone carrier1 central_warehouse (1)
+robot_load_box drone carrier1 box1 central_warehouse six five (1)
+pick_up_content_at_cw drone bolt carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+move_flying drone loc1 loc2 (1)
+put_down_content drone carrier1 box1 bolt loc2 wor2_1 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone bolt carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+move_flying drone loc1 loc3 (1)
+put_down_content drone carrier1 box1 bolt loc3 wor3_1 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone gears carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+move_flying drone loc1 loc3 (1)
+put_down_content drone carrier1 box1 gears loc3 wor3_2 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone parts carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+move_flying drone loc1 loc2 (1)
+put_down_content drone carrier1 box1 parts loc2 wor2_3 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone parts carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+move_flying drone loc1 loc3 (1)
+put_down_content drone carrier1 box1 parts loc3 wor3_1 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone valve carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+put_down_content drone carrier1 box1 valve loc1 wor1_1 (1)
+move_flying drone loc1 central_warehouse (1)
+pick_up_content_at_cw drone tool carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 tool loc2 wor2_1 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone valve carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 valve loc2 wor2_2 (1)
+[t=0.255884s, 410877728 KB] Plan length: 38 step(s).
+[t=0.255884s, 410877728 KB] Plan cost: 38
+[t=0.255884s, 410877728 KB] Expanded 3646 state(s).
+[t=0.255884s, 410877728 KB] Reopened 0 state(s).
+[t=0.255884s, 410877728 KB] Evaluated 3647 state(s).
+[t=0.255884s, 410877728 KB] Evaluations: 3647
+[t=0.255884s, 410877728 KB] Generated 34820 state(s).
+[t=0.255884s, 410877728 KB] Dead ends: 0 state(s).
+[t=0.255884s, 410877728 KB] Number of registered states: 3647
+[t=0.255884s, 410877728 KB] Int hash set load factor: 3647/4096 = 0.890381
+[t=0.255884s, 410877728 KB] Int hash set resizes: 12
+[t=0.255884s, 410877728 KB] Search time: 0.00688571s
+[t=0.255884s, 410877728 KB] Total time: 0.255884s
+Solution found.
+Peak memory: 410877728 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.39s

@@ -1,5 +1,0 @@
-(pick_up_box rob1 box1 central_warehouse)
-(pick_up_content_at_cw rob1 box1 tool)
-(move rob1 central_warehouse loc1)
-(put_down_content rob1 box1 tool loc1 wor1_1)
-; cost = 4 (unit cost)

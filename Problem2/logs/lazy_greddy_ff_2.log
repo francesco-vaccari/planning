@@ -1,0 +1,181 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_2.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 117 rules.
+Computing model... [0.010s CPU, 0.006s wall-clock]
+1608 relevant atoms
+781 auxiliary atoms
+2389 final queue length
+4799 total queue pushes
+Completing instantiation... [0.020s CPU, 0.018s wall-clock]
+Instantiating: [0.030s CPU, 0.027s wall-clock]
+Computing fact groups...
+Finding invariants...
+33 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+93 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.002s wall-clock]
+Translating task: [0.030s CPU, 0.027s wall-clock]
+1248 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+11 propositions removed
+Detecting unreachable propositions: [0.010s CPU, 0.013s wall-clock]
+Reordering and filtering variables...
+104 of 104 variables necessary.
+9 of 20 mutex groups necessary.
+1300 of 1300 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.007s wall-clock]
+Translator variables: 104
+Translator derived variables: 0
+Translator facts: 246
+Translator goal facts: 8
+Translator mutex groups: 9
+Translator total mutex groups size: 45
+Translator operators: 1300
+Translator axioms: 0
+Translator task size: 14383
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.008s wall-clock]
+Done! [0.080s CPU, 0.088s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'ff=ff()' --search 'lazy_greedy([ff], preferred=[ff])' --internal-plan-file plans/plan_lazy_greddy_ff_2 < output.sas
+[t=0.000148417s, 410597152 KB] reading input...
+[t=0.0233963s, 410728224 KB] done reading input!
+[t=0.0242562s, 410728224 KB] Simplifying 3796 unary operators... done! [3444 unary operators]
+[t=0.0250253s, 410728224 KB] time to simplify: 0.000774375s
+[t=0.0251146s, 410728224 KB] Initializing additive heuristic...
+[t=0.0251199s, 410728224 KB] Initializing FF heuristic...
+[t=0.0251451s, 410728224 KB] Building successor generator...done!
+[t=0.0254492s, 410728224 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0254541s, 410728224 KB] time for successor generation creation: 0.000293958s
+[t=0.0254615s, 410728224 KB] Variables: 104
+[t=0.0254661s, 410728224 KB] FactPairs: 246
+[t=0.0254706s, 410728224 KB] Bytes per state: 16
+[t=0.0254876s, 410728224 KB] Conducting lazy best first search, (real) bound = 2147483647
+[t=0.025545s, 410728224 KB] New best heuristic value for ff(): 18
+[t=0.0255497s, 410728224 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0255567s, 410728224 KB] Initial heuristic value for ff(): 18
+[t=0.0256771s, 410728224 KB] New best heuristic value for ff(): 17
+[t=0.025681s, 410728224 KB] g=1, 5 evaluated, 4 expanded
+[t=0.0257977s, 410728224 KB] New best heuristic value for ff(): 16
+[t=0.0258013s, 410728224 KB] g=2, 9 evaluated, 8 expanded
+[t=0.0260747s, 410728224 KB] New best heuristic value for ff(): 15
+[t=0.0260785s, 410728224 KB] g=4, 19 evaluated, 18 expanded
+[t=0.0266671s, 410728224 KB] New best heuristic value for ff(): 14
+[t=0.0266708s, 410728224 KB] g=8, 41 evaluated, 40 expanded
+[t=0.0268336s, 410728224 KB] New best heuristic value for ff(): 13
+[t=0.0268375s, 410728224 KB] g=11, 47 evaluated, 46 expanded
+[t=0.027019s, 410728224 KB] New best heuristic value for ff(): 12
+[t=0.0270227s, 410728224 KB] g=13, 54 evaluated, 53 expanded
+[t=0.0271855s, 410728224 KB] New best heuristic value for ff(): 11
+[t=0.027189s, 410728224 KB] g=15, 60 evaluated, 59 expanded
+[t=0.0272693s, 410728224 KB] New best heuristic value for ff(): 10
+[t=0.027273s, 410728224 KB] g=16, 63 evaluated, 62 expanded
+[t=0.0275158s, 410728224 KB] New best heuristic value for ff(): 9
+[t=0.0275196s, 410728224 KB] g=19, 72 evaluated, 71 expanded
+[t=0.027649s, 410728224 KB] New best heuristic value for ff(): 8
+[t=0.0276525s, 410728224 KB] g=21, 77 evaluated, 76 expanded
+[t=0.0277889s, 410728224 KB] New best heuristic value for ff(): 7
+[t=0.0277925s, 410728224 KB] g=23, 82 evaluated, 81 expanded
+[t=0.027847s, 410728224 KB] New best heuristic value for ff(): 6
+[t=0.0278505s, 410728224 KB] g=24, 84 evaluated, 83 expanded
+[t=0.0280068s, 410728224 KB] New best heuristic value for ff(): 4
+[t=0.0280105s, 410728224 KB] g=27, 90 evaluated, 89 expanded
+[t=0.0280372s, 410728224 KB] New best heuristic value for ff(): 3
+[t=0.0280408s, 410728224 KB] g=28, 91 evaluated, 90 expanded
+[t=0.0330301s, 410728224 KB] New best heuristic value for ff(): 2
+[t=0.0330343s, 410728224 KB] g=31, 293 evaluated, 292 expanded
+[t=0.0330542s, 410728224 KB] New best heuristic value for ff(): 1
+[t=0.0330578s, 410728224 KB] g=32, 294 evaluated, 293 expanded
+[t=0.0330667s, 410728224 KB] Solution found!
+[t=0.0330711s, 410728224 KB] Actual search time: 0.00756358s
+robot_attach_carrier drone carrier1 central_warehouse (1)
+robot_load_box drone carrier1 box1 central_warehouse six five (1)
+pick_up_content_at_cw drone bolt carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 bolt loc2 wor2_1 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone bolt carrier1 box1 (1)
+move_flying drone central_warehouse loc3 (1)
+put_down_content drone carrier1 box1 bolt loc3 wor3_1 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone gears carrier1 box1 (1)
+move_flying drone central_warehouse loc3 (1)
+put_down_content drone carrier1 box1 gears loc3 wor3_2 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone parts carrier1 box1 (1)
+move_flying drone central_warehouse loc3 (1)
+put_down_content drone carrier1 box1 parts loc3 wor3_1 (1)
+move_flying drone loc3 central_warehouse (1)
+pick_up_content_at_cw drone parts carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 parts loc2 wor2_3 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone valve carrier1 box1 (1)
+move_flying drone central_warehouse loc1 (1)
+put_down_content drone carrier1 box1 valve loc1 wor1_1 (1)
+move_flying drone loc1 central_warehouse (1)
+pick_up_content_at_cw drone valve carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 valve loc2 wor2_2 (1)
+move_flying drone loc2 central_warehouse (1)
+pick_up_content_at_cw drone tool carrier1 box1 (1)
+move_flying drone central_warehouse loc2 (1)
+put_down_content drone carrier1 box1 tool loc2 wor2_1 (1)
+[t=0.0330747s, 410728224 KB] Plan length: 33 step(s).
+[t=0.0330747s, 410728224 KB] Plan cost: 33
+[t=0.0330747s, 410728224 KB] Expanded 294 state(s).
+[t=0.0330747s, 410728224 KB] Reopened 0 state(s).
+[t=0.0330747s, 410728224 KB] Evaluated 295 state(s).
+[t=0.0330747s, 410728224 KB] Evaluations: 295
+[t=0.0330747s, 410728224 KB] Generated 2437 state(s).
+[t=0.0330747s, 410728224 KB] Dead ends: 0 state(s).
+[t=0.0330747s, 410728224 KB] Number of registered states: 295
+[t=0.0330747s, 410728224 KB] Int hash set load factor: 295/512 = 0.576172
+[t=0.0330747s, 410728224 KB] Int hash set resizes: 9
+[t=0.0330747s, 410728224 KB] Search time: 0.00758742s
+[t=0.0330747s, 410728224 KB] Total time: 0.0330747s
+Solution found.
+Peak memory: 410728224 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.17s

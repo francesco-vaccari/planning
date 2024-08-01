@@ -1,0 +1,132 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_1.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 117 rules.
+Computing model... [0.010s CPU, 0.008s wall-clock]
+2283 relevant atoms
+980 auxiliary atoms
+3263 final queue length
+7839 total queue pushes
+Completing instantiation... [0.030s CPU, 0.032s wall-clock]
+Instantiating: [0.040s CPU, 0.044s wall-clock]
+Computing fact groups...
+Finding invariants...
+33 initial candidates
+Finding invariants: [0.010s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+28 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.003s wall-clock]
+Translating task: [0.040s CPU, 0.040s wall-clock]
+1238 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+9 propositions removed
+Detecting unreachable propositions: [0.010s CPU, 0.015s wall-clock]
+Reordering and filtering variables...
+37 of 37 variables necessary.
+5 of 14 mutex groups necessary.
+2012 of 2012 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.008s wall-clock]
+Translator variables: 37
+Translator derived variables: 0
+Translator facts: 147
+Translator goal facts: 3
+Translator mutex groups: 5
+Translator total mutex groups size: 50
+Translator operators: 2012
+Translator axioms: 0
+Translator task size: 20401
+warning: could not determine peak memory
+Writing output... [0.010s CPU, 0.010s wall-clock]
+Done! [0.120s CPU, 0.124s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'ipdb=ipdb()' --search 'eager_greedy([ipdb], preferred=[ipdb])' --internal-plan-file plans/plan_eager_greddy_ipdb_1 < output.sas
+[t=0.000141375s, 410597152 KB] reading input...
+[t=0.0324544s, 410728224 KB] done reading input!
+[t=0.0331316s, 410728224 KB] Initializing canonical PDB heuristic...
+[t=0.0331416s, 410728224 KB] Generating patterns using: hill climbing pattern collection generator
+[t=0.0336495s, 410728224 KB] Done calculating initial pattern collection: 0.0005045s
+[t=0.0336557s, 410728224 KB] Average operator cost: 1
+[t=0.0336632s, 410728224 KB] building causal graph...done! [t=0.000657167s]
+[t=0.0443366s, 410728224 KB] Done calculating initial candidate PDBs
+[t=0.047462s, 410728224 KB] found a better pattern with improvement 725
+[t=0.0551508s, 410728224 KB] found a better pattern with improvement 553
+[t=0.0644347s, 410728224 KB] Improvement below threshold. Stop hill climbing.
+[t=0.0644418s, 410728224 KB] Hill climbing iterations: 3
+[t=0.0644556s, 410728224 KB] Hill climbing generated patterns: 95
+[t=0.0644599s, 410728224 KB] Hill climbing rejected patterns: 0
+[t=0.0644634s, 410728224 KB] Hill climbing maximum PDB size: 396
+[t=0.0644667s, 410728224 KB] Hill climbing time: 0.0308127s
+[t=0.06457s, 410728224 KB] hill climbing pattern collection generator number of patterns: 5
+[t=0.0645741s, 410728224 KB] hill climbing pattern collection generator total PDB size: 60
+[t=0.0645778s, 410728224 KB] hill climbing pattern collection generator computation time: 0.031423s
+[t=0.0645817s, 410728224 KB] Running dominance pruning...
+[t=0.0645865s, 410728224 KB] Pruned 2 of 3 pattern cliques
+[t=0.0645901s, 410728224 KB] Pruned 2 of 5 PDBs
+[t=0.0645935s, 410728224 KB] Dominance pruning took 9.75e-06s
+[t=0.0645975s, 410728224 KB] Canonical PDB heuristic number of patterns: 3
+[t=0.0646007s, 410728224 KB] Canonical PDB heuristic total PDB size: 40
+[t=0.0646043s, 410728224 KB] Canonical PDB heuristic computation time: 0.0314661s
+[t=0.0646258s, 410728224 KB] Building successor generator...done!
+[t=0.0651006s, 410728224 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.065104s, 410728224 KB] time for successor generation creation: 0.0004675s
+[t=0.0651115s, 410728224 KB] Variables: 37
+[t=0.0651151s, 410728224 KB] FactPairs: 147
+[t=0.0651184s, 410728224 KB] Bytes per state: 8
+[t=0.0651313s, 410728224 KB] Conducting best first search without reopening closed nodes, (real) bound = 2147483647
+[t=0.0651388s, 410728224 KB] New best heuristic value for : 5
+[t=0.0651424s, 410728224 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0651479s, 410728224 KB] Initial heuristic value for : 5
+[t=0.0651513s, 410728224 KB] pruning method: none
+[t=0.0651574s, 410728224 KB] New best heuristic value for : 4
+[t=0.0651608s, 410728224 KB] g=1, 2 evaluated, 1 expanded
+[t=0.0651715s, 410728224 KB] New best heuristic value for : 3
+[t=0.0651749s, 410728224 KB] g=2, 12 evaluated, 3 expanded
+[t=0.0661827s, 410728224 KB] New best heuristic value for : 2
+[t=0.0661875s, 410728224 KB] g=9, 1966 evaluated, 357 expanded
+[t=0.0685602s, 410728224 KB] New best heuristic value for : 1
+[t=0.0685642s, 410728224 KB] g=18, 6682 evaluated, 1235 expanded
+Peak memory: 414194528 KB
+caught signal 24 -- exiting
+Time limit has been reached.
+Remove intermediate file output.sas
+search exit code: 23
+
+Driver aborting after search
+INFO     Planner time: 50.05s

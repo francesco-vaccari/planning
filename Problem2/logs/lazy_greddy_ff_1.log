@@ -1,0 +1,176 @@
+INFO     planner time limit: 60s
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 59s
+INFO     translator memory limit: None
+INFO     translator command line string: /opt/homebrew/opt/python@3.12/bin/python3.12 /Users/francesco/Desktop/planners/downward/builds/release/bin/translate/translate.py domain.pddl problem_1.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 117 rules.
+Computing model... [0.010s CPU, 0.008s wall-clock]
+2283 relevant atoms
+980 auxiliary atoms
+3263 final queue length
+7839 total queue pushes
+Completing instantiation... [0.030s CPU, 0.032s wall-clock]
+Instantiating: [0.040s CPU, 0.044s wall-clock]
+Computing fact groups...
+Finding invariants...
+33 initial candidates
+Finding invariants: [0.010s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+28 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.003s wall-clock]
+Translating task: [0.040s CPU, 0.040s wall-clock]
+1238 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+9 propositions removed
+Detecting unreachable propositions: [0.010s CPU, 0.015s wall-clock]
+Reordering and filtering variables...
+37 of 37 variables necessary.
+5 of 14 mutex groups necessary.
+2012 of 2012 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.008s wall-clock]
+Translator variables: 37
+Translator derived variables: 0
+Translator facts: 147
+Translator goal facts: 3
+Translator mutex groups: 5
+Translator total mutex groups size: 50
+Translator operators: 2012
+Translator axioms: 0
+Translator task size: 20401
+warning: could not determine peak memory
+Writing output... [0.010s CPU, 0.010s wall-clock]
+Done! [0.120s CPU, 0.123s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 59s
+INFO     search memory limit: None
+INFO     search command line string: /Users/francesco/Desktop/planners/downward/builds/release/bin/downward --evaluator 'ff=ff()' --search 'lazy_greedy([ff], preferred=[ff])' --internal-plan-file plans/plan_lazy_greddy_ff_1 < output.sas
+[t=0.000144s, 410597152 KB] reading input...
+[t=0.0325061s, 410728224 KB] done reading input!
+[t=0.0334609s, 410728224 KB] Simplifying 5916 unary operators... done! [5892 unary operators]
+[t=0.0346825s, 410728224 KB] time to simplify: 0.00122338s
+[t=0.0348035s, 410728224 KB] Initializing additive heuristic...
+[t=0.0348088s, 410728224 KB] Initializing FF heuristic...
+[t=0.0348323s, 410728224 KB] Building successor generator...done!
+[t=0.0353172s, 410728224 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0353216s, 410728224 KB] time for successor generation creation: 0.000475292s
+[t=0.0353295s, 410728224 KB] Variables: 37
+[t=0.0353342s, 410728224 KB] FactPairs: 147
+[t=0.0353384s, 410728224 KB] Bytes per state: 8
+[t=0.035355s, 410728224 KB] Conducting lazy best first search, (real) bound = 2147483647
+[t=0.0354209s, 410728224 KB] New best heuristic value for ff(): 17
+[t=0.0354251s, 410728224 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0354331s, 410728224 KB] Initial heuristic value for ff(): 17
+[t=0.0354782s, 410728224 KB] New best heuristic value for ff(): 16
+[t=0.0354818s, 410728224 KB] g=1, 2 evaluated, 1 expanded
+[t=0.0355721s, 410728224 KB] New best heuristic value for ff(): 15
+[t=0.0355758s, 410728224 KB] g=2, 4 evaluated, 3 expanded
+[t=0.0357105s, 410728224 KB] New best heuristic value for ff(): 14
+[t=0.0357145s, 410728224 KB] g=3, 7 evaluated, 6 expanded
+[t=0.0358477s, 410728224 KB] New best heuristic value for ff(): 13
+[t=0.0358513s, 410728224 KB] g=4, 10 evaluated, 9 expanded
+[t=0.0366013s, 410728224 KB] New best heuristic value for ff(): 12
+[t=0.0366052s, 410728224 KB] g=5, 28 evaluated, 27 expanded
+[t=0.0372435s, 410728224 KB] New best heuristic value for ff(): 10
+[t=0.0372472s, 410728224 KB] g=7, 44 evaluated, 43 expanded
+[t=0.0373271s, 410728224 KB] New best heuristic value for ff(): 9
+[t=0.0373307s, 410728224 KB] g=8, 46 evaluated, 45 expanded
+[t=0.037434s, 410728224 KB] New best heuristic value for ff(): 7
+[t=0.0374375s, 410728224 KB] g=9, 49 evaluated, 48 expanded
+[t=0.0374719s, 410728224 KB] New best heuristic value for ff(): 6
+[t=0.0374755s, 410728224 KB] g=10, 50 evaluated, 49 expanded
+[t=0.0375093s, 410728224 KB] New best heuristic value for ff(): 5
+[t=0.037513s, 410728224 KB] g=11, 51 evaluated, 50 expanded
+[t=0.0375464s, 410728224 KB] New best heuristic value for ff(): 4
+[t=0.0375498s, 410728224 KB] g=12, 52 evaluated, 51 expanded
+[t=0.0375774s, 410728224 KB] New best heuristic value for ff(): 3
+[t=0.0375808s, 410728224 KB] g=13, 53 evaluated, 52 expanded
+[t=0.0451701s, 410728224 KB] New best heuristic value for ff(): 2
+[t=0.0451747s, 410728224 KB] g=30, 276 evaluated, 275 expanded
+[t=0.0451981s, 410728224 KB] New best heuristic value for ff(): 1
+[t=0.0452016s, 410728224 KB] g=31, 277 evaluated, 276 expanded
+[t=0.0452113s, 410728224 KB] Solution found!
+[t=0.0452157s, 410728224 KB] Actual search time: 0.00984654s
+move_walking walker central_warehouse loc1 (1)
+robot_attach_carrier jumper carrier1 central_warehouse (1)
+robot_load_box jumper carrier1 box1 central_warehouse one zero (1)
+pick_up_content_at_cw jumper tool carrier1 box1 (1)
+move_walking walker loc1 central_warehouse (1)
+robot_attach_carrier walker carrier2 central_warehouse (1)
+move_jumping jumper central_warehouse loc1 loc2 (1)
+move_jumping jumper loc2 loc3 loc4 (1)
+move_jumping jumper loc4 loc5 loc6 (1)
+move_jumping jumper loc6 loc7 loc8 (1)
+put_down_content jumper carrier1 box1 tool loc8 wor8_1 (1)
+move_walking walker central_warehouse loc1 (1)
+robot_unload_box jumper carrier1 box1 loc8 zero one (1)
+move_walking walker loc1 central_warehouse (1)
+robot_load_box walker carrier2 box2 central_warehouse two one (1)
+pick_up_content_at_cw walker tool carrier2 box2 (1)
+move_walking walker central_warehouse loc1 (1)
+move_walking walker loc1 loc2 (1)
+move_walking walker loc2 loc3 (1)
+move_walking walker loc3 loc4 (1)
+move_walking walker loc4 loc5 (1)
+move_walking walker loc5 loc6 (1)
+put_down_content walker carrier2 box2 tool loc6 wor6_1 (1)
+move_walking walker loc6 loc5 (1)
+move_walking walker loc5 loc4 (1)
+move_walking walker loc4 loc3 (1)
+move_walking walker loc3 loc2 (1)
+move_walking walker loc2 loc1 (1)
+move_walking walker loc1 central_warehouse (1)
+pick_up_content_at_cw walker valve carrier2 box2 (1)
+move_walking walker central_warehouse loc1 (1)
+put_down_content walker carrier2 box2 valve loc1 wor1_1 (1)
+[t=0.0452193s, 410728224 KB] Plan length: 32 step(s).
+[t=0.0452193s, 410728224 KB] Plan cost: 32
+[t=0.0452193s, 410728224 KB] Expanded 277 state(s).
+[t=0.0452193s, 410728224 KB] Reopened 0 state(s).
+[t=0.0452193s, 410728224 KB] Evaluated 278 state(s).
+[t=0.0452193s, 410728224 KB] Evaluations: 278
+[t=0.0452193s, 410728224 KB] Generated 2254 state(s).
+[t=0.0452193s, 410728224 KB] Dead ends: 0 state(s).
+[t=0.0452193s, 410728224 KB] Number of registered states: 278
+[t=0.0452193s, 410728224 KB] Int hash set load factor: 278/512 = 0.542969
+[t=0.0452193s, 410728224 KB] Int hash set resizes: 9
+[t=0.0452193s, 410728224 KB] Search time: 0.0098645s
+[t=0.0452193s, 410728224 KB] Total time: 0.0452193s
+Solution found.
+Peak memory: 410728224 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.22s
