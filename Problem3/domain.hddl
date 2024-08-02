@@ -177,7 +177,6 @@
             ?from - location
             ?half1 - location
             ?half2 - location
-            ?half3 - location
             ?to - location
         )
         :task (move ?r ?to)
@@ -186,8 +185,6 @@
             (robot_at_location ?r ?from)
             (adjacent ?from ?half1)
             (adjacent ?half1 ?half2)
-            (adjacent ?half2 ?half3)
-            (adjacent ?half3 ?to)
             (not (robot_at_location ?r ?half2))
             (not (robot_at_location ?r ?to))
         )
@@ -201,14 +198,10 @@
         :constraints (and
             (not (= ?from ?half1))
             (not (= ?from ?half2))
-            (not (= ?from ?half3))
             (not (= ?from ?to))
             (not (= ?half1 ?half2))
-            (not (= ?half1 ?half3))
             (not (= ?half1 ?to))
-            (not (= ?half2 ?half3))
             (not (= ?half2 ?to))
-            (not (= ?half3 ?to))
         )
     ); 2 or more steps away for jumper
     
@@ -441,7 +434,7 @@
         )
         :subtasks (and
             (task0 (get_carrier ?r ?car))
-            (task1 (get_box ?r ?b)) ; not needed
+            (task1 (get_box ?r ?b)) ; not really needed, but just to be safe
         )
         :ordering (and
             (task0 < task1)
@@ -585,7 +578,7 @@
         )
         :subtasks (and
             (task0 (get_box ?r ?b))
-            (task1 (get_content ?r ?con)); just to be safe
+            (task1 (get_content ?r ?con)); not really needed, but just to be safe
         )
         :ordering (and
             (task0 < task1)
