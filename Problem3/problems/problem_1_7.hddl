@@ -1,0 +1,82 @@
+(define (problem problem_1_7)
+    (:domain problem3)
+
+    (:objects
+        loc1 loc2 loc3 loc4 loc5 loc6 - location
+        wor4 wor6 - workstation
+        walker jumper - robot
+        carrier1 carrier2 - carrier
+        box1 box2 - box
+        tool bolt valve - content
+    )
+
+    (:htn
+		:parameters ()
+		:subtasks (and
+            (task0 (deliver valve wor4))
+            (task1 (deliver tool wor6))
+		)
+        :ordering (and
+            (task0 < task1)
+        )
+    )
+
+    (:init
+        (walks walker)
+		(jumps jumper)
+		
+
+        (adjacent central_warehouse loc1)
+        (adjacent loc1 central_warehouse)
+        (adjacent loc1 loc2)
+        (adjacent loc2 loc1)
+        (adjacent loc2 loc3)
+        (adjacent loc3 loc2)
+        (adjacent loc3 loc4)
+        (adjacent loc4 loc3)
+        (adjacent loc4 loc5)
+        (adjacent loc5 loc4)
+        (adjacent loc5 loc6)
+        (adjacent loc6 loc5)
+
+        (workstation_at_location wor4 loc4)
+        (workstation_at_location wor6 loc6)
+
+        (robot_at_location walker central_warehouse)
+		(robot_at_location jumper central_warehouse)
+		
+
+        (carrier_capacity carrier1 one)
+        (carrier_capacity carrier2 one)
+        (carrier_at_location carrier1 central_warehouse)
+        (carrier_at_location carrier2 central_warehouse)
+
+        (box_at_location box1 central_warehouse)
+        (box_at_location box2 central_warehouse)
+
+        (content_at_cw tool)
+        (content_at_cw bolt)
+        (content_at_cw valve)
+
+        (increase_capacity zero one)
+        (increase_capacity one two)
+        (increase_capacity two three)
+        (increase_capacity three four)
+        (increase_capacity four five)
+        (increase_capacity five six)
+        (increase_capacity six seven)
+        (increase_capacity seven eight)
+        (increase_capacity eight nine)
+        (increase_capacity nine ten)
+        (decrease_capacity one zero)
+        (decrease_capacity two one)
+        (decrease_capacity three two)
+        (decrease_capacity four three)
+        (decrease_capacity five four)
+        (decrease_capacity six five)
+        (decrease_capacity seven six)
+        (decrease_capacity eight seven)
+        (decrease_capacity nine eight)
+        (decrease_capacity ten nine)
+    )
+)

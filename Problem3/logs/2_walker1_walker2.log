@@ -1,0 +1,467 @@
+PANDA - Planning and Acting in a Network Decomposition Architecture
+Believe us: It's great, it's fantastic!
+
+PANDA Copyright (C) 2014-2018 Gregor Behnke, Pascal Bercher, Thomas Geier, Kadir
+Dede, Daniel Höller, Kristof Mickeleit, Matthias Englert
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it under certain
+conditions; run PANDA with -license for details.
+
+Main Developers:
+- Gregor Behnke, http://www.uni-ulm.de/in/ki/behnke
+- Daniel Höller, http://www.uni-ulm.de/in/ki/hoeller
+
+With many thanks to various further contributors.
+Run PANDA with the command line argument -contributors for an extensive list.
+
+Run it with -help for more information like available options.
+
+
+PANDA was called with: "-parser hddl -timelimit 120 domain.hddl problems/problem_2_4.hddl"
+
+
+Planner Configuration
+=====================
+Domain: domain.hddl
+Problem: problems/problem_2_4.hddl
+Output: none
+
+Planning Configuration
+======================
+	printGeneralInformation : true
+	printAdditionalData     : true
+	random seed             : 42
+	time limit (in seconds) : 120
+
+	external programs:
+
+
+	Parsing Configuration
+	---------------------
+	Parser                : HDDL Parser (Daniel's format)
+	Expand Sort Hierarchy : true
+	ClosedWordAssumption  : true
+	CompileSHOPMethods    : true
+	Eliminate Equality    : true
+	Strip Hybridity       : true
+	Reduce General Tasks  : true
+	
+	Preprocessing Configuration
+	---------------------------
+	Compile negative preconditions    : true
+	Compile unit methods              : false
+	Compile order in methods          : false
+	Compile initial plan              : true
+	Ensure Methods Have Last Task     : false
+	Split independent parameters      : true
+	Remove unnecessary predicates     : true
+	Expand choiceless abstract tasks  : true
+	Domain Cleanup                    : true
+	Convert to SAS+                   : false
+	Grounded Reachability Analysis    : Planning Graph (mutex-free)
+	Grounded Task Decomposition Graph : Two Way TDG
+	Iterate reachability analysis     : true
+	Ground domain                     : true
+	Iterate reachability analysis     : true
+	Stop directly after grounding     : false
+	
+	Progression-search Configuration
+	--------------------------------
+	Search Algorithm                 : AStarActionsType(2.0)
+	Heuristic                        : hhRC(hFF)
+	Abstract task selection strategy : random
+	
+	Post-processing Configuration
+	-----------------------------
+	search status
+	search result
+	timings
+	statistics
+#0 "00 global:01:problem"="problem_2_4.hddl";"00 global:00:domain"="domain.hddl"
+Parsing domain ... done
+Preparing internal domain representation ... done.
+Initial domain
+	number of abstract tasks = 5
+	number of tasks = 40
+	number of decomposition methods = 24
+	number of predicates = 20
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 24
+	number of epsilon methods = 0
+	number of primitive tasks = 35
+	number of constants = 29
+Compiling negative preconditions ... done.
+	number of abstract tasks = 5
+	number of tasks = 40
+	number of decomposition methods = 24
+	number of predicates = 40
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 24
+	number of epsilon methods = 0
+	number of primitive tasks = 35
+	number of constants = 29
+Compiling split parameters ... done.
+	number of abstract tasks = 9
+	number of tasks = 44
+	number of decomposition methods = 28
+	number of predicates = 40
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 24
+	number of epsilon methods = 0
+	number of primitive tasks = 35
+	number of constants = 29
+Lifted reachability analysis and domain cleanup ... done.
+	number of abstract tasks = 9
+	number of tasks = 37
+	number of decomposition methods = 25
+	number of predicates = 28
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 21
+	number of epsilon methods = 0
+	number of primitive tasks = 28
+	number of constants = 29
+Grounded planning graph ... done in 230ms.
+	Number of Grounded Actions 2648
+	Number of Grounded Literals 173
+	number of abstract tasks = 9
+	number of tasks = 37
+	number of decomposition methods = 25
+	number of predicates = 28
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 21
+	number of epsilon methods = 0
+	number of primitive tasks = 28
+	number of constants = 29
+Two Way TDG ... done.
+	number of abstract tasks = 9
+	number of tasks = 37
+	number of decomposition methods = 25
+	number of predicates = 28
+	number of sorts = 8
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 21
+	number of epsilon methods = 0
+	number of primitive tasks = 28
+	number of constants = 29
+Grounding ... done.
+	number of abstract tasks = 41
+	number of tasks = 2633
+	number of decomposition methods = 1542
+	number of predicates = 173
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 41
+	number of tasks = 2633
+	number of decomposition methods = 1542
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 211ms.
+	Number of Grounded Actions 2592
+	Number of Grounded Literals 140
+	number of abstract tasks = 41
+	number of tasks = 2633
+	number of decomposition methods = 1542
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 41
+	number of tasks = 2633
+	number of decomposition methods = 1536
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 39
+	number of tasks = 2631
+	number of decomposition methods = 1534
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 112ms.
+	Number of Grounded Actions 2592
+	Number of Grounded Literals 140
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 39
+	number of tasks = 2631
+	number of decomposition methods = 1534
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 40
+	number of tasks = 2632
+	number of decomposition methods = 1535
+	number of predicates = 140
+	number of sorts = 0
+	number of tasks in largest method = 4
+	number of primitive SHOP tasks = 1364
+	number of epsilon methods = 0
+	number of primitive tasks = 2592
+	number of constants = 0
+Tasks 2592 - 4
+Domain is acyclic: false
+Domain is mostly acyclic: false
+Domain is regular: false
+Domain is tail recursive: true
+Domain is totally ordered: true
+Domain has last task in all methods: true
+Time remaining for planner 118038ms
+Reducing flat domain ... done.
+ - Reduced number of operators from 2592 to 2592
+ - Reduced number of state-bits from 104 to 104
+Generating Relaxed Composition Model ...
+Calculating top down reachability ...
+ - Found 2632 SCCs with up to 1 tasks.
+ - Reachability calculated in 12 ms.
+ - model has 4127 operators
+ - model has 5328 state features
+ - operators' mean count of (pre, add, del) = (5,89, 2,03, 1,03)
+ - effects' mean achiever count: 2,03
+ - effects' mean consumer count: 5,89
+
+Searching with 
+ - Priority Queue search routine
+ - A-Star search
+ - HTN heuristic:hhRelataxedComposition-with-hFF-EQ
+ - Abstract task choice: randomly
+ - time limit for search is 120 sec
+
+Starting priority queue search
+nodes/sec: 3228 - generated nodes: 5061 - fringe size: 4134 - current modification depth: 12 - g(s)+h(s)= 27
+nodes/sec: 3371 - generated nodes: 10296 - fringe size: 8562 - current modification depth: 12 - g(s)+h(s)= 31
+nodes/sec: 3450 - generated nodes: 15472 - fringe size: 12311 - current modification depth: 19 - g(s)+h(s)= 33
+nodes/sec: 3492 - generated nodes: 20706 - fringe size: 16457 - current modification depth: 27 - g(s)+h(s)= 30
+nodes/sec: 3482 - generated nodes: 25706 - fringe size: 20817 - current modification depth: 35 - g(s)+h(s)= 31
+nodes/sec: 3465 - generated nodes: 30861 - fringe size: 24966 - current modification depth: 27 - g(s)+h(s)= 30
+nodes/sec: 3437 - generated nodes: 35919 - fringe size: 29612 - current modification depth: 32 - g(s)+h(s)= 32
+nodes/sec: 3411 - generated nodes: 41101 - fringe size: 34162 - current modification depth: 37 - g(s)+h(s)= 33
+nodes/sec: 3403 - generated nodes: 46352 - fringe size: 38602 - current modification depth: 29 - g(s)+h(s)= 34
+nodes/sec: 3408 - generated nodes: 51424 - fringe size: 43022 - current modification depth: 27 - g(s)+h(s)= 31
+nodes/sec: 3412 - generated nodes: 56429 - fringe size: 47430 - current modification depth: 37 - g(s)+h(s)= 33
+nodes/sec: 3416 - generated nodes: 61560 - fringe size: 52006 - current modification depth: 35 - g(s)+h(s)= 34
+nodes/sec: 3417 - generated nodes: 66854 - fringe size: 56896 - current modification depth: 37 - g(s)+h(s)= 34
+nodes/sec: 3411 - generated nodes: 72129 - fringe size: 61741 - current modification depth: 32 - g(s)+h(s)= 31
+nodes/sec: 3407 - generated nodes: 77137 - fringe size: 66368 - current modification depth: 26 - g(s)+h(s)= 32
+nodes/sec: 3406 - generated nodes: 82212 - fringe size: 70823 - current modification depth: 37 - g(s)+h(s)= 33
+nodes/sec: 3408 - generated nodes: 87307 - fringe size: 75337 - current modification depth: 32 - g(s)+h(s)= 34
+nodes/sec: 3408 - generated nodes: 92395 - fringe size: 79955 - current modification depth: 31 - g(s)+h(s)= 34
+nodes/sec: 3410 - generated nodes: 97482 - fringe size: 84688 - current modification depth: 30 - g(s)+h(s)= 34
+nodes/sec: 3410 - generated nodes: 102521 - fringe size: 89238 - current modification depth: 38 - g(s)+h(s)= 35
+nodes/sec: 3414 - generated nodes: 107814 - fringe size: 93223 - current modification depth: 32 - g(s)+h(s)= 35
+nodes/sec: 3414 - generated nodes: 112925 - fringe size: 97259 - current modification depth: 40 - g(s)+h(s)= 35
+nodes/sec: 3416 - generated nodes: 117959 - fringe size: 101520 - current modification depth: 40 - g(s)+h(s)= 35
+nodes/sec: 3420 - generated nodes: 123186 - fringe size: 105889 - current modification depth: 29 - g(s)+h(s)= 33
+nodes/sec: 3420 - generated nodes: 128237 - fringe size: 109993 - current modification depth: 12 - g(s)+h(s)= 27
+nodes/sec: 3429 - generated nodes: 133420 - fringe size: 113676 - current modification depth: 36 - g(s)+h(s)= 35
+nodes/sec: 3432 - generated nodes: 138624 - fringe size: 118058 - current modification depth: 34 - g(s)+h(s)= 35
+nodes/sec: 3436 - generated nodes: 143918 - fringe size: 122611 - current modification depth: 37 - g(s)+h(s)= 35
+nodes/sec: 3437 - generated nodes: 149083 - fringe size: 127187 - current modification depth: 40 - g(s)+h(s)= 35
+nodes/sec: 3440 - generated nodes: 154149 - fringe size: 131716 - current modification depth: 22 - g(s)+h(s)= 35
+nodes/sec: 3443 - generated nodes: 159160 - fringe size: 135277 - current modification depth: 20 - g(s)+h(s)= 32
+nodes/sec: 3442 - generated nodes: 164393 - fringe size: 139952 - current modification depth: 28 - g(s)+h(s)= 35
+nodes/sec: 3446 - generated nodes: 169397 - fringe size: 144194 - current modification depth: 31 - g(s)+h(s)= 30
+nodes/sec: 3450 - generated nodes: 174505 - fringe size: 148828 - current modification depth: 32 - g(s)+h(s)= 33
+nodes/sec: 3453 - generated nodes: 179656 - fringe size: 153484 - current modification depth: 28 - g(s)+h(s)= 34
+nodes/sec: 3456 - generated nodes: 184940 - fringe size: 158144 - current modification depth: 31 - g(s)+h(s)= 35
+nodes/sec: 3458 - generated nodes: 189948 - fringe size: 162484 - current modification depth: 38 - g(s)+h(s)= 36
+nodes/sec: 3462 - generated nodes: 195194 - fringe size: 165915 - current modification depth: 37 - g(s)+h(s)= 36
+nodes/sec: 3464 - generated nodes: 200215 - fringe size: 169475 - current modification depth: 36 - g(s)+h(s)= 36
+nodes/sec: 3465 - generated nodes: 205297 - fringe size: 173618 - current modification depth: 36 - g(s)+h(s)= 36
+nodes/sec: 3469 - generated nodes: 210451 - fringe size: 178105 - current modification depth: 20 - g(s)+h(s)= 30
+nodes/sec: 3470 - generated nodes: 215690 - fringe size: 182880 - current modification depth: 32 - g(s)+h(s)= 33
+nodes/sec: 3470 - generated nodes: 220705 - fringe size: 187389 - current modification depth: 31 - g(s)+h(s)= 34
+nodes/sec: 3471 - generated nodes: 225735 - fringe size: 191926 - current modification depth: 36 - g(s)+h(s)= 35
+nodes/sec: 3477 - generated nodes: 230740 - fringe size: 196315 - current modification depth: 42 - g(s)+h(s)= 36
+nodes/sec: 3477 - generated nodes: 235938 - fringe size: 200764 - current modification depth: 30 - g(s)+h(s)= 33
+nodes/sec: 3476 - generated nodes: 241209 - fringe size: 205451 - current modification depth: 31 - g(s)+h(s)= 34
+nodes/sec: 3477 - generated nodes: 246312 - fringe size: 209808 - current modification depth: 37 - g(s)+h(s)= 36
+nodes/sec: 3479 - generated nodes: 251330 - fringe size: 214380 - current modification depth: 33 - g(s)+h(s)= 36
+nodes/sec: 3478 - generated nodes: 256506 - fringe size: 218723 - current modification depth: 41 - g(s)+h(s)= 36
+nodes/sec: 3477 - generated nodes: 261782 - fringe size: 223457 - current modification depth: 27 - g(s)+h(s)= 36
+nodes/sec: 3479 - generated nodes: 266794 - fringe size: 227874 - current modification depth: 43 - g(s)+h(s)= 36
+nodes/sec: 3478 - generated nodes: 271943 - fringe size: 232539 - current modification depth: 37 - g(s)+h(s)= 36
+nodes/sec: 3478 - generated nodes: 276955 - fringe size: 236989 - current modification depth: 31 - g(s)+h(s)= 35
+nodes/sec: 3476 - generated nodes: 282188 - fringe size: 241791 - current modification depth: 41 - g(s)+h(s)= 36
+nodes/sec: 3474 - generated nodes: 287303 - fringe size: 246529 - current modification depth: 37 - g(s)+h(s)= 36
+nodes/sec: 3472 - generated nodes: 292347 - fringe size: 251189 - current modification depth: 33 - g(s)+h(s)= 36
+nodes/sec: 3470 - generated nodes: 297559 - fringe size: 255904 - current modification depth: 41 - g(s)+h(s)= 36
+nodes/sec: 3470 - generated nodes: 302580 - fringe size: 260239 - current modification depth: 27 - g(s)+h(s)= 36
+nodes/sec: 3469 - generated nodes: 307581 - fringe size: 263757 - current modification depth: 42 - g(s)+h(s)= 37
+nodes/sec: 3470 - generated nodes: 312790 - fringe size: 267576 - current modification depth: 42 - g(s)+h(s)= 37
+nodes/sec: 3466 - generated nodes: 318083 - fringe size: 272238 - current modification depth: 28 - g(s)+h(s)= 35
+nodes/sec: 3465 - generated nodes: 323209 - fringe size: 276456 - current modification depth: 42 - g(s)+h(s)= 37
+nodes/sec: 3454 - generated nodes: 328227 - fringe size: 280529 - current modification depth: 27 - g(s)+h(s)= 33
+nodes/sec: 3452 - generated nodes: 333242 - fringe size: 284923 - current modification depth: 31 - g(s)+h(s)= 35
+nodes/sec: 3444 - generated nodes: 338484 - fringe size: 289514 - current modification depth: 38 - g(s)+h(s)= 37
+nodes/sec: 3446 - generated nodes: 343622 - fringe size: 293684 - current modification depth: 37 - g(s)+h(s)= 37
+nodes/sec: 3437 - generated nodes: 348807 - fringe size: 298196 - current modification depth: 38 - g(s)+h(s)= 37
+nodes/sec: 3438 - generated nodes: 353818 - fringe size: 302563 - current modification depth: 20 - g(s)+h(s)= 30
+nodes/sec: 3427 - generated nodes: 358927 - fringe size: 307221 - current modification depth: 32 - g(s)+h(s)= 32
+nodes/sec: 3428 - generated nodes: 363936 - fringe size: 311643 - current modification depth: 28 - g(s)+h(s)= 34
+nodes/sec: 3418 - generated nodes: 369219 - fringe size: 316416 - current modification depth: 39 - g(s)+h(s)= 34
+nodes/sec: 3418 - generated nodes: 374320 - fringe size: 321218 - current modification depth: 32 - g(s)+h(s)= 35
+nodes/sec: 3409 - generated nodes: 379333 - fringe size: 325534 - current modification depth: 43 - g(s)+h(s)= 35
+nodes/sec: 3405 - generated nodes: 384525 - fringe size: 330233 - current modification depth: 30 - g(s)+h(s)= 35
+nodes/sec: 3401 - generated nodes: 389577 - fringe size: 334404 - current modification depth: 42 - g(s)+h(s)= 36
+nodes/sec: 3394 - generated nodes: 394788 - fringe size: 338974 - current modification depth: 40 - g(s)+h(s)= 36
+nodes/sec: 3394 - generated nodes: 399844 - fringe size: 343549 - current modification depth: 27 - g(s)+h(s)= 36
+nodes/sec: 3386 - generated nodes: 404902 - fringe size: 347761 - current modification depth: 35 - g(s)+h(s)= 37
+Reached time limit, search will stop.
+Number of nodes in final fringe: 351918
+Generated search nodes (total): 409910
+Search time: 121201 ms
+Problem unsolvable.
+Panda says: TIMEOUT
+============ global ============
+randomseed     = 42
+peak memory    = 2255941488
+planner result = TIMEOUT
+============ properties ============
+acyclic                  = false
+mostly acyclic           = false
+regular                  = false
+tail recursive           = true
+totally ordered          = true
+last task in all methods = true
+============ problem ============
+number of constants                  = 0
+number of predicates                 = 140
+number of actions                    = 2632
+number of abstract actions           = 40
+number of primitive actions          = 2592
+number of methods                    = 1535
+number of primitive shop actions     = 1364
+number of primitive non-shop actions = 1228
+size of largest method               = 4
+average method size                  = 2
+============ progression ============
+status                 = timeout
+aStar                  = 1
+heuristic              = hhRelataxedComposition-with-hFF-EQ
+numSearchNodes         = 409910
+numPrimTasks           = 0
+numShopTasks           = 0
+numDecompositions      = 0
+findShortestPlan       = 0
+foundShortestPlanAfter = -331779463
+foundFirstPlanAfter    = -331779463
+foundPlans             = 0
+
+----------------- TIMINGS -----------------
+============ total ============
+total = 123240
+============ parsing ============
+total                         = 248
+file parser                   = 105
+sort expansion                = 44
+closed world assumption       = 30
+inherit preconditions         = 0
+shop methods                  = 12
+eliminate identical variables = 19
+strip domain of hybridity     = 4
+flatten formula               = 34
+============ preprocessing ============
+total                                      = 1582
+compile negative preconditions             = 16
+compile unit methods                       = 0
+split parameter                            = 19
+expand choiceless abstract tasks           = 29
+compile methods with identical tasks       = 0
+removing unnecessary predicates            = 226
+lifted reachabiltiy analysis               = 34
+grounded planning graph analysis           = 672
+grounded task decomposition graph analysis = 387
+grounding                                  = 182
+create artificial top task                 = 1
+============ progression ============
+searchTime = 121201
+
+#1 "30 problem:05:number of primitive actions"="2592";"30 problem:01:number of constants"="0";"30 problem:04:number of abstract actions"="40";"02 properties:04:tail recursive"="true";"30 progression:04:numSearchNodes"="409910";"30 progression:06:numPrimTasks"="0";"00 global:80:peak memory"="2255941488";"30 progression:93:foundFirstPlanAfter"="-331779463";"02 properties:02:mostly acyclic"="false";"30 problem:06:number of methods"="1535";"30 problem:07:number of primitive shop actions"="1364";"02 properties:05:totally ordered"="true";"02 properties:06:last task in all methods"="true";"30 problem:03:number of actions"="2632";"30 problem:08:number of primitive non-shop actions"="1228";"30 problem:02:number of predicates"="140";"30 progression:01:status"="timeout";"30 progression:03:heuristic"="hhRelataxedComposition-with-hFF-EQ";"30 problem:10:average method size"="2";"02 properties:03:regular"="false";"30 problem:09:size of largest method"="4";"30 progression:08:numDecompositions"="0";"00 global:90:planner result"="TIMEOUT";"02 properties:01:acyclic"="false";"30 progression:02:aStar"="1";"30 progression:92:foundShortestPlanAfter"="-331779463";"00 global:02:randomseed"="42";"30 progression:07:numShopTasks"="0";"30 progression:91:findShortestPlan"="0";"30 progression:94:foundPlans"="0";"01 parsing:01:file parser"="105";"01 parsing:08:flatten formula"="34";"02 preprocessing:07:compile methods with identical tasks"="0";"01 parsing:07:strip domain of hybridity"="4";"02 preprocessing:08:removing unnecessary predicates"="226";"01 parsing:03:closed world assumption"="30";"02 preprocessing:11:lifted reachabiltiy analysis"="34";"01 parsing:02:sort expansion"="44";"01 parsing:00:total"="248";"30 progression:01:searchTime"="121201";"01 parsing:04:inherit preconditions"="0";"02 preprocessing:01:compile negative preconditions"="16";"00 total:00:total"="123240";"02 preprocessing:12:grounded planning graph analysis"="672";"02 preprocessing:02:compile unit methods"="0";"02 preprocessing:23:grounded task decomposition graph analysis"="387";"02 preprocessing:04:split parameter"="19";"01 parsing:05:shop methods"="12";"01 parsing:06:eliminate identical variables"="19";"02 preprocessing:05:expand choiceless abstract tasks"="29";"02 preprocessing:00:total"="1582";"02 preprocessing:99:create artificial top task"="1";"02 preprocessing:84:grounding"="182"
