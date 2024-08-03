@@ -32,14 +32,12 @@ Because of the problem of the fluents/numeric-fluents not being implemented I ha
 
 Interesting about the solution, only the drone makes actions, since it is the fastest way to move and since it spends the action to attach the carrier, any other robot starting from the central_warehouse would take the same amount of time to reach any new destination because it needs to attach the carrier before. Also, the drone attaches the carrier with capacity two in order to make only one trip to deliver the contents to the two workstations in location 2.
 
-TODO: implement with fluents as an alternative, still the current solution is fine because they are not supported in panda
-
 
 PROBLEM3
 In general, the tasks allow only to specify the robot that does the action objects directly related to what we want the robot to do.
 
 Tasks:
-- move to location (move ?r- robot ?l - location)
+- move to location (move ?r - robot ?l - location)
     - if already at the location then done
     - if walker and 1 step away then move there
     - if walker and more than 1 step away the move to location and then call move again
@@ -55,7 +53,7 @@ The carrier can be: already attached to robot, on the ground, attached to other 
     - if carrier detached then move to location of carrier and attach it
     - if carrier attached to another robot then detach it and call the task
 
-The box can : already loaded in carrier attached, on ground, loaded in a carrier (ground/attached managed by get carrier task).
+The box can be: already loaded in carrier attached, on ground, loaded in a carrier (ground/attached managed by get carrier task).
 - get a box (get_box ?r - robot ?b - box)
     To obtain a specific box the robot can:
     - if box already loaded in carrier attached then done
