@@ -1,0 +1,165 @@
+set instance central_warehouse location
+set instance zero number
+set instance one number
+set instance two number
+set instance three number
+set instance four number
+set instance five number
+set instance six number
+set instance seven number
+set instance eight number
+set instance nine number
+set instance ten number
+
+set instance loc1 location
+set instance loc2 location
+set instance loc3 location
+set instance loc4 location
+set instance loc5 location
+set instance loc6 location
+set instance loc7 location
+set instance loc8 location
+set instance loc9 location
+
+set instance wor1 workstation
+set instance wor2 workstation
+set instance wor3 workstation
+set instance wor4 workstation
+set instance wor5 workstation
+set instance wor6 workstation
+set instance wor7 workstation
+set instance wor8 workstation
+set instance wor9 workstation
+
+set instance walker robot
+set instance jumper robot
+set instance drone robot
+
+set instance carrier1 carrier
+set instance carrier2 carrier
+set instance carrier3 carrier
+
+set instance box1 box
+set instance box2 box
+set instance box3 box
+set instance box4 box
+set instance box5 box
+set instance box6 box
+
+set instance tool content
+set instance valve content
+set instance bolt content
+
+
+
+
+
+
+set predicate (adjacent central_warehouse loc1)
+set predicate (adjacent loc1 central_warehouse)
+set predicate (adjacent loc1 loc2)
+set predicate (adjacent loc2 loc1)
+set predicate (adjacent loc2 loc3)
+set predicate (adjacent loc3 loc2)
+set predicate (adjacent loc3 loc4)
+set predicate (adjacent loc4 loc3)
+set predicate (adjacent loc4 loc5)
+set predicate (adjacent loc5 loc4)
+set predicate (adjacent loc5 loc6)
+set predicate (adjacent loc6 loc5)
+set predicate (adjacent loc6 loc7)
+set predicate (adjacent loc7 loc6)
+set predicate (adjacent loc7 loc8)
+set predicate (adjacent loc8 loc7)
+set predicate (adjacent loc8 loc9)
+set predicate (adjacent loc9 loc8)
+
+set predicate (workstation_at_location wor1 loc1)
+set predicate (workstation_at_location wor2 loc2)
+set predicate (workstation_at_location wor3 loc3)
+set predicate (workstation_at_location wor4 loc4)
+set predicate (workstation_at_location wor5 loc5)
+set predicate (workstation_at_location wor6 loc6)
+set predicate (workstation_at_location wor7 loc7)
+set predicate (workstation_at_location wor8 loc8)
+set predicate (workstation_at_location wor9 loc9)
+
+set predicate (walks walker)
+set predicate (jumps jumper)
+set predicate (flies drone)
+
+set predicate (mutex_load_box walker)
+set predicate (robot_at_location walker central_warehouse)
+set predicate (mutex_load_box jumper)
+set predicate (robot_at_location jumper central_warehouse)
+set predicate (mutex_load_box drone)
+set predicate (robot_at_location drone central_warehouse)
+
+set predicate (carrier_at_location carrier1 central_warehouse)
+set predicate (carrier_at_location carrier2 central_warehouse)
+set predicate (carrier_at_location carrier3 central_warehouse)
+set predicate (carrier_capacity carrier1 two)
+set predicate (carrier_capacity carrier2 two)
+set predicate (carrier_capacity carrier3 two)
+
+set predicate (box_at_location box1 central_warehouse)
+set predicate (box_at_location box2 central_warehouse)
+set predicate (box_at_location box3 central_warehouse)
+set predicate (box_at_location box4 central_warehouse)
+set predicate (box_at_location box5 central_warehouse)
+set predicate (box_at_location box6 central_warehouse)
+
+set predicate (robot_is_not_attached walker)
+set predicate (robot_is_not_attached jumper)
+set predicate (robot_is_not_attached drone)
+
+set predicate (carrier_is_not_attached carrier1)
+set predicate (carrier_is_not_attached carrier2)
+set predicate (carrier_is_not_attached carrier3)
+
+set predicate (box_is_not_loaded box1)
+set predicate (box_is_not_loaded box2)
+set predicate (box_is_not_loaded box3)
+set predicate (box_is_not_loaded box4)
+set predicate (box_is_not_loaded box5)
+set predicate (box_is_not_loaded box6)
+
+set predicate (box_is_not_full box1)
+set predicate (box_is_not_full box2)
+set predicate (box_is_not_full box3)
+set predicate (box_is_not_full box4)
+set predicate (box_is_not_full box5)
+set predicate (box_is_not_full box6)
+
+set predicate (content_at_cw tool)
+set predicate (content_at_cw valve)
+set predicate (content_at_cw bolt)
+
+
+set predicate (increase_capacity zero one)
+set predicate (increase_capacity one two)
+set predicate (increase_capacity two three)
+set predicate (increase_capacity three four)
+set predicate (increase_capacity four five)
+set predicate (increase_capacity five six)
+set predicate (increase_capacity six seven)
+set predicate (increase_capacity seven eight)
+set predicate (increase_capacity eight nine)
+set predicate (increase_capacity nine ten)
+set predicate (decrease_capacity one zero)
+set predicate (decrease_capacity two one)
+set predicate (decrease_capacity three two)
+set predicate (decrease_capacity four three)
+set predicate (decrease_capacity five four)
+set predicate (decrease_capacity six five)
+set predicate (decrease_capacity seven six)
+set predicate (decrease_capacity eight seven)
+set predicate (decrease_capacity nine eight)
+set predicate (decrease_capacity ten nine)
+
+
+
+
+
+
+set goal (and (content_at_location_at_workstation tool loc1 wor1) (content_at_location_at_workstation valve loc2 wor2) (content_at_location_at_workstation tool loc4 wor4) (content_at_location_at_workstation valve loc5 wor5))

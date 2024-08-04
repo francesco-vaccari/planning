@@ -16,13 +16,20 @@ set instance loc2 location
 set instance loc3 location
 set instance loc4 location
 set instance loc5 location
+set instance loc6 location
+set instance loc7 location
+set instance loc8 location
+set instance loc9 location
 
-set instance wor1_1 workstation
-set instance wor1_2 workstation
-set instance wor2_1 workstation
-set instance wor3_1 workstation
-set instance wor4_1 workstation
-set instance wor5_1 workstation
+set instance wor1 workstation
+set instance wor2 workstation
+set instance wor3 workstation
+set instance wor4 workstation
+set instance wor5 workstation
+set instance wor6 workstation
+set instance wor7 workstation
+set instance wor8 workstation
+set instance wor9 workstation
 
 set instance walker robot
 set instance jumper robot
@@ -35,11 +42,13 @@ set instance carrier3 carrier
 set instance box1 box
 set instance box2 box
 set instance box3 box
+set instance box4 box
+set instance box5 box
+set instance box6 box
 
 set instance tool content
 set instance valve content
 set instance bolt content
-set instance parts content
 
 
 
@@ -56,13 +65,24 @@ set predicate (adjacent loc3 loc4)
 set predicate (adjacent loc4 loc3)
 set predicate (adjacent loc4 loc5)
 set predicate (adjacent loc5 loc4)
+set predicate (adjacent loc5 loc6)
+set predicate (adjacent loc6 loc5)
+set predicate (adjacent loc6 loc7)
+set predicate (adjacent loc7 loc6)
+set predicate (adjacent loc7 loc8)
+set predicate (adjacent loc8 loc7)
+set predicate (adjacent loc8 loc9)
+set predicate (adjacent loc9 loc8)
 
-set predicate (workstation_at_location wor1_1 loc1)
-set predicate (workstation_at_location wor1_2 loc1)
-set predicate (workstation_at_location wor2_1 loc2)
-set predicate (workstation_at_location wor3_1 loc3)
-set predicate (workstation_at_location wor4_1 loc4)
-set predicate (workstation_at_location wor5_1 loc5)
+set predicate (workstation_at_location wor1 loc1)
+set predicate (workstation_at_location wor2 loc2)
+set predicate (workstation_at_location wor3 loc3)
+set predicate (workstation_at_location wor4 loc4)
+set predicate (workstation_at_location wor5 loc5)
+set predicate (workstation_at_location wor6 loc6)
+set predicate (workstation_at_location wor7 loc7)
+set predicate (workstation_at_location wor8 loc8)
+set predicate (workstation_at_location wor9 loc9)
 
 set predicate (walks walker)
 set predicate (jumps jumper)
@@ -78,13 +98,16 @@ set predicate (robot_at_location drone central_warehouse)
 set predicate (carrier_at_location carrier1 central_warehouse)
 set predicate (carrier_at_location carrier2 central_warehouse)
 set predicate (carrier_at_location carrier3 central_warehouse)
-set predicate (carrier_capacity carrier1 one)
+set predicate (carrier_capacity carrier1 two)
 set predicate (carrier_capacity carrier2 two)
-set predicate (carrier_capacity carrier3 three)
+set predicate (carrier_capacity carrier3 two)
 
 set predicate (box_at_location box1 central_warehouse)
 set predicate (box_at_location box2 central_warehouse)
 set predicate (box_at_location box3 central_warehouse)
+set predicate (box_at_location box4 central_warehouse)
+set predicate (box_at_location box5 central_warehouse)
+set predicate (box_at_location box6 central_warehouse)
 
 set predicate (robot_is_not_attached walker)
 set predicate (robot_is_not_attached jumper)
@@ -97,15 +120,20 @@ set predicate (carrier_is_not_attached carrier3)
 set predicate (box_is_not_loaded box1)
 set predicate (box_is_not_loaded box2)
 set predicate (box_is_not_loaded box3)
+set predicate (box_is_not_loaded box4)
+set predicate (box_is_not_loaded box5)
+set predicate (box_is_not_loaded box6)
 
 set predicate (box_is_not_full box1)
 set predicate (box_is_not_full box2)
 set predicate (box_is_not_full box3)
+set predicate (box_is_not_full box4)
+set predicate (box_is_not_full box5)
+set predicate (box_is_not_full box6)
 
 set predicate (content_at_cw tool)
 set predicate (content_at_cw valve)
 set predicate (content_at_cw bolt)
-set predicate (content_at_cw parts)
 
 
 set predicate (increase_capacity zero one)
@@ -134,4 +162,4 @@ set predicate (decrease_capacity ten nine)
 
 
 
-set goal (and (content_at_location_at_workstation tool loc1 wor1_1) (content_at_location_at_workstation valve loc2 wor2_1) (content_at_location_at_workstation tool loc5 wor5_1))
+set goal (and (content_at_location_at_workstation tool loc1 wor1) (content_at_location_at_workstation valve loc2 wor2) (content_at_location_at_workstation bolt loc3 wor3) (content_at_location_at_workstation tool loc4 wor4) (content_at_location_at_workstation valve loc5 wor5) (content_at_location_at_workstation bolt loc6 wor6))
