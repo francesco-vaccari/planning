@@ -6,34 +6,34 @@
 
 using namespace std::chrono_literals;
 
-class MoveJumping : public plansys2::ActionExecutorClient { //modify here
+class MoveJumping : public plansys2::ActionExecutorClient { //modified here
 public:
-    MoveJumping() : plansys2::ActionExecutorClient("move_jumping", 3000ms) { //modify here
+    MoveJumping() : plansys2::ActionExecutorClient("move_jumping", 3000ms) { //modified here
         progress_ = 0.0;
     }
 
 private:
     void do_work() {
         if (progress_ < 1.0) {
-            progress_ += 0.1; //modify here
-            send_feedback(progress_, "MoveJumping running"); //modify here
+            progress_ += 0.1; //modified here
+            send_feedback(progress_, "MoveJumping running"); //modified here
         }
         else {
-            finish(true, 1.0, "MoveJumping completed"); //modify here
-            progress_ = 0.0; //modify here
+            finish(true, 1.0, "MoveJumping completed"); //modified here
+            progress_ = 0.0; //modified here
             std::cout << std::endl;
         }
         std::cout << "\r\e[K" << std::flush;
-        std::cout << "MoveJumping executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modify here
+        std::cout << "MoveJumping executed ... [" << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush; //modified here
     }
     float progress_;
 };
 
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<MoveJumping>(); //modify here
+    auto node = std::make_shared<MoveJumping>(); //modified here
 
-    node->set_parameter(rclcpp::Parameter("action_name", "move_jumping")); //modify here
+    node->set_parameter(rclcpp::Parameter("action_name", "move_jumping")); //modified here
     node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
     rclcpp::spin(node->get_node_base_interface());

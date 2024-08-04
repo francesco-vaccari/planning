@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-#[[ modify here ]]
+#[[ modified here ]]
 project(problem5)
 #[[ ----------- ]]
 
@@ -19,7 +19,7 @@ set(dependencies
     plansys2_executor
 )
 
-#[[ modify here ]]
+#[[ modified here ]]
 add_executable(move_walking_action_node src/move_walking_action_node.cpp)
 ament_target_dependencies(move_walking_action_node ${dependencies})
 
@@ -57,7 +57,7 @@ ament_target_dependencies(put_down_content_action_node ${dependencies})
 install(DIRECTORY launch pddl DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
-  #[[ modify here ]]
+  #[[ modified here ]]
   move_walking_action_node
   move_flying_action_node
   move_jumping_action_node

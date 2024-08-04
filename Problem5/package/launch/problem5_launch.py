@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    # modify here
+    # modified here
     example_dir = get_package_share_directory('problem5')
     # -----------
     namespace = LaunchConfiguration('namespace')
@@ -24,13 +24,13 @@ def generate_launch_description():
             'launch',
             'plansys2_bringup_launch_monolithic.py')),
         launch_arguments={
-          # modify here
+          # modified here
           'model_file': example_dir + '/pddl/domain.pddl',
           # -----------
           'namespace': namespace
           }.items())
 
-    # modify here
+    # modified here
     move_walking_cmd = Node(
         package='problem5',
         executable='move_walking_action_node',
@@ -116,7 +116,7 @@ def generate_launch_description():
     
     ld.add_action(plansys2_cmd)
 
-    # modify here
+    # modified here
     ld.add_action(move_walking_cmd)
     ld.add_action(move_flying_cmd)
     ld.add_action(move_jumping_cmd)

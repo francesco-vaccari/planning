@@ -128,6 +128,6 @@ Then run in the ros terminal:
     get plan
     run
 
-The duration of actions have been scaled down by a factor of, keeping the proportions between action durations the same. Also, by putting the progress update every .1 it should make actions last exactly the original amount as defined in the pddl domain file. I should check this maybe.
+The duration of actions have been scaled down by a factor of 10, keeping the proportions between action durations the same. Also, by putting the progress update every .1 it should make actions last exactly the original amount as defined in the pddl domain file. I should check this maybe.
 
 I checked and the thing about action durations is true. They last the same amount of seconds as defined in the domain file.
