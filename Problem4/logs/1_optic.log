@@ -1,0 +1,54 @@
+Number of literals: 213
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Have identified that bigger values of (carrier_capacity carrier1) are preferable
+Have identified that bigger values of (carrier_capacity carrier2) are preferable
+Have identified that bigger values of (carrier_capacity carrier3) are preferable
+Seeing if metric is defined in terms of task vars or a minimal value of makespan
+- Yes it is
+Recognised a monotonic-change-induced limit on -1.000*<special>
+- Must be >=  the metric
+For limits: literal goal index 0, fact (content_at_location_at_workstation tool loc1 wor1), is static or a precondition
+For limits: literal goal index 1, fact (content_at_location_at_workstation valve loc2 wor2), is static or a precondition
+For limits: literal goal index 2, fact (content_at_location_at_workstation valve loc5 wor5), is static or a precondition
+All the ground actions in this problem are compression-safe
+Initial heuristic = 12.000, admissible cost estimate 71.002
+b (11.000 | 30.000)b (10.000 | 30.000)b (9.000 | 70.000)b (8.000 | 70.000)b (7.000 | 70.000)b (6.000 | 70.000)b (5.000 | 124.005)b (4.000 | 125.006)b (3.000 | 128.007)b (2.000 | 143.002)b (1.000 | 213.003)(G)
+; LP calculated the cost
+
+; Plan found with metric 214.004
+; Theoretical reachable cost 214.005
+; States evaluated so far: 129
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.81
+0.000: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+0.000: (robot_attach_carrier walker carrier1 central_warehouse)  [3.000]
+0.000: (move_flying drone central_warehouse loc5)  [70.000]
+3.001: (robot_load_box walker carrier1 box1 central_warehouse)  [2.000]
+5.002: (pick_up_content_at_cw walker carrier1 box1 tool)  [1.000]
+6.003: (move_walking walker central_warehouse loc1)  [20.000]
+26.004: (put_down_content walker carrier1 box1 loc1 tool wor1)  [1.000]
+27.005: (move_walking walker loc1 central_warehouse)  [20.000]
+30.001: (move_jumping jumper loc2 loc1 central_warehouse)  [30.000]
+47.006: (pick_up_content_at_cw walker carrier1 box1 valve)  [1.000]
+48.007: (robot_detach_carrier walker carrier1 central_warehouse)  [3.000]
+51.008: (move_walking walker central_warehouse loc1)  [20.000]
+60.002: (robot_attach_carrier jumper carrier1 central_warehouse)  [3.000]
+63.003: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+70.001: (move_flying drone loc5 central_warehouse)  [70.000]
+71.009: (move_walking walker loc1 loc2)  [20.000]
+91.010: (move_walking walker loc2 loc1)  [20.000]
+93.004: (put_down_content jumper carrier1 box1 loc2 valve wor2)  [1.000]
+94.005: (move_jumping jumper loc2 loc1 central_warehouse)  [30.000]
+111.011: (move_walking walker loc1 central_warehouse)  [20.000]
+124.006: (pick_up_content_at_cw jumper carrier1 box1 valve)  [1.000]
+125.007: (robot_detach_carrier jumper carrier1 central_warehouse)  [3.000]
+140.002: (robot_attach_carrier drone carrier1 central_warehouse)  [3.000]
+143.003: (move_flying drone central_warehouse loc5)  [70.000]
+213.004: (put_down_content drone carrier1 box1 loc5 valve wor5)  [1.000]
+
+ * All goal deadlines now no later than 214.004
+
+Resorting to best-first search
+Running WA* with W = 5.000, not restarting with goal states
+b (11.000 | 30.000)b (10.000 | 30.000)b (9.000 | 70.000)b (8.000 | 70.000)b (7.000 | 70.000)b (6.000 | 70.000)b (5.000 | 77.011)b (4.000 | 97.012)b (3.000 | 98.013)b (2.000 | 143.002)

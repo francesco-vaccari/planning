@@ -1,0 +1,6 @@
+optic domain.pddl problem_1.pddl > logs/1_optic.log
+tfd domain.pddl problem_1.pddl > logs/1_tfd.log
+optic domain.pddl problem_2.pddl > logs/2_optic.log
+tfd domain.pddl problem_2.pddl > logs/2_tfd.log
+optic domain.pddl problem_3.pddl > logs/3_optic.log
+tfd domain.pddl problem_3.pddl > logs/3_tfd.log

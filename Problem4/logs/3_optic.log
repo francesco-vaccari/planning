@@ -1,0 +1,205 @@
+Number of literals: 213
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Have identified that bigger values of (carrier_capacity carrier1) are preferable
+Have identified that bigger values of (carrier_capacity carrier2) are preferable
+Have identified that bigger values of (carrier_capacity carrier3) are preferable
+Seeing if metric is defined in terms of task vars or a minimal value of makespan
+- Yes it is
+Recognised a monotonic-change-induced limit on -1.000*<special>
+- Must be >=  the metric
+For limits: literal goal index 0, fact (content_at_location_at_workstation tool loc1 wor1), is static or a precondition
+For limits: literal goal index 1, fact (content_at_location_at_workstation valve loc2 wor2), is static or a precondition
+For limits: literal goal index 2, fact (content_at_location_at_workstation bolt loc3 wor3), is static or a precondition
+For limits: literal goal index 3, fact (content_at_location_at_workstation tool loc4 wor4), is static or a precondition
+For limits: literal goal index 4, fact (content_at_location_at_workstation valve loc5 wor5), is static or a precondition
+For limits: literal goal index 5, fact (content_at_location_at_workstation bolt loc6 wor6), is static or a precondition
+All the ground actions in this problem are compression-safe
+Initial heuristic = 20.000, admissible cost estimate 71.002
+b (19.000 | 5.001)b (17.000 | 60.001)b (15.000 | 90.002)b (14.000 | 120.003)b (13.000 | 150.004)b (12.000 | 152.013)b (11.000 | 155.014)b (9.000 | 306.012)b (8.000 | 307.013)b (7.000 | 424.019)b (6.000 | 425.020)b (5.000 | 507.020)b (4.000 | 511.025)b (3.000 | 577.021)b (2.000 | 648.023)b (1.000 | 718.024)(G)
+; LP calculated the cost
+
+; Plan found with metric 719.026
+; Theoretical reachable cost 719.026
+; States evaluated so far: 52641
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 465.95
+0.000: (robot_attach_carrier walker carrier1 central_warehouse)  [3.000]
+0.000: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+0.000: (move_flying drone central_warehouse loc6)  [70.000]
+3.001: (robot_load_box walker carrier1 box1 central_warehouse)  [2.000]
+5.002: (pick_up_content_at_cw walker carrier1 box1 tool)  [1.000]
+6.003: (move_walking walker central_warehouse loc1)  [20.000]
+26.004: (put_down_content walker carrier1 box1 loc1 tool wor1)  [1.000]
+27.005: (move_walking walker loc1 central_warehouse)  [20.000]
+30.001: (move_jumping jumper loc2 loc3 loc4)  [30.000]
+47.006: (pick_up_content_at_cw walker carrier1 box1 valve)  [1.000]
+48.007: (move_walking walker central_warehouse loc1)  [20.000]
+60.002: (move_jumping jumper loc4 loc5 loc6)  [30.000]
+68.008: (move_walking walker loc1 loc2)  [20.000]
+70.001: (move_flying drone loc6 loc5)  [70.000]
+88.009: (put_down_content walker carrier1 box1 loc2 valve wor2)  [1.000]
+89.010: (move_walking walker loc2 loc3)  [20.000]
+90.003: (move_jumping jumper loc6 loc5 loc4)  [30.000]
+109.011: (move_walking walker loc3 loc4)  [20.000]
+120.004: (move_jumping jumper loc4 loc5 loc6)  [30.000]
+129.012: (move_walking walker loc4 loc5)  [20.000]
+149.013: (robot_detach_carrier walker carrier1 loc5)  [3.000]
+150.005: (move_jumping jumper loc6 loc5 loc4)  [30.000]
+152.014: (robot_attach_carrier drone carrier1 loc5)  [3.000]
+152.014: (move_walking walker loc5 loc4)  [20.000]
+155.015: (move_flying drone loc5 loc6)  [70.000]
+172.015: (move_walking walker loc4 loc3)  [20.000]
+180.006: (move_jumping jumper loc4 loc3 loc2)  [30.000]
+192.016: (move_walking walker loc3 loc4)  [20.000]
+210.007: (move_jumping jumper loc2 loc1 central_warehouse)  [30.000]
+212.017: (move_walking walker loc4 loc5)  [20.000]
+225.016: (move_flying drone loc6 loc5)  [70.000]
+232.018: (move_walking walker loc5 loc6)  [20.000]
+240.008: (robot_attach_carrier jumper carrier2 central_warehouse)  [3.000]
+243.009: (robot_load_box jumper carrier2 box2 central_warehouse)  [2.000]
+245.010: (pick_up_content_at_cw jumper carrier2 box2 tool)  [1.000]
+246.011: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+252.019: (move_walking walker loc6 loc5)  [20.000]
+272.020: (move_walking walker loc5 loc4)  [20.000]
+276.012: (move_jumping jumper loc2 loc3 loc4)  [30.000]
+292.021: (move_walking walker loc4 loc3)  [20.000]
+295.017: (move_flying drone loc5 loc6)  [70.000]
+306.013: (put_down_content jumper carrier2 box2 loc4 tool wor4)  [1.000]
+307.014: (move_jumping jumper loc4 loc3 loc2)  [30.000]
+312.022: (move_walking walker loc3 loc4)  [20.000]
+332.023: (move_walking walker loc4 loc3)  [20.000]
+337.015: (move_jumping jumper loc2 loc1 central_warehouse)  [30.000]
+352.024: (move_walking walker loc3 loc2)  [20.000]
+365.018: (move_flying drone loc6 central_warehouse)  [70.000]
+367.016: (pick_up_content_at_cw jumper carrier2 box2 bolt)  [1.000]
+368.017: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+398.018: (robot_detach_carrier jumper carrier2 loc2)  [3.000]
+401.019: (robot_attach_carrier walker carrier2 loc2)  [3.000]
+404.020: (move_walking walker loc2 loc3)  [20.000]
+424.021: (put_down_content walker carrier2 box2 loc3 bolt wor3)  [1.000]
+425.022: (move_walking walker loc3 loc2)  [20.000]
+435.019: (pick_up_content_at_cw drone carrier1 box1 valve)  [1.000]
+436.020: (move_flying drone central_warehouse loc5)  [70.000]
+445.023: (robot_detach_carrier walker carrier2 loc2)  [3.000]
+448.024: (move_walking walker loc2 loc3)  [20.000]
+448.024: (robot_attach_carrier jumper carrier2 loc2)  [3.000]
+451.025: (move_jumping jumper loc2 loc3 loc4)  [30.000]
+468.025: (move_walking walker loc3 loc4)  [20.000]
+481.026: (move_jumping jumper loc4 loc5 loc6)  [30.000]
+488.026: (move_walking walker loc4 loc5)  [20.000]
+506.021: (put_down_content drone carrier1 box1 loc5 valve wor5)  [1.000]
+507.022: (move_flying drone loc5 loc6)  [70.000]
+508.027: (move_walking walker loc5 loc6)  [20.000]
+511.027: (move_jumping jumper loc6 loc5 loc4)  [30.000]
+528.028: (move_walking walker loc6 loc5)  [20.000]
+541.028: (robot_detach_carrier jumper carrier2 loc4)  [3.000]
+544.029: (move_jumping jumper loc4 loc5 loc6)  [30.000]
+548.029: (move_walking walker loc5 loc4)  [20.000]
+568.030: (move_walking walker loc4 loc5)  [20.000]
+574.030: (move_jumping jumper loc6 loc5 loc4)  [30.000]
+577.023: (move_flying drone loc6 central_warehouse)  [70.000]
+588.031: (move_walking walker loc5 loc6)  [20.000]
+604.031: (robot_attach_carrier jumper carrier2 loc4)  [3.000]
+607.032: (move_jumping jumper loc4 loc5 loc6)  [30.000]
+637.033: (robot_detach_carrier jumper carrier2 loc6)  [3.000]
+647.024: (pick_up_content_at_cw drone carrier1 box1 bolt)  [1.000]
+648.025: (move_flying drone central_warehouse loc6)  [70.000]
+718.026: (put_down_content drone carrier1 box1 loc6 bolt wor6)  [1.000]
+
+ * All goal deadlines now no later than 719.026
+
+Resorting to best-first search
+Running WA* with W = 5.000, not restarting with goal states
+b (18.000 | 30.000)b (17.000 | 60.001)b (15.000 | 90.002)b (14.000 | 90.002)b (13.000 | 217.006)b (10.000 | 359.010)b (9.000 | 501.013)b (8.000 | 501.013)b (7.000 | 501.013)b (6.000 | 501.013)b (5.000 | 501.013)b (4.000 | 643.017)b (3.000 | 643.017)b (2.000 | 643.017)b (1.000 | 643.017)(G)
+; LP calculated the cost
+
+; Plan found with metric 643.018
+; Theoretical reachable cost 643.018
+; States evaluated so far: 145987
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 776.63
+0.000: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+0.000: (robot_attach_carrier walker carrier1 central_warehouse)  [3.000]
+0.000: (move_flying drone central_warehouse loc6)  [70.000]
+3.001: (robot_load_box walker carrier1 box1 central_warehouse)  [2.000]
+5.002: (pick_up_content_at_cw walker carrier1 box1 tool)  [1.000]
+6.003: (move_walking walker central_warehouse loc1)  [20.000]
+26.004: (put_down_content walker carrier1 box1 loc1 tool wor1)  [1.000]
+27.005: (move_walking walker loc1 central_warehouse)  [20.000]
+30.001: (move_jumping jumper loc2 loc3 loc4)  [30.000]
+47.006: (pick_up_content_at_cw walker carrier1 box1 valve)  [1.000]
+48.007: (move_walking walker central_warehouse loc1)  [20.000]
+68.008: (move_walking walker loc1 loc2)  [20.000]
+70.001: (move_flying drone loc6 central_warehouse)  [70.000]
+88.009: (move_walking walker loc2 loc3)  [20.000]
+108.010: (move_walking walker loc3 loc4)  [20.000]
+128.011: (move_walking walker loc4 loc5)  [20.000]
+140.002: (robot_attach_carrier drone carrier2 central_warehouse)  [3.000]
+143.003: (robot_load_box drone carrier2 box2 central_warehouse)  [2.000]
+145.004: (pick_up_content_at_cw drone carrier2 box2 bolt)  [1.000]
+146.005: (move_flying drone central_warehouse loc3)  [70.000]
+148.012: (put_down_content walker carrier1 box1 loc5 valve wor5)  [1.000]
+216.006: (put_down_content drone carrier2 box2 loc3 bolt wor3)  [1.000]
+217.007: (move_flying drone loc3 central_warehouse)  [70.000]
+287.008: (pick_up_content_at_cw drone carrier2 box2 bolt)  [1.000]
+288.009: (move_flying drone central_warehouse loc6)  [70.000]
+358.010: (put_down_content drone carrier2 box2 loc6 bolt wor6)  [1.000]
+359.011: (move_flying drone loc6 central_warehouse)  [70.000]
+429.012: (pick_up_content_at_cw drone carrier2 box2 tool)  [1.000]
+430.013: (move_flying drone central_warehouse loc4)  [70.000]
+500.014: (put_down_content drone carrier2 box2 loc4 tool wor4)  [1.000]
+501.015: (move_flying drone loc4 central_warehouse)  [70.000]
+571.016: (pick_up_content_at_cw drone carrier2 box2 valve)  [1.000]
+572.017: (move_flying drone central_warehouse loc2)  [70.000]
+613.018: (move_jumping jumper loc4 loc3 loc2)  [30.000]
+642.018: (put_down_content drone carrier2 box2 loc2 valve wor2)  [1.000]
+
+ * All goal deadlines now no later than 643.018
+b (1.000 | 501.013)(G)
+; LP calculated the cost
+
+; Plan found with metric 501.014
+; Theoretical reachable cost 501.014
+; States evaluated so far: 200302
+; States pruned based on pre-heuristic cost lower bound: 20
+; Time 1101.18
+0.000: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+0.000: (robot_attach_carrier walker carrier1 central_warehouse)  [3.000]
+0.000: (move_flying drone central_warehouse loc6)  [70.000]
+3.001: (robot_load_box walker carrier1 box1 central_warehouse)  [2.000]
+5.002: (pick_up_content_at_cw walker carrier1 box1 tool)  [1.000]
+6.003: (move_walking walker central_warehouse loc1)  [20.000]
+26.004: (put_down_content walker carrier1 box1 loc1 tool wor1)  [1.000]
+27.005: (move_walking walker loc1 central_warehouse)  [20.000]
+30.001: (move_jumping jumper loc2 loc3 loc4)  [30.000]
+47.006: (pick_up_content_at_cw walker carrier1 box1 valve)  [1.000]
+60.002: (move_jumping jumper loc4 loc3 loc2)  [30.000]
+70.001: (move_flying drone loc6 central_warehouse)  [70.000]
+90.003: (move_jumping jumper loc2 loc1 central_warehouse)  [30.000]
+120.004: (robot_attach_carrier jumper carrier3 central_warehouse)  [3.000]
+123.005: (robot_load_box jumper carrier3 box3 central_warehouse)  [2.000]
+125.006: (pick_up_content_at_cw jumper carrier3 box3 valve)  [1.000]
+126.007: (move_jumping jumper central_warehouse loc1 loc2)  [30.000]
+140.002: (robot_attach_carrier drone carrier2 central_warehouse)  [3.000]
+143.003: (robot_load_box drone carrier2 box2 central_warehouse)  [2.000]
+145.004: (pick_up_content_at_cw drone carrier2 box2 bolt)  [1.000]
+146.005: (move_flying drone central_warehouse loc3)  [70.000]
+156.008: (put_down_content jumper carrier3 box3 loc2 valve wor2)  [1.000]
+216.006: (put_down_content drone carrier2 box2 loc3 bolt wor3)  [1.000]
+217.007: (move_flying drone loc3 central_warehouse)  [70.000]
+287.008: (pick_up_content_at_cw drone carrier2 box2 bolt)  [1.000]
+288.009: (move_flying drone central_warehouse loc6)  [70.000]
+358.010: (put_down_content drone carrier2 box2 loc6 bolt wor6)  [1.000]
+359.011: (move_flying drone loc6 central_warehouse)  [70.000]
+400.009: (move_walking walker central_warehouse loc1)  [20.000]
+420.010: (move_walking walker loc1 loc2)  [20.000]
+429.012: (pick_up_content_at_cw drone carrier2 box2 tool)  [1.000]
+430.013: (move_flying drone central_warehouse loc4)  [70.000]
+440.011: (move_walking walker loc2 loc3)  [20.000]
+460.012: (move_walking walker loc3 loc4)  [20.000]
+480.013: (move_walking walker loc4 loc5)  [20.000]
+500.014: (put_down_content drone carrier2 box2 loc4 tool wor4)  [1.000]
+500.014: (put_down_content walker carrier1 box1 loc5 valve wor5)  [1.000]
+
+ * All goal deadlines now no later than 501.014

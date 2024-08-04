@@ -1,0 +1,173 @@
+Parsing...
+Contains quantified condition(s): False
+Instantiating...
+Trivial rules: Converted to facts.
+Starting instantiation [166 rules]...
+Finding invariants...
+Finding invariants... 32 initial candidates
+[0.020s CPU, 0.016s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups...
+Choosing groups...
+211 uncovered facts (before using the results from the invariant synthesis)
+45 uncovered facts
+Building translation key...
+Building STRIPS to SAS dictionary...
+Translating task...
+Processing axioms...
+Found 0 axioms that are always true and 0 that are always false
+constrained 5055 conditions
+Writing output...
+Done!
+contains_quantified_conditions: 0
+Building causal graph...
+The causal graph is not acyclic.
+variable var54 is not necessary!
+variable var55 is not necessary!
+variable var56 is not necessary!
+73 variables of 76 necessary
+4155 of 4155 operators necessary.
+0 of 0 Axiom_relational rules necessary.
+3 of 3 Axiom_functional rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+all_operator_indices.size(): 4155
+Writing output...
+printing SG 
+73
+done
+
+
+Planner Paramters:
+Anytime Search: Disabled
+Timeout if plan was found: 0 seconds (no timeout)
+Timeout while no plan was found: 0 seconds (no timeout)
+Greedy Search: Disabled
+Verbose: Enabled
+Lazy Heuristic Evaluation: Enabled
+Use caching in heuristic.
+Cyclic CG heuristic: Enabled 	Preferred Operators: Enabled
+Makespan heuristic: Disabled 	Preferred Operators: Disabled
+No Heuristic: Disabled
+Cg Heuristic Zero Cost Waiting Transitions: Enabled
+Cg Heuristic Fire Waiting Transitions Only If Local Problems Matches State: Disabled
+PrefOpsOrderedMode: Enabled with 1 goals
+PrefOpsCheapestMode: Enabled with 1 goals
+PrefOpsMostExpensiveMode: Disabled with 1000 goals
+PrefOpsRandMode: Disabled with 1000 goals
+PrefOpsConcurrentMode: Disabled
+Reset after solution was found: Enabled
+Reward only preferred operators queue: Disabled
+GValues by: Timestamp
+Queue management mode: Priority based
+Known by logical state only filtering: Disabled
+use_subgoals_to_break_makespan_ties: Disabled
+Reschedule plans: Enabled
+Epsilonize internally: Enabled
+Epsilonize externally: Disabled
+Keep original plans: Enabled
+Plan name: "./output_plan"
+Plan monitor file: "" (no monitoring)
+Monitoring verify timestamps: Disabled
+
+Contains universal conditions: 0
+Giving prior boost to open list 0
+INIT
+Open list sizes (priorities): 0 (-5000),  0 (0),  0 (0),  0 (0), 
+Initializing cyclic causal graph heuristic...done.
+Best heuristic values of queues: 252/-1/-1/-1 [expanded 1 state(s)]
+Best heuristic values of queues: 224.98/-1/-1/-1 [expanded 3 state(s)]
+Best heuristic values of queues: 222/-1/-1/-1 [expanded 4 state(s)]
+Best heuristic values of queues: 207.98/-1/-1/-1 [expanded 6 state(s)]
+Best heuristic values of queues: 206/-1/-1/-1 [expanded 7 state(s)]
+Best heuristic values of queues: 193/-1/-1/-1 [expanded 12 state(s)]
+Best heuristic values of queues: 186.98/-1/-1/-1 [expanded 16 state(s)]
+Best heuristic values of queues: 184/-1/-1/-1 [expanded 17 state(s)]
+Best heuristic values of queues: 173.98/-1/-1/-1 [expanded 19 state(s)]
+Best heuristic values of queues: 172/-1/-1/-1 [expanded 20 state(s)]
+Best heuristic values of queues: 152/-1/-1/-1 [expanded 25 state(s)]
+Best heuristic values of queues: 131/-1/-1/-1 [expanded 27 state(s)]
+Best heuristic values of queues: 130.98/-1/-1/-1 [expanded 28 state(s)]
+Best heuristic values of queues: 130/-1/-1/-1 [expanded 29 state(s)]
+Best heuristic values of queues: 120/-1/-1/-1 [expanded 32 state(s)]
+Best heuristic values of queues: 118.98/-1/-1/-1 [expanded 34 state(s)]
+Best heuristic values of queues: 118/-1/-1/-1 [expanded 35 state(s)]
+Best heuristic values of queues: 102/-1/-1/-1 [expanded 58 state(s)]
+Best heuristic values of queues: 81.98/-1/-1/-1 [expanded 60 state(s)]
+Best heuristic values of queues: 62/-1/-1/-1 [expanded 61 state(s)]
+Best heuristic values of queues: 1/-1/-1/-1 [expanded 86 state(s)]
+Best heuristic values of queues: 0/-1/-1/-1 [expanded 88 state(s)]
+New solution has been found.
+
+Found new plan:
+0.00000000: (robot_attach_carrier walker carrier3 central_warehouse) [3.00000000]
+3.01000000: (robot_load_box walker carrier3 box6 central_warehouse) [2.00000000]
+5.02000000: (pick_up_content_at_cw walker carrier3 box6 tool) [1.00000000]
+6.03000000: (move_walking walker central_warehouse loc1) [20.00000000]
+26.04000000: (put_down_content walker carrier3 box6 loc1 tool wor1) [1.00000000]
+27.05000000: (robot_attach_carrier jumper carrier2 central_warehouse) [3.00000000]
+30.06000000: (robot_load_box jumper carrier2 box3 central_warehouse) [2.00000000]
+32.07000000: (pick_up_content_at_cw jumper carrier2 box3 tool) [1.00000000]
+33.08000000: (move_jumping jumper central_warehouse loc1 loc2) [30.00000000]
+63.09000000: (move_jumping jumper loc2 loc3 loc4) [30.00000000]
+93.10000000: (put_down_content jumper carrier2 box3 loc4 tool wor4) [1.00000000]
+94.11000000: (move_walking walker loc1 central_warehouse) [20.00000000]
+114.12000000: (pick_up_content_at_cw walker carrier3 box6 valve) [1.00000000]
+115.13000000: (move_walking walker central_warehouse loc1) [20.00000000]
+135.14000000: (move_walking walker loc1 loc2) [20.00000000]
+155.15000000: (put_down_content walker carrier3 box6 loc2 valve wor2) [1.00000000]
+156.16000000: (robot_attach_carrier drone carrier1 central_warehouse) [3.00000000]
+159.17000000: (robot_load_box drone carrier1 box1 central_warehouse) [2.00000000]
+161.18000000: (pick_up_content_at_cw drone carrier1 box1 valve) [1.00000000]
+162.19000000: (move_flying drone central_warehouse loc5) [70.00000000]
+232.20000000: (put_down_content drone carrier1 box1 loc5 valve wor5) [1.00000000]
+Rescheduled Plan:
+0.00100000: (robot_attach_carrier walker carrier3 central_warehouse) [3.00000000]
+3.01100000: (robot_load_box walker carrier3 box6 central_warehouse) [2.00000000]
+5.02200000: (pick_up_content_at_cw walker carrier3 box6 tool) [1.00000000]
+6.03300000: (move_walking walker central_warehouse loc1) [20.00000000]
+26.04400000: (put_down_content walker carrier3 box6 loc1 tool wor1) [1.00000000]
+0.00100000: (robot_attach_carrier jumper carrier2 central_warehouse) [3.00000000]
+3.01200000: (robot_load_box jumper carrier2 box3 central_warehouse) [2.00000000]
+5.02300000: (pick_up_content_at_cw jumper carrier2 box3 tool) [1.00000000]
+6.03400000: (move_jumping jumper central_warehouse loc1 loc2) [30.00000000]
+36.04400000: (move_jumping jumper loc2 loc3 loc4) [30.00000000]
+66.05400000: (put_down_content jumper carrier2 box3 loc4 tool wor4) [1.00000000]
+27.05400000: (move_walking walker loc1 central_warehouse) [20.00000000]
+47.06400000: (pick_up_content_at_cw walker carrier3 box6 valve) [1.00000000]
+48.07400000: (move_walking walker central_warehouse loc1) [20.00000000]
+68.08400000: (move_walking walker loc1 loc2) [20.00000000]
+88.09400000: (put_down_content walker carrier3 box6 loc2 valve wor2) [1.00000000]
+0.00100000: (robot_attach_carrier drone carrier1 central_warehouse) [3.00000000]
+3.01200000: (robot_load_box drone carrier1 box1 central_warehouse) [2.00000000]
+5.02300000: (pick_up_content_at_cw drone carrier1 box1 valve) [1.00000000]
+6.03400000: (move_flying drone central_warehouse loc5) [70.00000000]
+76.04400000: (put_down_content drone carrier1 box1 loc5 valve wor5) [1.00000000]
+Solution with original makespan 233.2 found (ignoring no-moving-targets-rule).
+Plan length: 21 step(s).
+Makespan   : 89.094
+Rescheduled Makespan   : 89.094
+Search time: 0.04 seconds - Walltime: 0.034724 seconds
+Total time: 0.13 seconds - Walltime: 0.128435 seconds
+0.00100000: (robot_attach_carrier walker carrier3 central_warehouse) [3.00000000]
+3.01100000: (robot_load_box walker carrier3 box6 central_warehouse) [2.00000000]
+5.02200000: (pick_up_content_at_cw walker carrier3 box6 tool) [1.00000000]
+6.03300000: (move_walking walker central_warehouse loc1) [20.00000000]
+26.04400000: (put_down_content walker carrier3 box6 loc1 tool wor1) [1.00000000]
+0.00100000: (robot_attach_carrier jumper carrier2 central_warehouse) [3.00000000]
+3.01200000: (robot_load_box jumper carrier2 box3 central_warehouse) [2.00000000]
+5.02300000: (pick_up_content_at_cw jumper carrier2 box3 tool) [1.00000000]
+6.03400000: (move_jumping jumper central_warehouse loc1 loc2) [30.00000000]
+36.04400000: (move_jumping jumper loc2 loc3 loc4) [30.00000000]
+66.05400000: (put_down_content jumper carrier2 box3 loc4 tool wor4) [1.00000000]
+27.05400000: (move_walking walker loc1 central_warehouse) [20.00000000]
+47.06400000: (pick_up_content_at_cw walker carrier3 box6 valve) [1.00000000]
+48.07400000: (move_walking walker central_warehouse loc1) [20.00000000]
+68.08400000: (move_walking walker loc1 loc2) [20.00000000]
+88.09400000: (put_down_content walker carrier3 box6 loc2 valve wor2) [1.00000000]
+0.00100000: (robot_attach_carrier drone carrier1 central_warehouse) [3.00000000]
+3.01200000: (robot_load_box drone carrier1 box1 central_warehouse) [2.00000000]
+5.02300000: (pick_up_content_at_cw drone carrier1 box1 valve) [1.00000000]
+6.03400000: (move_flying drone central_warehouse loc5) [70.00000000]
+76.04400000: (put_down_content drone carrier1 box1 loc5 valve wor5) [1.00000000]
